@@ -1,3 +1,6 @@
+pnpm-lock.yaml
+
+
 # Based on https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore
 
 # Logs
@@ -172,5 +175,3 @@ dist
 
 # Finder (MacOS) folder config
 .DS_Store
-
-pnpm-lock.yaml
