@@ -1,5 +1,5 @@
 // hidden dependencies
-import { morganMiddleware } from './infrastructure/adapters/morgan.adapter';
+import { morganMiddleware } from './infrastructure/plugins/morgan.adapter';
 import { corsMiddleware } from './presentation/middlewares/security/cors.middleware';
 import { RouterApp } from './router-app';
 
