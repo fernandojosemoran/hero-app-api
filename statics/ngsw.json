@@ -1,0 +1,135 @@
+{
+  "configVersion": 1,
+  "timestamp": 1732029985206,
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/chunk-37YSLXEE.js",
+        "/chunk-523MHD6K.js",
+        "/chunk-PC6ILH67.js",
+        "/chunk-TMV663PG.js",
+        "/chunk-V4OLUEK2.js",
+        "/chunk-W33SALF6.js",
+        "/chunk-WACZVVH7.js",
+        "/favicon.ico",
+        "/index.html",
+        "/main-MWHONTPU.js",
+        "/manifest.webmanifest",
+        "/polyfills-YTAVFQFU.js",
+        "/styles-ZHDMBUWD.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/icons/icon-128x128.png",
+        "/icons/icon-144x144.png",
+        "/icons/icon-152x152.png",
+        "/icons/icon-192x192.png",
+        "/icons/icon-384x384.png",
+        "/icons/icon-512x512.png",
+        "/icons/icon-72x72.png",
+        "/icons/icon-96x96.png",
+        "/images/heroes/dc-arrow.jpg",
+        "/images/heroes/dc-batman.jpg",
+        "/images/heroes/dc-black.jpg",
+        "/images/heroes/dc-blue.jpg",
+        "/images/heroes/dc-flash.jpg",
+        "/images/heroes/dc-green.jpg",
+        "/images/heroes/dc-martian.jpg",
+        "/images/heroes/dc-robin.jpg",
+        "/images/heroes/dc-superman.jpg",
+        "/images/heroes/dc-wonder.jpg",
+        "/images/heroes/marvel-captain.jpg",
+        "/images/heroes/marvel-cyclops.jpg",
+        "/images/heroes/marvel-daredevil.jpg",
+        "/images/heroes/marvel-hawkeye.jpg",
+        "/images/heroes/marvel-hulk.jpg",
+        "/images/heroes/marvel-iron.jpg",
+        "/images/heroes/marvel-silver.jpg",
+        "/images/heroes/marvel-spider.jpg",
+        "/images/heroes/marvel-thor.jpg",
+        "/images/heroes/marvel-wolverine.jpg",
+        "/images/no-image.png"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/chunk-37YSLXEE.js": "660ba61c298560bc59b3143a46dfdb0e47b2b37e",
+    "/chunk-523MHD6K.js": "45f00adc5b92afb44f5f768b451835b4f92c9814",
+    "/chunk-PC6ILH67.js": "3f9b293a4cd527bcdc11c936ebfeadcd1f642718",
+    "/chunk-TMV663PG.js": "5929cfd82b541e45b49d93225e04255fb9cf5f1c",
+    "/chunk-V4OLUEK2.js": "a37bc48184d7a9dfdb23ad185e6bd2be57c3693f",
+    "/chunk-W33SALF6.js": "09731198f51b1dc51c0e22b1989e79f68912bb7c",
+    "/chunk-WACZVVH7.js": "073f6f15a444ee522be93fcab94a504120d3a45b",
+    "/favicon.ico": "9c39f434fe1261f68c5e3eefdf734630d99c5670",
+    "/icons/icon-128x128.png": "f912963bdc6d5a38d8f1dd0afbaab2ce8d657acb",
+    "/icons/icon-144x144.png": "b155fd5f2fd5d2ea7760721063003c4cd95fd783",
+    "/icons/icon-152x152.png": "eae6e0f0c8afb8aaae339e2a569b43e9238e5e6c",
+    "/icons/icon-192x192.png": "15c4180454633880d98674aa7394656196c91584",
+    "/icons/icon-384x384.png": "94a915751ef6c9282df9aea405ad679230631814",
+    "/icons/icon-512x512.png": "1de182f76f7329dfa8f9fcdd1fdcdd695bea6a99",
+    "/icons/icon-72x72.png": "aa88a6096bd973be7f6d7a5489bfa6bc2463f8c4",
+    "/icons/icon-96x96.png": "7fb8f59c30ce2ff12c700321a0b39e14b3dc8f95",
+    "/images/heroes/dc-arrow.jpg": "ecb85bafad6c3d0bb82a29ff59506fc600223c52",
+    "/images/heroes/dc-batman.jpg": "7944df900d1ce3cf1d14efe320bff5d03697042d",
+    "/images/heroes/dc-black.jpg": "362ccd31a6259d0c24c98b44a6496d85043a356f",
+    "/images/heroes/dc-blue.jpg": "aee8fd197f77b6fd0bc2e75644f7a9deb8c2bfe8",
+    "/images/heroes/dc-flash.jpg": "1554acb87a9d46490e76b6ca1f7079e9f4a29be0",
+    "/images/heroes/dc-green.jpg": "5230d53aaa573977a038dcc37719c8e01980850c",
+    "/images/heroes/dc-martian.jpg": "bb45c9a411e94c04844af4305b1e77b62c776975",
+    "/images/heroes/dc-robin.jpg": "dbc2ab08f2048b06a77169d5c8634d1d7b76fa0b",
+    "/images/heroes/dc-superman.jpg": "7b17ef8ed3d4b6c0837a55437fc81f1864d26904",
+    "/images/heroes/dc-wonder.jpg": "2dd46446392b05e1fea1196183b4d121356e9db6",
+    "/images/heroes/marvel-captain.jpg": "15f402fb21ee9f529ecd2f4c51b7083d1bd112fa",
+    "/images/heroes/marvel-cyclops.jpg": "7c1837b53b90e784c1f7d5db0844a04f62301e9d",
+    "/images/heroes/marvel-daredevil.jpg": "f0f2ebc803eace0414e5dabb75107fe031dfd985",
+    "/images/heroes/marvel-hawkeye.jpg": "5033d7e3f5e737eac064f5aac4dbb024ec0e00ef",
+    "/images/heroes/marvel-hulk.jpg": "ccdfe87c451b4b7d2fdb8fc859bdc098bf8b8e50",
+    "/images/heroes/marvel-iron.jpg": "4c63ce6a808bc93b48930371d95fa1659140cfec",
+    "/images/heroes/marvel-silver.jpg": "89dc56b466047f9ed1efdcc884a91c71b6c5fb39",
+    "/images/heroes/marvel-spider.jpg": "4d042521b494ed407a2a7d414ebe6e6a1794d5a3",
+    "/images/heroes/marvel-thor.jpg": "247c5456f89052a071e4f2f1812691061ac1396d",
+    "/images/heroes/marvel-wolverine.jpg": "2c44355cd1046aa0fafc6a2980e777125486348d",
+    "/images/no-image.png": "e6b2d32a87025fb9022a8983e7416dd2500a40bb",
+    "/index.html": "b7d4d7295127e0ae7c2d7d10e70e20bc6ea85ef8",
+    "/main-MWHONTPU.js": "c150555b4635daa5585d1fb392d5400b493b374d",
+    "/manifest.webmanifest": "ad339325e518fb14e5203507c1e2aea28b7ed6bb",
+    "/polyfills-YTAVFQFU.js": "f49b49a155bc7d192db62a4c15d0a612b460a667",
+    "/styles-ZHDMBUWD.css": "1f5d3a5f6d48d3db7683fb438511b7c7c99145b0"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}

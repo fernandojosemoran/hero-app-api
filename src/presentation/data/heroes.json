@@ -1,0 +1,191 @@
+{
+    "heroes": [
+        {
+            "id": "dc-batman",
+            "superhero": "Batman",
+            "publisher": "DC Comics",
+            "alter_ego": "Bruce Wayne",
+            "first_appearance": "Detective Comics #27",
+            "characters": "Bruce Wayne"
+        },
+        {
+            "id": "dc-superman",
+            "superhero": "Superman",
+            "publisher": "DC Comics",
+            "alter_ego": "Kal-El",
+            "first_appearance": "Action Comics #1",
+            "characters": "Kal-El"
+        },
+        {
+            "id": "dc-flash",
+            "superhero": "Flash",
+            "publisher": "DC Comics",
+            "alter_ego": "Jay Garrick",
+            "first_appearance": "Flash Comics #1",
+            "characters": "Jay Garrick, Barry Allen, Wally West, Bart Allen"
+        },
+        {
+            "id": "dc-green",
+            "superhero": "Green Lantern",
+            "publisher": "DC Comics",
+            "alter_ego": "Alan Scott",
+            "first_appearance": "All-American Comics #16",
+            "characters": "Alan Scott, Hal Jordan, Guy Gardner, John Stewart, Kyle Raynor, Jade, Sinestro, Simon Baz"
+        },
+        {
+            "id": "dc-arrow",
+            "superhero": "Green Arrow",
+            "publisher": "DC Comics",
+            "alter_ego": "Oliver Queen",
+            "first_appearance": "More Fun Comics #73",
+            "characters": "Oliver Queen"
+        },
+        {
+            "id": "dc-wonder",
+            "superhero": "Wonder Woman",
+            "publisher": "DC Comics",
+            "alter_ego": "Princess Diana",
+            "first_appearance": "All Star Comics #8",
+            "characters": "Princess Diana"
+        },
+        {
+            "id": "dc-martian",
+            "superhero": "Martian Manhunter",
+            "publisher": "DC Comics",
+            "alter_ego": "J\"onn J\"onzz",
+            "first_appearance": "Detective Comics #225",
+            "characters": "Martian Manhunter"
+        },
+        {
+            "id": "dc-robin",
+            "superhero": "Robin/Nightwing",
+            "publisher": "DC Comics",
+            "alter_ego": "Dick Grayson",
+            "first_appearance": "Detective Comics #38",
+            "characters": "Dick Grayson"
+        },
+        {
+            "id": "dc-blue",
+            "superhero": "Blue Beetle",
+            "publisher": "DC Comics",
+            "alter_ego": "Dan Garret",
+            "first_appearance": "Mystery Men Comics #1",
+            "characters": "Dan Garret, Ted Kord, Jaime Reyes"
+        },
+        {
+            "id": "dc-black",
+            "superhero": "Black Canary",
+            "publisher": "DC Comics",
+            "alter_ego": "Dinah Drake",
+            "first_appearance": "Flash Comics #86",
+            "characters": "Dinah Drake, Dinah Lance"
+        },
+        {
+            "id": "marvel-spider",
+            "superhero": "Spider Man",
+            "publisher": "Marvel Comics",
+            "alter_ego": "Peter Parker",
+            "first_appearance": "Amazing Fantasy #15",
+            "characters": "Peter Parker"
+        },
+        {
+            "id": "marvel-captain",
+            "superhero": "Captain America",
+            "publisher": "Marvel Comics",
+            "alter_ego": "Steve Rogers",
+            "first_appearance": "Captain America Comics #1",
+            "characters": "Steve Rogers"
+        },
+        {
+            "id": "marvel-iron",
+            "superhero": "Iron Man",
+            "publisher": "Marvel Comics",
+            "alter_ego": "Tony Stark",
+            "first_appearance": "Tales of Suspense #39",
+            "characters": "Tony Stark"
+        },
+        {
+            "id": "marvel-thor",
+            "superhero": "Thor",
+            "publisher": "Marvel Comics",
+            "alter_ego": "Thor Odinson",
+            "first_appearance": "Journey into Myster #83",
+            "characters": "Thor Odinson"
+        },
+        {
+            "id": "marvel-hulk",
+            "superhero": "Hulk",
+            "publisher": "Marvel Comics",
+            "alter_ego": "Bruce Banner",
+            "first_appearance": "The Incredible Hulk #1",
+            "characters": "Bruce Banner"
+        },
+        {
+            "id": "marvel-wolverine",
+            "superhero": "Wolverine",
+            "publisher": "Marvel Comics",
+            "alter_ego": "James Howlett",
+            "first_appearance": "The Incredible Hulk #180",
+            "characters": "James Howlett"
+        },
+        {
+            "id": "marvel-daredevil",
+            "superhero": "Daredevil",
+            "publisher": "Marvel Comics",
+            "alter_ego": "Matthew Michael Murdock",
+            "first_appearance": "Daredevil #1",
+            "characters": "Matthew Michael Murdock"
+        },
+        {
+            "id": "marvel-hawkeye",
+            "superhero": "Hawkeye",
+            "publisher": "Marvel Comics",
+            "alter_ego": "Clinton Francis Barton",
+            "first_appearance": "Tales of Suspense #57",
+            "characters": "Clinton Francis Barton"
+        },
+        {
+            "id": "marvel-cyclops",
+            "superhero": "Cyclops",
+            "publisher": "Marvel Comics",
+            "alter_ego": "Scott Summers",
+            "first_appearance": "X-Men #1",
+            "characters": "Scott Summers"
+        },
+        {
+            "id": "marvel-silver",
+            "superhero": "Silver Surfer",
+            "publisher": "Marvel Comics",
+            "alter_ego": "Norrin Radd",
+            "first_appearance": "The Fantastic Four #48",
+            "characters": "Norrin Radd"
+        },
+        {
+            "id": "marvel-drax",
+            "superhero": "Drax",
+            "publisher": "Marvel Comics",
+            "alter_ego": "Dave Bautista",
+            "first_appearance": "galaxy guardians #1",
+            "characters": "moron, clueless, strong",
+            "alt_image": "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fpm1.narvii.com%2F7400%2F8266a3b92ad555a3499c42fb8610efed0304858br1-720-1280v2_uhq.jpg&f=1&nofb=1&ipt=137a5e5f0c8577f9aee9f2e66bc5c3154984f6e8820a8f0bf43eefbd45772956&ipo=images"
+        },
+        {
+            "id": "dc-super-girl",
+            "superhero": "super girl",
+            "publisher": "DC Comics",
+            "alter_ego": "Kara",
+            "first_appearance": "season #5",
+            "characters": "intelligent,  fast",
+            "alt_image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.N9qW7TNKj_dDgFqJFMfgLwHaJ4%26pid%3DApi&f=1&ipt=7b0d19001eaa245c249b23449dd6eeac67610ea3e4c9195afaad143ab78ef48f&ipo=images"
+        },
+        {
+            "id": "marvel-star-lord",
+            "superhero": "star lord",
+            "publisher": "Marvel Comics",
+            "alter_ego": "Chris Pratt ",
+            "first_appearance": "season #2",
+            "characters": "nose",
+            "alt_image": "https://vignette.wikia.nocookie.net/filmguide/images/a/a8/StarLordIW.jpg/revision/latest?cb=20180429135015"
+        }
+    ]
+}
