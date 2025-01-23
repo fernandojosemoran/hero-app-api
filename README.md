@@ -5,7 +5,7 @@ Heroes app to allow to do requests using by following methods: `PUT, DELETE, POS
 
 ## technologies
 
-- ![express.js](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge)![clean architecture](https://img.shields.io/badge/clean%20architecture-2b58bf?style=for-the-badge)![solid principles](https://img.shields.io/badge/solid%20principles-2ba7bf?style=for-the-badge)
+- ![express.js](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge) ![clean architecture](https://img.shields.io/badge/clean%20architecture-2b58bf?style=for-the-badge) ![solid principles](https://img.shields.io/badge/solid%20principles-2ba7bf?style=for-the-badge)
 - ![angular framework](https://img.shields.io/badge/Angular%20Framework-DD0031?style=for-the-badge&logo=angular&logoColor=white)
 - ![jest.js](https://img.shields.io/badge/Jest%20(testing)-323330?style=for-the-badge&logo=Jest&logoColor=white)
 - ![typescript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
