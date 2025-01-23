@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon",
-    "start": "pnpm run build && node dist/src/app.js",
+    "start": "npm run build && node dist/src/app.js",
     "build": "rimraf ./dist && tsc && ts-node ./scripts/copy-statics-file.ts",
     "lint:fix": "npx eslint --fix",
     "test": "jest",
