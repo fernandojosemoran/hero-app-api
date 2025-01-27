@@ -1,6 +1,7 @@
 import { Publisher } from "../../../domain/entities/hero.entity";
 
 interface ICreateHeroDtoParams {
+    id?: string;
     alter_ego: string;
     characters: string;
     first_appearance: string;

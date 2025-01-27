@@ -116,7 +116,7 @@
     "jest.config.ts",
     "eslint.config.mjs",
     "setupTests.ts",
-    "config-app.ts",
+    // "config-app.ts",
     "scripts"
   ]
 }

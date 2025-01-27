@@ -10,10 +10,10 @@ import HttpError from '../errors/http-error';
 import SearchHeroDto from '../../../src/domain/dto/heroes/search-hero.dto';
 import path from 'path';
 import fs from 'fs';
-import ConfigApp from '../../../config-app';
+// import { configApp } from "../../../config-app";
 
 class HeroDatasourceImpl implements HeroDataSource {
-    private readonly jsonFile: string = path.join(ConfigApp.rootDirPath, "./src/presentation/data/heroes.json");
+    private jsonFile: string = path.join("../../../", "src/presentation/data/heroes.json");
     private readonly contextPath: string = "./src/infrastructure/datasource/hero.datasource.impl.ts";
 
     public constructor(
@@ -54,34 +54,23 @@ class HeroDatasourceImpl implements HeroDataSource {
     }
 
     public async updateHero(hero: UpdateHeroDto): Promise<HeroEntity> {
-        const heroesResponse: HeroEntityResponse = heroesJsonDb as HeroEntityResponse;
+        const rawData = fs.readFileSync(this.jsonFile, { encoding: "utf-8" });
 
-        const heroes: HeroEntity[] = [];
-        let heroDeleted: HeroEntity | undefined = {} as HeroEntity;
-        
-        for(const heroEntity of heroesResponse.heroes) {
-            if (heroEntity.id !== hero.id) heroes.push(heroEntity);
+        const { heroes }: HeroEntityResponse = JSON.parse(rawData) as HeroEntityResponse;
+    
+        const heroCount: number = heroes.length;
+    
+        const heroesFiltered = heroes.filter((heroEntity) => heroEntity.id !== hero.id);
+    
+        if (heroCount === heroesFiltered.length) throw HttpError.notFound("hero not found");
 
-            if (heroEntity.id === hero.id) heroDeleted = heroEntity;
-        }
-
-        if (!heroDeleted) throw HttpError.notFound("hero not found");
-
-        const heroUpdated: HeroEntity = {
-            id: heroDeleted.id,
-            alter_ego: hero.alter_ego,
-            characters: hero.characters,
-            first_appearance: hero.first_appearance,
-            publisher: hero.publisher as Publisher,
-            superhero: hero.superhero, 
-            alt_image: hero.alt_image
-        };
-
-        heroes.push(heroUpdated);
-
-        fs.writeFileSync(this.jsonFile, JSON.stringify({ heroes: heroes }, null, 4), { encoding: "utf-8", flag: "w" });
-
-        return Promise.resolve(heroUpdated);
+        heroesFiltered.push(hero as HeroEntity);
+    
+        fs.writeFileSync(this.jsonFile, JSON.stringify({ heroes: heroesFiltered }, null, 4), { encoding: "utf-8", flag: "w" });
+    
+        Object.assign(heroesJsonDb, { heroes: heroesFiltered });
+    
+        return Promise.resolve(hero as HeroEntity);
     }
 
     public async deleteHero({ id }: DeleteHeroDto): Promise<string> {

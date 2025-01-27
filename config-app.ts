@@ -1,8 +1,26 @@
+import Middleware from "./src/presentation/middlewares/middleware";
 import Env from "./src/infrastructure/constants/env";
+import path from "path";
+import RouterAppInstance, { RouterApp } from "./src/router-app";
 
-class ConfigApp {
-    public static readonly rootDirPath: string = __dirname; 
-    public static readonly debug: boolean = Env.DEBUG;
+interface IConfigApp {
+    rootDirPath: string;
+    debug: boolean;
+    port: number;
+    staticFilesPath: string;
+    middlewares: Middleware[],
+    routesApp: RouterApp
 }
 
-export default ConfigApp;
+export const configApp: IConfigApp = {
+    rootDirPath: __dirname, 
+    debug: Env.DEBUG,
+    port: Env.PORT,
+    staticFilesPath: path.join(__dirname, "statics/frontend/browser"),
+    middlewares: [
+
+    ],
+    routesApp: RouterAppInstance
+};
+
+export default configApp;

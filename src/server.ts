@@ -1,36 +1,31 @@
 // hidden dependencies
 import { morganMiddleware } from './infrastructure/plugins/morgan.adapter';
 import { corsMiddleware } from './presentation/middlewares/security/cors.middleware';
-import { RouterApp } from './router-app';
 
 import express from 'express';
 import ServerErrors from "./infrastructure/errors/server.errors";
 import http from "http";
 import path from 'path';
 import LogService from './presentation/services/log.service';
-import ConfigApp from '../config-app';
-
+import configApp from '../config-app';
 
 // hidden dependencies
 const logService: LogService = new LogService();
 
 class ServerApp {
     private readonly server = express();
-    private readonly staticFilePath: string = path.resolve(ConfigApp.rootDirPath, "statics/");
+    private readonly staticFilePath: string = path.resolve(configApp.staticFilesPath);
 
     private serverAppInstance: ServerApp | undefined = undefined;
     private serverListeningFlag: http.Server | undefined;
     private startMethodFlagFlag: boolean = false;
 
-    public constructor(
-        private readonly port: number,
-        private readonly routesApp: RouterApp,
-    ) {}
+    public constructor() {}
 
     public get getInstance(): ServerApp {
         if (this.serverAppInstance) throw "already exist a instance of ServerApp";
 
-        const serverInstance = new ServerApp(this.port, this.routesApp);
+        const serverInstance = new ServerApp();
         
         this.serverAppInstance = serverInstance;
 
@@ -46,7 +41,7 @@ class ServerApp {
     }
 
     private routes(): void {
-        this.server.use(this.routesApp.appRoutes);
+        this.server.use(configApp.routesApp.appRoutes);
     }
 
     public start(): void {
@@ -54,10 +49,10 @@ class ServerApp {
 
         this.middlewares();
         this.routes();
-        this.serverListeningFlag = this.server.listen(this.port, (error) => {
+        this.serverListeningFlag = this.server.listen(configApp.port, (error) => {
             if (error) return logService.errorLog(error);
 
-            logService.infoLog(`Server running on http://127.0.0.1:${this.port}`, "./src/server.ts | start()", true);
+            logService.infoLog(`Server running on http://127.0.0.1:${configApp.port}`, "./src/server.ts | start()", true);
         });
         this.startMethodFlagFlag = true;
     }

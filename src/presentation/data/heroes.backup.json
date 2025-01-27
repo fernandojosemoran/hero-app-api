@@ -182,57 +182,30 @@
         },
         {
             "id": "marvel-drax",
-            "alter_ego": "Dave Bautista",
-            "characters": "moron, clueless, strong",
-            "first_appearance": "galaxy guardians #1",
-            "publisher": "Marvel Comics",
             "superhero": "Drax",
-            "alt_image": "https://imgs.search.brave.com/2-U8VOJz3jXB78JCSrboVEFuUQxt0u1JboC4v-0SQj4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/c291dGhzaWRlY29t/aWNzcGdoLmNvbS9j/ZG4vc2hvcC9maWxl/cy9sYXJnZS0yNDIx/MzU5LmpwZz92PTE3/MTI5NTA1ODYmd2lk/dGg9MTQ0NQ"
-        },
-        {
-            "id": "marvel-doctor-strange",
-            "alter_ego": "Dr. Stephen Vincent Strange",
-            "first_appearance": "Strange Tales #110",
-            "characters": "Karl Mordo,The Ancient One,Christine Palmer,Kaecilius",
             "publisher": "Marvel Comics",
-            "superhero": "Doctor Strange",
-            "alt_image": "https://imgs.search.brave.com/Jw28owbYPK8Pz-TAJ9ykuJXUaSBMER61Csmn7wVUulA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2FhLzIw/L2RmL2FhMjBkZjNj/MmE4NWFjM2ExNmY5/YjY5MmJlMWM3ZDg3/LmpwZw"
-        },
-        {
-            "id": "marvel-star-lord",
-            "alter_ego": "Chris Pratt ",
-            "characters": "Gamora,Rocket Raccoon,Groot,Drax the Destroyer,Yondu Udonta,Nebula,Mantis",
-            "first_appearance": "Season #2",
-            "publisher": "Marvel Comics",
-            "superhero": "Star Lord",
-            "alt_image": "https://imgs.search.brave.com/ZEue4-_Se1gJJA-6Y3St_Eo9mW7oEotVl7A_M9_EzxY/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMtbmEuc3NsLWlt/YWdlcy1hbWF6b24u/Y29tL2ltYWdlcy9J/LzcxQmdlM3NuZmJM/LmpwZw"
+            "alter_ego": "Dave Bautista",
+            "first_appearance": "galaxy guardians #1",
+            "characters": "moron, clueless, strong",
+            "alt_image": "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fpm1.narvii.com%2F7400%2F8266a3b92ad555a3499c42fb8610efed0304858br1-720-1280v2_uhq.jpg&f=1&nofb=1&ipt=137a5e5f0c8577f9aee9f2e66bc5c3154984f6e8820a8f0bf43eefbd45772956&ipo=images"
         },
         {
             "id": "dc-super-girl",
-            "alter_ego": "Kara Zor-El ",
-            "characters": "Cat Grant,Martian Manhunter,Lena Luthor,Maggie Sawyer",
-            "first_appearance": "season #5",
-            "publisher": "DC Comics",
             "superhero": "super girl",
-            "alt_image": "https://imgs.search.brave.com/VlnO_xTGy9duT0KBm1_FgVwQKpMK9fgk8QvcxgJ5hGU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/Z29jb2xsZWN0LmNv/bS9leUppZFdOclpY/UWlPaUpuYjJOdmJH/eGxZM1F1YVcxaFoy/VnpMbkIxWWlJc0lt/dGxlU0k2SWpkak16/TXpNakptTFdGbVpq/Z3ROR0l6TnkwNFlX/SXlMV0l6WW1aa056/WmpPREpsWXk1cWNH/Y2lMQ0psWkdsMGN5/STZXMTE5"
+            "publisher": "DC Comics",
+            "alter_ego": "Kara",
+            "first_appearance": "season #5",
+            "characters": "intelligent,  fast",
+            "alt_image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.N9qW7TNKj_dDgFqJFMfgLwHaJ4%26pid%3DApi&f=1&ipt=7b0d19001eaa245c249b23449dd6eeac67610ea3e4c9195afaad143ab78ef48f&ipo=images"
         },
         {
-            "id": "dc-ant-man",
-            "alter_ego": "Scott Edward",
-            "characters": "Atn-Man, Howard Stark, M.O.D.O.K, Stature, Captain America",
-            "first_appearance": "Tales to astonish #27",
-            "publisher": "DC Comics",
-            "superhero": "Ant-Man",
-            "alt_image": "https://imgs.search.brave.com/3BHilr9Iz1PEl-kqSaG1V9mVy__-lwK9kuNxE1-Vx98/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/ODEta1dBR0VLUkwu/anBn"
-        },
-        {
-            "id": "dc-batwoman",
-            "alter_ego": "Katherine",
-            "characters": "Alice, Poison Mary,Batwing,Monitor,Hush",
-            "first_appearance": " Detective Comics #233",
-            "publisher": "DC Comics",
-            "superhero": "Batwoman",
-            "alt_image": "https://imgs.search.brave.com/RVce1MDzqAH2ebtG6_0esaunJQfhEW9urZZUV_OT2ms/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2YwLzY5/L2FhL2YwNjlhYTg4/Zjc4N2Y3ZWViZGNj/MGZkZjNiMGUxODA1/LmpwZw"
+            "id": "marvel-star-lord",
+            "superhero": "star lord",
+            "publisher": "Marvel Comics",
+            "alter_ego": "Chris Pratt ",
+            "first_appearance": "season #2",
+            "characters": "nose",
+            "alt_image": "https://vignette.wikia.nocookie.net/filmguide/images/a/a8/StarLordIW.jpg/revision/latest?cb=20180429135015"
         }
     ]
 }

@@ -20,11 +20,12 @@ interface ICorsParams {
     preflightContinue?: boolean,
 }
 
-const origins: StaticOrigin = Env.DEBUG ? Env.WHITE_LIST_ALLOWED_HOSTS_PROD : Env.WHITE_LIST_ALLOWED_HOSTS_DEV;
+const origins: StaticOrigin = Env.DEBUG ? Env.WHITE_LIST_ALLOWED_HOSTS_DEV : Env.WHITE_LIST_ALLOWED_HOSTS_PROD;
 
 const optionsCors: ICorsParams = { 
     origin: origins,
     optionsSuccessStatus: 200,  
+    credentials: true
 };
 
 
