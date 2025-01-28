@@ -2,7 +2,6 @@ import { HeroEntity, HeroEntityResponse, Publisher } from "../../domain/entities
 
 import heroesJsonDb from "../../presentation/data/heroes.json";
 import HeroDataSource from "../../domain/datasources/hero.datasource";
-import LogService from '../../presentation/services/log.service';
 import CreateHeroDto from '../../domain/dto/heroes/create-hero.dto';
 import UpdateHeroDto from '../../domain/dto/heroes/update-hero.dto';
 import DeleteHeroDto from '../../domain/dto/heroes/delete-hero.dto';
@@ -10,15 +9,12 @@ import HttpError from '../errors/http-error';
 import SearchHeroDto from '../../../src/domain/dto/heroes/search-hero.dto';
 import path from 'path';
 import fs from 'fs';
-// import { configApp } from "../../../config-app";
+import configApp from "../../../config-app";
 
 class HeroDatasourceImpl implements HeroDataSource {
-    private jsonFile: string = path.join("../../../", "src/presentation/data/heroes.json");
-    private readonly contextPath: string = "./src/infrastructure/datasource/hero.datasource.impl.ts";
+    private jsonFile: string = path.join(configApp.rootDirPath, "src/presentation/data/heroes.json");
 
-    public constructor(
-        private readonly logService: LogService
-    ) {}
+    public constructor() {}
     
     public searchHero({ superhero }: SearchHeroDto): Promise<HeroEntity[]> {
         

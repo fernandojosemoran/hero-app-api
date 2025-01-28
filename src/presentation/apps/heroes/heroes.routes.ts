@@ -1,20 +1,16 @@
 import { Router } from "express";
 
 import heroesControllerInstance, { HeroController } from "./heroes.controller";
-// import { headersGuardMiddleware } from "../../../../src/presentation/middlewares/security/headers.guard.middleware";
+import Expose from "../../../infrastructure/objects/router";
 
-interface IHeroRoutes {
-    get getHeroesRoutes(): Router;
-}
-
-export class HeroRoutes implements IHeroRoutes {
-    private readonly router: Router = Router();
-
+export class HeroRoutes extends Expose {
     public constructor(
         private readonly controllers: HeroController
-    ){}
+    ){
+        super();
+    }
 
-    public get getHeroesRoutes(): Router {
+    public get routes(): Router {
         this.router.post("/hero/create", this.controllers.createHero);
         this.router.get("/hero/heroes-list", this.controllers.getAllHeroes);
         this.router.get("/hero/:id", this.controllers.getHeroById);

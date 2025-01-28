@@ -1,16 +1,16 @@
 import { Router } from "express";
 
 import mediaControllerInstance, { MediaController } from "./media.controller";
+import Expose from "../../../infrastructure/objects/router";
 
-export class MediaRoutes {
-    private readonly router: Router = Router();
-
+export class MediaRoutes extends Expose{
     public constructor(
         private readonly controller: MediaController
-    ) {}
+    ) {
+        super();
+    }
 
-    public get mediaRoutes(): Router {
-
+    public get routes(): Router {
         this.router.get("/hero/:image", this.controller.streamHeroImages);
 
         return this.router;

@@ -4,6 +4,9 @@ export interface UserEntity {
 
 export interface User {
     id:      string;
-    usuario: string;
+    userName: string;
+    lastName: string;
     email:   string;
+    password: string;
+    authorization: boolean;
 }

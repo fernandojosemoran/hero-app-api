@@ -1,3 +1,6 @@
+import { ConfigApp } from '../config-app';
+import { RouterApp } from './router-app';
+
 // hidden dependencies
 import { morganMiddleware } from './infrastructure/plugins/morgan.adapter';
 import { corsMiddleware } from './presentation/middlewares/security/cors.middleware';
@@ -5,29 +8,31 @@ import { corsMiddleware } from './presentation/middlewares/security/cors.middlew
 import express from 'express';
 import ServerErrors from "./infrastructure/errors/server.errors";
 import http from "http";
-import path from 'path';
 import LogService from './presentation/services/log.service';
-import configApp from '../config-app';
+import cookieMiddleware from './presentation/middlewares/cookie.middleware';
+
 
 // hidden dependencies
 const logService: LogService = new LogService();
 
 class ServerApp {
     private readonly server = express();
-    private readonly staticFilePath: string = path.resolve(configApp.staticFilesPath);
 
-    private serverAppInstance: ServerApp | undefined = undefined;
-    private serverListeningFlag: http.Server | undefined;
-    private startMethodFlagFlag: boolean = false;
+    private _serverAppInstance: ServerApp | undefined = undefined;
+    private _serverListeningFlag: http.Server | undefined;
+    private _startMethodFlagFlag: boolean = false;
 
-    public constructor() {}
+    public constructor(
+        private readonly _config: ConfigApp,
+        private readonly _routers: RouterApp
+    ) {}
 
     public get getInstance(): ServerApp {
-        if (this.serverAppInstance) throw "already exist a instance of ServerApp";
+        if (this._serverAppInstance) throw "already exist a instance of ServerApp";
 
-        const serverInstance = new ServerApp();
+        const serverInstance = new ServerApp(this._config, this._routers);
         
-        this.serverAppInstance = serverInstance;
+        this._serverAppInstance = serverInstance;
 
         return serverInstance;
     }
@@ -35,31 +40,32 @@ class ServerApp {
     private middlewares(): void {
         this.server.use(morganMiddleware());
         this.server.use(corsMiddleware());
+        this.server.use(cookieMiddleware());
         this.server.use(express.json());
         this.server.use(express.urlencoded({ extended: false }));
-        this.server.use(express.static(this.staticFilePath));
+        this.server.use(express.static(this._config.staticFilesPath));
     }
 
     private routes(): void {
-        this.server.use(configApp.routesApp.appRoutes);
+        this.server.use(this._routers.appRoutes);
     }
 
     public start(): void {
-        if (this.startMethodFlagFlag) throw ServerErrors.startServer("The method start already were executed.");
+        if (this._startMethodFlagFlag) throw ServerErrors.startServer("The method start already were executed.");
 
         this.middlewares();
         this.routes();
-        this.serverListeningFlag = this.server.listen(configApp.port, (error) => {
+        this._serverListeningFlag = this.server.listen(this._config.port, (error) => {
             if (error) return logService.errorLog(error);
 
-            logService.infoLog(`Server running on http://127.0.0.1:${configApp.port}`, "./src/server.ts | start()", true);
+            logService.infoLog(`Server running on http://127.0.0.1:${this._config.port}`, "./src/server.ts | start()", true);
         });
-        this.startMethodFlagFlag = true;
+        this._startMethodFlagFlag = true;
     }
     
 
     public stop(): void {
-        this.serverListeningFlag!.close();
+        this._serverListeningFlag!.close();
     }   
 }
 

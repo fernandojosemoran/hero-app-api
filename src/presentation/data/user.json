@@ -2,8 +2,11 @@
     "users": [
         {
             "id": "1",
-            "usuario": "John Doe",
-            "email": "john.due@gmail.com"
+            "userName": "John",
+            "lastName": "Doe",
+            "email": "john.due@gmail.com",
+            "password": "password123",
+            "authorization": false
         }
     ]
 }

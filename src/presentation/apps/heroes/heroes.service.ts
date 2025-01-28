@@ -4,8 +4,8 @@ import CreateHeroDto from "../../../domain/dto/heroes/create-hero.dto";
 import HeroRepositoryImpl from "../../../infrastructure/repositories/hero.repository.impl";
 import UpdateHeroDto from "../../../domain/dto/heroes/update-hero.dto";
 import DeleteHeroDto from "../../../domain/dto/heroes/delete-hero.dto";
-import GetHeroByIdDto from "src/domain/dto/heroes/get-hero-by-id.dto";
-import SearchHeroDto from "src/domain/dto/heroes/search-hero.dto";
+import GetHeroByIdDto from "../../../../src/domain/dto/heroes/get-hero-by-id.dto";
+import SearchHeroDto from "../../../../src/domain/dto/heroes/search-hero.dto";
 
 class HeroService {
     public constructor(

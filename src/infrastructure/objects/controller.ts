@@ -1,5 +1,5 @@
 import { Response } from "express";
-import LogService from "src/presentation/services/log.service";
+import LogService from "../../../src/presentation/services/log.service";
 import HttpError from "../errors/http-error";
 import HttpStatusCode from "../helpers/http-status-code";
 

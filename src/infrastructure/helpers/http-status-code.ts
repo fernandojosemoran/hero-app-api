@@ -1,6 +1,8 @@
 class HttpStatusCode {
     public static readonly OK: number = 200;
     public static readonly FOUND: number = 302;
+    public static readonly CREATED: number = 201;
+    public static readonly ACCEPTED: number = 202;
 
     public static readonly NOT_FOUND: number = 404;
     public static readonly INTERNAL_SERVER_ERROR: number = 500;

@@ -1,13 +1,8 @@
-import Middleware from "../middleware";
+import { NextFunction } from "express";
 
-class Authentication extends Middleware {
-    public constructor(){
-        super();
-    }
-
-    public get use(): Middleware {
-        return new Middleware();
-    }
+function authentication(request: Request, response: Response, next: NextFunction) {
+    
 }
 
-export default Authentication;
+
+export default authentication;

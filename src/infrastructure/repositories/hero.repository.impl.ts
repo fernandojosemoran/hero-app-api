@@ -5,7 +5,7 @@ import HeroDatasourceImpl from "../datasources/hero.datasource.impl";
 import CreateHeroDto from "../../domain/dto/heroes/create-hero.dto";
 import UpdateHeroDto from "../../domain/dto/heroes/update-hero.dto";
 import DeleteHeroDto from "../../domain/dto/heroes/delete-hero.dto";
-import SearchHeroDto from "src/domain/dto/heroes/search-hero.dto";
+import SearchHeroDto from "../../../src/domain/dto/heroes/search-hero.dto";
 
 class HeroRepositoryImpl implements HeroRepository {
     public constructor(

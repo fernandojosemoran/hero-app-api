@@ -50,7 +50,7 @@ export class HeroController implements IHeroController{
         }
 
         this.heroService.createHero(dto!)
-        .then(hero => response.status(HttpStatusCode.OK).json({ response: hero})) 
+        .then(hero => response.status(HttpStatusCode.CREATED).json({ response: hero})) 
         .catch((error: HttpError | Error) => this.handlerErrorHttpResponse("createHero()",response,error));
     };
 
@@ -95,7 +95,7 @@ export class HeroController implements IHeroController{
         };
 
         this.heroService.updateHero(dto!)
-        .then(res => response.status(HttpStatusCode.OK).json({ response: res }))
+        .then(res => response.status(HttpStatusCode.ACCEPTED).json({ response: res }))
         .catch((error: HttpError | Error) => this.handlerErrorHttpResponse("updateHero()",response,error));
     };
 
@@ -113,8 +113,7 @@ export class HeroController implements IHeroController{
     };
 }
 
-const heroDatasource: HeroDatasourceImpl = new HeroDatasourceImpl(new LogService());
-const heroRepository: HeroRepositoryImpl = new HeroRepositoryImpl(heroDatasource);
+const heroRepository: HeroRepositoryImpl = new HeroRepositoryImpl(new HeroDatasourceImpl());
 
 export default new HeroController(
     new HeroService(heroRepository),

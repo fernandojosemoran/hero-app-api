@@ -10,6 +10,7 @@ class Env {
     public static readonly WHITE_LIST_ALLOWED_HOSTS_PROD: string[] = env.get("WHITE_LIST_ALLOWED_HOSTS_PROD").required().asArray();
     public static readonly HOST_URL: string = env.get("HOST_URL").required().asUrlString();
     public static readonly JWT_SECRET_KEY: string = env.get("JWT_SECRET_KEY").required().asString();
+    public static readonly COOKIE_SECRET_KEY: string = env.get("COOKIE_SECRET_KEY").required().asString();
 }
 
 export default Env;
