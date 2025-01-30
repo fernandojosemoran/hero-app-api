@@ -13,7 +13,7 @@ interface ICreateHeroDtoParams {
 function normalizeHeroId(publisher: Publisher, superhero: string): string {
     let superheroId: string = superhero.replace(" ", "-").toLowerCase();
 
-    switch(publisher) {
+    switch (publisher) {
         case Publisher.DCComics: 
             superheroId = `dc-${superheroId}`;
             break;
@@ -50,15 +50,15 @@ class CreateHeroDto {
             alt_image
         } = hero;
 
-        if (!alter_ego) return [undefined, "alter_ego is require."];
-        if (!characters) return [undefined, "characters is require."];
-        if (!first_appearance) return [undefined, "first_appearance is require."];
-        if (!publisher) return [undefined, "publisher is require."];
-        if (!superhero) return [undefined, "superhero is require."];
+        if (!alter_ego) return [ undefined, "alter_ego is require." ];
+        if (!characters) return [ undefined, "characters is require." ];
+        if (!first_appearance) return [ undefined, "first_appearance is require." ];
+        if (!publisher) return [ undefined, "publisher is require." ];
+        if (!superhero) return [ undefined, "superhero is require." ];
 
-        if (!(publisher === Publisher.DCComics || publisher === Publisher.MarvelComics)) return [undefined, "publisher property is invalid."];
+        if (!(publisher === Publisher.DCComics || publisher === Publisher.MarvelComics)) return [ undefined, "publisher property is invalid." ];
         
-        switch(publisher) {
+        switch (publisher) {
             case Publisher.DCComics:
                 publisherDetected = Publisher.DCComics;
                 break;
@@ -69,7 +69,7 @@ class CreateHeroDto {
 
         const generateId: string = normalizeHeroId(publisher, superhero);
 
-        return [new CreateHeroDto(generateId, alter_ego, characters,first_appearance,publisherDetected,superhero, alt_image), undefined];
+        return [ new CreateHeroDto(generateId, alter_ego, characters,first_appearance,publisherDetected,superhero, alt_image), undefined ];
     }
 }
 

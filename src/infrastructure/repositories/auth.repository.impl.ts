@@ -9,13 +9,13 @@ class AuthRepositoryImpl implements AuthRepository {
     public login(dto: LoginDto): Promise<string> {
         return this.datasource.login(dto);
     }
-    public register(dto: RegisterDto): void {
+    public register(dto: RegisterDto): Promise<void> {
         return this.datasource.register(dto);
     }
     public logout(): void {
         return this.datasource.logout();
     }
-    public refreshToken(token: string): void {
+    public refreshToken(token: string): Promise<string> {
         return this.datasource.refreshToken(token);
     }
 }

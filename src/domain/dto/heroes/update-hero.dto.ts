@@ -13,7 +13,7 @@ interface IUpdateHeroDtoParams {
 function normalizeHeroId(publisher: Publisher, superhero: string): string {
     let superheroId: string = superhero.replace(" ", "-").toLowerCase();
 
-    switch(publisher) {
+    switch (publisher) {
         case Publisher.DCComics: 
             superheroId = `dc-${superheroId}`;
             break;
@@ -51,16 +51,16 @@ class UpdateHeroDto {
             alt_image
         } = hero;
 
-        if (!id) return [undefined, "id param is required."];
-        if (!alter_ego) return [undefined, "alter_ego is require."];
-        if (!characters) return [undefined, "characters is require."];
-        if (!first_appearance) return [undefined, "first_appearance is require."];
-        if (!publisher) return [undefined, "publisher is require."];
-        if (!superhero) return [undefined, "superhero is require."];
+        if (!id) return [ undefined, "id param is required." ];
+        if (!alter_ego) return [ undefined, "alter_ego is require." ];
+        if (!characters) return [ undefined, "characters is require." ];
+        if (!first_appearance) return [ undefined, "first_appearance is require." ];
+        if (!publisher) return [ undefined, "publisher is require." ];
+        if (!superhero) return [ undefined, "superhero is require." ];
 
-        if (!(publisher === Publisher.DCComics || publisher === Publisher.MarvelComics)) return [undefined, "publisher property is invalid."];
+        if (!(publisher === Publisher.DCComics || publisher === Publisher.MarvelComics)) return [ undefined, "publisher property is invalid." ];
         
-        switch(publisher) {
+        switch (publisher) {
             case Publisher.DCComics:
                 publisherDetected = Publisher.DCComics;
                 break;

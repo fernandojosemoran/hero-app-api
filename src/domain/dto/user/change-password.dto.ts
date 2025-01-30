@@ -19,13 +19,13 @@ class ChangePasswordDto {
             oldPassword
         } = passwords;
 
-        if (!oldPassword) return [undefined, "Old password field is required."];
-        if (!newPassword) return [undefined, "New password field is required."];
-        if (!confirmNewPassword) return [undefined, "Confirm password field is required."];
+        if (!oldPassword) return [ undefined, "Old password field is required." ];
+        if (!newPassword) return [ undefined, "New password field is required." ];
+        if (!confirmNewPassword) return [ undefined, "Confirm password field is required." ];
 
-        if (!(newPassword === confirmNewPassword)) return [undefined, "New password and Confirm password aren't same."];
+        if (!(newPassword === confirmNewPassword)) return [ undefined, "New password and Confirm password aren't same." ];
 
-        return [new ChangePasswordDto(oldPassword, newPassword, confirmNewPassword), undefined];
+        return [ new ChangePasswordDto(oldPassword, newPassword, confirmNewPassword), undefined ];
     }
 }
 

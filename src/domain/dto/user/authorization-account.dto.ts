@@ -5,9 +5,9 @@ class AuthorizationAccountDto {
 
     public static create(token: string): [AuthorizationAccountDto?, number?] {
 
-        if (!token) return [undefined, 401];
+        if (!token) return [ undefined, 401 ];
 
-        return [new AuthorizationAccountDto(token), undefined];
+        return [ new AuthorizationAccountDto(token), undefined ];
     }
 }
 

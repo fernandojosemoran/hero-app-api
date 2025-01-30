@@ -43,7 +43,6 @@ class ServerApp {
         this.server.use(cookieMiddleware());
         this.server.use(express.json());
         this.server.use(express.urlencoded({ extended: false }));
-        this.server.use(express.static(this._config.staticFilesPath));
     }
 
     private routes(): void {

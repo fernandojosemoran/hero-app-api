@@ -12,7 +12,7 @@ export class ConfigApp implements IConfigApp{
     public readonly rootDirPath: string = __dirname;
     public readonly debug: boolean = Env.DEBUG;
     public readonly port: number = Env.PORT;
-    public readonly staticFilesPath: string = path.join(__dirname, "statics/frontend/browser");
+    public readonly staticFilesPath: string = path.join(__dirname, "statics");
 }
 
 const configApp: ConfigApp = new ConfigApp();

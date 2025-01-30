@@ -5,9 +5,9 @@ class SearchHeroDto {
 
     public static create(superhero: string): [ SearchHeroDto?, string? ] {
 
-        if (!superhero) return [undefined, "Superhero property is required."];
+        if (!superhero) return [ undefined, "Superhero property is required." ];
 
-        return [new SearchHeroDto(superhero.toLowerCase()), undefined];
+        return [ new SearchHeroDto(superhero.toLowerCase()), undefined ];
     }
 }
 

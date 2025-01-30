@@ -11,11 +11,12 @@ class RegisterDto {
         public readonly lastName: string,
         public readonly email: string,
         public readonly password: string,
-        public readonly confirmPassword: string
+        public readonly confirmPassword: string,
+        public readonly authorization: boolean
     ){}
 
     private static validateEmail(email: string): boolean {
-        const regex: string = "/^[a-zA-Z0-9]?@*.(gmail,yahoo).{com,es}/";
+        const regex: RegExp = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return new RegExp(regex).test(email);
     }
 
@@ -25,7 +26,8 @@ class RegisterDto {
             email,
             lastName,
             password,
-            userName
+            userName,
+            authorization = false
         } = user;
 
         if (!userName) return [ undefined,  "User name is required." ];
@@ -36,7 +38,7 @@ class RegisterDto {
         if (!confirmPassword) return [ undefined,  "Confirm password is required." ];
         if (!(password === confirmPassword)) return [ undefined,  "Confirm password is not same." ];
 
-        return [ new RegisterDto(userName, lastName, email, password, confirmPassword), undefined ];
+        return [ new RegisterDto(userName, lastName, email, password, confirmPassword, authorization), undefined ];
     }
 }
 

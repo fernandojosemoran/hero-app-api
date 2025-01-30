@@ -33,12 +33,12 @@ export class HeroController implements IHeroController{
     private handlerErrorHttpResponse = (origin: string,response: Response, error: HttpError | Error) => {
         if (!(error instanceof HttpError)) { 
             this.logService.errorLog(error.message, `${this.contextPath} | ${origin}`, true);
-            return response.status(HttpStatusCode.INTERNAL_SERVER_ERROR).json({ response: "Internal Server Error"});
+            return response.status(HttpStatusCode.INTERNAL_SERVER_ERROR).json({ response: "Internal Server Error" });
         }
 
         this.logService.errorLog(error.message, `${this.contextPath} | ${origin}`);
 
-        return response.status(error.status).json({ response: error.message});
+        return response.status(error.status).json({ response: error.message });
     };
     
     public createHero = (request: Request, response: Response): any => {
@@ -50,7 +50,7 @@ export class HeroController implements IHeroController{
         }
 
         this.heroService.createHero(dto!)
-        .then(hero => response.status(HttpStatusCode.CREATED).json({ response: hero})) 
+        .then(hero => response.status(HttpStatusCode.CREATED).json({ response: hero })) 
         .catch((error: HttpError | Error) => this.handlerErrorHttpResponse("createHero()",response,error));
     };
 
@@ -87,7 +87,7 @@ export class HeroController implements IHeroController{
     };
 
     public updateHero = (request: Request, response: Response): any => {
-        const [ dto, error ] = UpdateHeroDto.create({...request.body, ...request.params});
+        const [ dto, error ] = UpdateHeroDto.create({ ...request.body, ...request.params });
 
         if (error) {
             this.logService.errorLog(error, `${this.contextPath} | updateHero()`);

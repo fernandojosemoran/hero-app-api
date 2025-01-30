@@ -4,9 +4,9 @@ class DeleteHeroDto {
     ) {}
 
     public static create(id: string): [ DeleteHeroDto?, string? ] {
-        if (!id) return [undefined, "id is required."];
+        if (!id) return [ undefined, "id is required." ];
 
-        return [new DeleteHeroDto(id), undefined];
+        return [ new DeleteHeroDto(id), undefined ];
     }
 }
 

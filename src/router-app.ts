@@ -1,4 +1,4 @@
-import { Router, Response } from "express";
+import express, { Router, Response } from "express";
 
 import heroesRoutes from "./presentation/apps/heroes/heroes.routes";
 import LogService from "./presentation/services/log.service";
@@ -28,11 +28,13 @@ export class RouterApp {
     }
 
     public get appRoutes(): Router {
+        this.router.use(express.static(path.join(this.staticFilePath)));
+
         this.router.use("/api", heroesRoutes.routes);
         this.router.use("/media", mediaRoutes.routes);
         this.router.use("/auth", authRoutes.routes);
-        this.router.use("/user", userRoutes.routes);
-        this.router.get("/*", (_, response) => response.sendFile(this.staticFilePath, (error) => this.handlerErrorSendFile(error, response)));
+        this.router.use("/account", userRoutes.routes);
+        this.router.get("*", (_, response) => response.sendFile(path.join(this.staticFilePath, "index.html"), (error) => this.handlerErrorSendFile(error, response)));
 
         return this.router;
     }
@@ -40,5 +42,5 @@ export class RouterApp {
 
 export default new RouterApp(
     new LogService(),
-    path.join(configApp.staticFilesPath, "index.html")
+    path.join(configApp.staticFilesPath, "dist")
 );

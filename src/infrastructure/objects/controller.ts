@@ -16,7 +16,11 @@ class Controller {
 
         return response.status(error.status).json({ response: error.message });
     }
-    
+
+
+    protected handlerSuccessResponse(response: Response): Response {
+        return response;
+    }
 }
 
 export default Controller;

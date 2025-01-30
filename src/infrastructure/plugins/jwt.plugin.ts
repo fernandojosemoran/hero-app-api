@@ -7,7 +7,7 @@ import jwt from "jsonwebtoken";
 
 interface IJwtPlugin {
     generateToken(payload: string | Buffer | object): Promise<string | undefined>;
-    verifyToken(token: string): Promise<boolean>;
+    verifyToken<T>(token: string): Promise<T | undefined>;
     decode(token: string): string | jwt.JwtPayload | null;
 }
 
@@ -54,19 +54,19 @@ class Jwt extends Plugin implements IJwtPlugin {
         });
     }
 
-    public verifyToken(token: string): Promise<boolean> {
+    public verifyToken<T>(token: string): Promise<T | undefined> {
         return new Promise((resolve) => {
             jwt.verify(
                 token, 
                 Env.JWT_SECRET_KEY, 
-                (error) => {
+                (error, decode) => {
                     if (error) {
                         this._logService.errorLog(error, `${this._contextName} | verifyToken()`);
 
-                        return resolve(false);
+                        return resolve(undefined);
                     }
-
-                    return resolve(true);
+                    console.log({ decode });
+                    return resolve(decode as T);
                 }
             );
         });

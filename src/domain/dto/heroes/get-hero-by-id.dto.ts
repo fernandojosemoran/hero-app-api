@@ -3,9 +3,9 @@ class GetHeroByIdDto {
 
     public static create(id: string): [GetHeroByIdDto?, string?] {
 
-        if (!id) return [undefined, "Id is required."];
+        if (!id) return [ undefined, "Id is required." ];
 
-        return [new GetHeroByIdDto(id), undefined];
+        return [ new GetHeroByIdDto(id), undefined ];
     }
 }
 

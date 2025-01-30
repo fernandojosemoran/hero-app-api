@@ -27,9 +27,7 @@ class AuthController extends Controller implements IAuthController {
     }
     
     public login = (request: Request, response: Response): any => {
-        console.log({ cookie: request.cookies, signed: request.signedCookies });
-
-        const [dto, error] = LoginDto.create(request.body);
+        const [ dto, error ] = LoginDto.create(request.body);
         
         if (error) {
             this._logService.errorLog(error, `${this._contextPath} | login()`);
@@ -37,16 +35,20 @@ class AuthController extends Controller implements IAuthController {
         }
 
         const handlerResponse = (token: string) => {
-            return response.status(HttpStatusCode.OK).cookie(
-                "Authorization", 
+            return response
+            .status(HttpStatusCode.OK)
+            .cookie(
+                "auth-token", 
                 token,
                 {
                     httpOnly: true,
                     secure: Env.DEBUG,
-                    expires: new Date(),
+                    expires: new Date(Date.now() + 3600000),
                     maxAge: 3600000
                 }
-            );
+            )
+            .setHeader("Authorization", "True")
+            .redirect("/heroes/list");
         };
 
         this._authService.login(dto!)
@@ -69,12 +71,16 @@ class AuthController extends Controller implements IAuthController {
     };
 
     public logout = (request: Request, response: Response): any => {
+        response.clearCookie('Authorization'); 
+
         this._authService.logout()
-        .then(data => response.status(HttpStatusCode.OK).json({ response: data }))
+        .then(() => response.status(HttpStatusCode.OK).redirect("/login"))
         .catch(error => this.handlerResponseError(error, `${this._contextPath} | logout()`, response));
     };
 
     public refreshToken = (request: Request, response: Response): any => {
+        console.log({ cookie: request.cookies, signed: request.signedCookies });
+
         this._authService.refreshToken("")
         .then(data => response.status(HttpStatusCode.CREATED).json({ response: data }))
         .catch(error => this.handlerResponseError(error, `${this._contextPath} | refreshToken()`, response));

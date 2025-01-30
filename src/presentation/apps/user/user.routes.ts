@@ -19,7 +19,7 @@ export class UserRoutes extends Expose {
     }
 
     public get routes(): Router {
-        this.router.put("/authorization-account/:token", this._controllers.authorizationAccount);
+        this.router.put("/authorization/:token", this._controllers.authorizationAccount);
         this.router.put("/change-password", this._controllers.changePassword);
         this.router.delete("/delete-account", this._controllers.deleteAccount);
         

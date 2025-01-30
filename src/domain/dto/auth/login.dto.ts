@@ -13,7 +13,7 @@ class LoginDto {
     ) {}
 
     private static validateEmail(email: string): boolean {
-        const regex: string = "/^[a-zA-Z0-9]?@*.(gmail,yahoo).{com,es}/";
+        const regex: RegExp = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return new RegExp(regex).test(email);
     }
 
@@ -28,7 +28,7 @@ class LoginDto {
         } = user;
 
         if (!email) return [ undefined, "Email is required." ];
-        // if (!this.validateEmail(email)) return [ undefined, "Email field is not valid." ];
+        if (!this.validateEmail(email)) return [ undefined, "Email field is not valid." ];
         if (!userName) return [ undefined, "User is required." ];
         if (!password) return [ undefined, "Password is required." ];
 

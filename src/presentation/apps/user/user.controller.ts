@@ -26,7 +26,7 @@ class UserController extends Controller implements IUserController {
 
     public changePassword = (request: Request, response: Response): any => {
 
-        const [dto, error] = ChangePasswordDto.create(request.body);
+        const [ dto, error ] = ChangePasswordDto.create(request.body);
 
         if (error) {
             this._logService.errorLog(error, `${this._contextPath} | changePassword()`);
