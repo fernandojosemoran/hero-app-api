@@ -1,3 +1,4 @@
-import { exec } from "child_process";
+import fs from "fs";
 
-exec("powershell -c cp .\\statics\\* .\\dist\\statics\\");
+fs.cpSync("./statics", "./dist/statics", { recursive: true });
+
