@@ -8,6 +8,7 @@ class HttpStatusCode {
     public static readonly INTERNAL_SERVER_ERROR: number = 500;
     public static readonly BAD_REQUEST: number = 400;
     public static readonly FORBIDDEN: number = 304;
+    public static readonly AUTHORIZED: number = 401;
 }
 
 export default HttpStatusCode;

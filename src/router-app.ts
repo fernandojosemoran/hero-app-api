@@ -30,10 +30,10 @@ export class RouterApp {
     public get appRoutes(): Router {
         this.router.use(express.static(path.join(this.staticFilePath)));
 
-        this.router.use("/api", heroesRoutes.routes);
-        this.router.use("/media", mediaRoutes.routes);
-        this.router.use("/auth", authRoutes.routes);
-        this.router.use("/account", userRoutes.routes);
+        this.router.use("/api/hero", heroesRoutes.routes);
+        this.router.use("/api/media", mediaRoutes.routes);
+        this.router.use("/api/auth", authRoutes.routes);
+        this.router.use("/api/account", userRoutes.routes);
         this.router.get("*", (_, response) => response.sendFile(path.join(this.staticFilePath, "index.html"), (error) => this.handlerErrorSendFile(error, response)));
 
         return this.router;
@@ -42,5 +42,5 @@ export class RouterApp {
 
 export default new RouterApp(
     new LogService(),
-    path.join(configApp.staticFilesPath, "dist")
+    path.join(configApp.staticFilesPath, "out")
 );

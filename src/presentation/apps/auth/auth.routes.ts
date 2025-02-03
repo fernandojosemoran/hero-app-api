@@ -10,6 +10,7 @@ import Jwt from "../../../infrastructure/plugins/jwt.plugin";
 import UUID from "../../../infrastructure/plugins/uui.plugin";
 import EmailService from "../../../presentation/services/email.service";
 import Email from "../../../infrastructure/plugins/email.plugin";
+import Bcrypt from "../../../infrastructure/plugins/bcrypt.plugin";
 
 export class AuthRoutes extends Expose { 
 
@@ -19,8 +20,8 @@ export class AuthRoutes extends Expose {
     
     public get routes(): Router {
         this.router.post("/login", this._controller.login);
-        this.router.put("/refresh-token", this._controller.refreshToken);
-        this.router.get("/logout", this._controller.logout);
+        this.router.post("/refresh-token", this._controller.refreshToken);
+        this.router.post("/logout", this._controller.logout);
         this.router.post("/register", this._controller.register);
 
         return this.router;
@@ -29,10 +30,11 @@ export class AuthRoutes extends Expose {
 
 // dependencies
 const logService: LogService = new LogService();
+const bcrypt: Bcrypt = new Bcrypt(logService);
 const uuidPlugin: UUID = new UUID();
 const jwtPlugin: Jwt = new Jwt(logService);
 const emailService: EmailService = new EmailService(new Email());
-const datasource: AuthDataSourceImpl = new AuthDataSourceImpl(jwtPlugin, uuidPlugin, emailService);
+const datasource: AuthDataSourceImpl = new AuthDataSourceImpl(jwtPlugin, uuidPlugin, emailService, bcrypt );
 const repository: AuthRepositoryImpl = new AuthRepositoryImpl(datasource);
 const authService: AuthService = new AuthService(repository);
 

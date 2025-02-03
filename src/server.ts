@@ -37,6 +37,10 @@ class ServerApp {
         return serverInstance;
     }
 
+    private disables(): void {
+        this.server.disable('x-powered-by');
+    }
+
     private middlewares(): void {
         this.server.use(morganMiddleware());
         this.server.use(corsMiddleware());
@@ -52,13 +56,17 @@ class ServerApp {
     public start(): void {
         if (this._startMethodFlagFlag) throw ServerErrors.startServer("The method start already were executed.");
 
-        this.middlewares();
-        this.routes();
-        this._serverListeningFlag = this.server.listen(this._config.port, (error) => {
+        const handlerServerAppError = (error: Error | undefined) => {
             if (error) return logService.errorLog(error);
 
             logService.infoLog(`Server running on http://127.0.0.1:${this._config.port}`, "./src/server.ts | start()", true);
-        });
+        };
+
+        this.middlewares();
+        this.routes();
+        this.disables();
+        
+        this._serverListeningFlag = this.server.listen(this._config.port, handlerServerAppError);
         this._startMethodFlagFlag = true;
     }
     

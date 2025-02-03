@@ -26,8 +26,7 @@ class RegisterDto {
             email,
             lastName,
             password,
-            userName,
-            authorization = false
+            userName
         } = user;
 
         if (!userName) return [ undefined,  "User name is required." ];
@@ -38,7 +37,7 @@ class RegisterDto {
         if (!confirmPassword) return [ undefined,  "Confirm password is required." ];
         if (!(password === confirmPassword)) return [ undefined,  "Confirm password is not same." ];
 
-        return [ new RegisterDto(userName, lastName, email, password, confirmPassword, authorization), undefined ];
+        return [ new RegisterDto(userName, lastName, email, password, confirmPassword, false), undefined ];
     }
 }
 

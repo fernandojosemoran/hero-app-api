@@ -8,6 +8,7 @@ class LoginDto {
     private constructor(
         public readonly email: string,
         public readonly userName: string,
+        public readonly password: string,
         public readonly authorization: boolean,
         public readonly token?: string
     ) {}
@@ -23,7 +24,6 @@ class LoginDto {
             email, 
             userName, 
             password, 
-            authorization = false,
             token
         } = user;
 
@@ -32,7 +32,7 @@ class LoginDto {
         if (!userName) return [ undefined, "User is required." ];
         if (!password) return [ undefined, "Password is required." ];
 
-        return [ new LoginDto(email, userName, authorization, token), undefined ];
+        return [ new LoginDto(email, userName, password ,false, token), undefined ];
     }
 }
 

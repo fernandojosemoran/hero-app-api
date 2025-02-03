@@ -1,238 +1,238 @@
 {
-    "heroes": [
-        {
-            "id": "dc-batman",
-            "superhero": "Batman",
-            "publisher": "DC Comics",
-            "alter_ego": "Bruce Wayne",
-            "first_appearance": "Detective Comics #27",
-            "characters": "Bruce Wayne",
-            "alt_image": "/media/hero/dc-batman.jpg"
-        },
-        {
-            "id": "dc-superman",
-            "superhero": "Superman",
-            "publisher": "DC Comics",
-            "alter_ego": "Kal-El",
-            "first_appearance": "Action Comics #1",
-            "characters": "Kal-El",
-            "alt_image": "/media/hero/dc-superman.jpg"
-        },
-        {
-            "id": "dc-flash",
-            "superhero": "Flash",
-            "publisher": "DC Comics",
-            "alter_ego": "Jay Garrick",
-            "first_appearance": "Flash Comics #1",
-            "characters": "Jay Garrick, Barry Allen, Wally West, Bart Allen",
-            "alt_image": "/media/hero/dc-flash.jpg"
-        },
-        {
-            "id": "dc-green",
-            "superhero": "Green Lantern",
-            "publisher": "DC Comics",
-            "alter_ego": "Alan Scott",
-            "first_appearance": "All-American Comics #16",
-            "characters": "Alan Scott, Hal Jordan, Guy Gardner, John Stewart, Kyle Raynor, Jade, Sinestro, Simon Baz",
-            "alt_image": "/media/hero/dc-green.jpg"
-        },
-        {
-            "id": "dc-arrow",
-            "superhero": "Green Arrow",
-            "publisher": "DC Comics",
-            "alter_ego": "Oliver Queen",
-            "first_appearance": "More Fun Comics #73",
-            "characters": "Oliver Queen",
-            "alt_image": "/media/hero/dc-arrow.jpg"
-        },
-        {
-            "id": "dc-wonder",
-            "superhero": "Wonder Woman",
-            "publisher": "DC Comics",
-            "alter_ego": "Princess Diana",
-            "first_appearance": "All Star Comics #8",
-            "characters": "Princess Diana",
-            "alt_image": "/media/hero/dc-wonder.jpg"
-        },
-        {
-            "id": "dc-martian",
-            "superhero": "Martian Manhunter",
-            "publisher": "DC Comics",
-            "alter_ego": "J\"onn J\"onzz",
-            "first_appearance": "Detective Comics #225",
-            "characters": "Martian Manhunter",
-            "alt_image": "/media/hero/dc-martian.jpg"
-        },
-        {
-            "id": "dc-robin",
-            "superhero": "Robin/Nightwing",
-            "publisher": "DC Comics",
-            "alter_ego": "Dick Grayson",
-            "first_appearance": "Detective Comics #38",
-            "characters": "Dick Grayson",
-            "alt_image": "/media/hero/dc-robin.jpg"
-        },
-        {
-            "id": "dc-blue",
-            "superhero": "Blue Beetle",
-            "publisher": "DC Comics",
-            "alter_ego": "Dan Garret",
-            "first_appearance": "Mystery Men Comics #1",
-            "characters": "Dan Garret, Ted Kord, Jaime Reyes",
-            "alt_image": "/media/hero/dc-blue.jpg"
-        },
-        {
-            "id": "dc-black",
-            "superhero": "Black Canary",
-            "publisher": "DC Comics",
-            "alter_ego": "Dinah Drake",
-            "first_appearance": "Flash Comics #86",
-            "characters": "Dinah Drake, Dinah Lance",
-            "alt_image": "/media/hero/dc-black.jpg"
-        },
-        {
-            "id": "marvel-spider",
-            "superhero": "Spider Man",
-            "publisher": "Marvel Comics",
-            "alter_ego": "Peter Parker",
-            "first_appearance": "Amazing Fantasy #15",
-            "characters": "Peter Parker",
-            "alt_image": "/media/hero/marvel-spider.jpg"
-        },
-        {
-            "id": "marvel-captain",
-            "superhero": "Captain America",
-            "publisher": "Marvel Comics",
-            "alter_ego": "Steve Rogers",
-            "first_appearance": "Captain America Comics #1",
-            "characters": "Steve Rogers",
-            "alt_image": "/media/hero/marvel-captain.jpg"
-        },
-        {
-            "id": "marvel-iron",
-            "superhero": "Iron Man",
-            "publisher": "Marvel Comics",
-            "alter_ego": "Tony Stark",
-            "first_appearance": "Tales of Suspense #39",
-            "characters": "Tony Stark",
-            "alt_image": "/media/hero/marvel-iron.jpg"
-        },
-        {
-            "id": "marvel-thor",
-            "superhero": "Thor",
-            "publisher": "Marvel Comics",
-            "alter_ego": "Thor Odinson",
-            "first_appearance": "Journey into Myster #83",
-            "characters": "Thor Odinson",
-            "alt_image": "/media/hero/marvel-thor.jpg"
-        },
-        {
-            "id": "marvel-hulk",
-            "superhero": "Hulk",
-            "publisher": "Marvel Comics",
-            "alter_ego": "Bruce Banner",
-            "first_appearance": "The Incredible Hulk #1",
-            "characters": "Bruce Banner",
-            "alt_image": "/media/hero/marvel-hulk.jpg"
-        },
-        {
-            "id": "marvel-wolverine",
-            "superhero": "Wolverine",
-            "publisher": "Marvel Comics",
-            "alter_ego": "James Howlett",
-            "first_appearance": "The Incredible Hulk #180",
-            "characters": "James Howlett",
-            "alt_image": "/media/hero/marvel-wolverine.jpg"
-        },
-        {
-            "id": "marvel-daredevil",
-            "superhero": "Daredevil",
-            "publisher": "Marvel Comics",
-            "alter_ego": "Matthew Michael Murdock",
-            "first_appearance": "Daredevil #1",
-            "characters": "Matthew Michael Murdock",
-            "alt_image": "/media/hero/marvel-daredevil.jpg"
-        },
-        {
-            "id": "marvel-hawkeye",
-            "superhero": "Hawkeye",
-            "publisher": "Marvel Comics",
-            "alter_ego": "Clinton Francis Barton",
-            "first_appearance": "Tales of Suspense #57",
-            "characters": "Clinton Francis Barton",
-            "alt_image": "/media/hero/marvel-hawkeye.jpg"
-        },
-        {
-            "id": "marvel-cyclops",
-            "superhero": "Cyclops",
-            "publisher": "Marvel Comics",
-            "alter_ego": "Scott Summers",
-            "first_appearance": "X-Men #1",
-            "characters": "Scott Summers",
-            "alt_image": "/media/hero/marvel-cyclops.jpg"
-        },
-        {
-            "id": "marvel-silver",
-            "superhero": "Silver Surfer",
-            "publisher": "Marvel Comics",
-            "alter_ego": "Norrin Radd",
-            "first_appearance": "The Fantastic Four #48",
-            "characters": "Norrin Radd",
-            "alt_image": "/media/hero/marvel-silver.jpg"
-        },
-        {
-            "id": "marvel-drax",
-            "alter_ego": "Dave Bautista",
-            "characters": "moron, clueless, strong",
-            "first_appearance": "galaxy guardians #1",
-            "publisher": "Marvel Comics",
-            "superhero": "Drax",
-            "alt_image": "https://imgs.search.brave.com/2-U8VOJz3jXB78JCSrboVEFuUQxt0u1JboC4v-0SQj4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/c291dGhzaWRlY29t/aWNzcGdoLmNvbS9j/ZG4vc2hvcC9maWxl/cy9sYXJnZS0yNDIx/MzU5LmpwZz92PTE3/MTI5NTA1ODYmd2lk/dGg9MTQ0NQ"
-        },
-        {
-            "id": "marvel-doctor-strange",
-            "alter_ego": "Dr. Stephen Vincent Strange",
-            "first_appearance": "Strange Tales #110",
-            "characters": "Karl Mordo,The Ancient One,Christine Palmer,Kaecilius",
-            "publisher": "Marvel Comics",
-            "superhero": "Doctor Strange",
-            "alt_image": "https://imgs.search.brave.com/Jw28owbYPK8Pz-TAJ9ykuJXUaSBMER61Csmn7wVUulA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2FhLzIw/L2RmL2FhMjBkZjNj/MmE4NWFjM2ExNmY5/YjY5MmJlMWM3ZDg3/LmpwZw"
-        },
-        {
-            "id": "marvel-star-lord",
-            "alter_ego": "Chris Pratt ",
-            "characters": "Gamora,Rocket Raccoon,Groot,Drax the Destroyer,Yondu Udonta,Nebula,Mantis",
-            "first_appearance": "Season #2",
-            "publisher": "Marvel Comics",
-            "superhero": "Star Lord",
-            "alt_image": "https://imgs.search.brave.com/ZEue4-_Se1gJJA-6Y3St_Eo9mW7oEotVl7A_M9_EzxY/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMtbmEuc3NsLWlt/YWdlcy1hbWF6b24u/Y29tL2ltYWdlcy9J/LzcxQmdlM3NuZmJM/LmpwZw"
-        },
-        {
-            "id": "dc-super-girl",
-            "alter_ego": "Kara Zor-El ",
-            "characters": "Cat Grant,Martian Manhunter,Lena Luthor,Maggie Sawyer",
-            "first_appearance": "season #5",
-            "publisher": "DC Comics",
-            "superhero": "super girl",
-            "alt_image": "https://imgs.search.brave.com/VlnO_xTGy9duT0KBm1_FgVwQKpMK9fgk8QvcxgJ5hGU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/Z29jb2xsZWN0LmNv/bS9leUppZFdOclpY/UWlPaUpuYjJOdmJH/eGxZM1F1YVcxaFoy/VnpMbkIxWWlJc0lt/dGxlU0k2SWpkak16/TXpNakptTFdGbVpq/Z3ROR0l6TnkwNFlX/SXlMV0l6WW1aa056/WmpPREpsWXk1cWNH/Y2lMQ0psWkdsMGN5/STZXMTE5"
-        },
-        {
-            "id": "dc-ant-man",
-            "alter_ego": "Scott Edward",
-            "characters": "Atn-Man, Howard Stark, M.O.D.O.K, Stature, Captain America",
-            "first_appearance": "Tales to astonish #27",
-            "publisher": "DC Comics",
-            "superhero": "Ant-Man",
-            "alt_image": "https://imgs.search.brave.com/3BHilr9Iz1PEl-kqSaG1V9mVy__-lwK9kuNxE1-Vx98/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/ODEta1dBR0VLUkwu/anBn"
-        },
-        {
-            "id": "dc-batwoman",
-            "alter_ego": "Katherine",
-            "characters": "Alice, Poison Mary,Batwing,Monitor,Hush",
-            "first_appearance": " Detective Comics #233",
-            "publisher": "DC Comics",
-            "superhero": "Batwoman",
-            "alt_image": "https://imgs.search.brave.com/RVce1MDzqAH2ebtG6_0esaunJQfhEW9urZZUV_OT2ms/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2YwLzY5/L2FhL2YwNjlhYTg4/Zjc4N2Y3ZWViZGNj/MGZkZjNiMGUxODA1/LmpwZw"
-        }
-    ]
+  "heroes": [
+    {
+      "id": "dc-batman",
+      "superhero": "Batman",
+      "publisher": "DC Comics",
+      "alter_ego": "Bruce Wayne",
+      "first_appearance": "Detective Comics #27",
+      "characters": "Bruce Wayne",
+      "alt_image": "/api/media/hero/dc-batman.jpg"
+    },
+    {
+      "id": "dc-superman",
+      "superhero": "Superman",
+      "publisher": "DC Comics",
+      "alter_ego": "Kal-El",
+      "first_appearance": "Action Comics #1",
+      "characters": "Kal-El",
+      "alt_image": "/api/media/hero/dc-superman.jpg"
+    },
+    {
+      "id": "dc-flash",
+      "superhero": "Flash",
+      "publisher": "DC Comics",
+      "alter_ego": "Jay Garrick",
+      "first_appearance": "Flash Comics #1",
+      "characters": "Jay Garrick, Barry Allen, Wally West, Bart Allen",
+      "alt_image": "/api/media/hero/dc-flash.jpg"
+    },
+    {
+      "id": "dc-green",
+      "superhero": "Green Lantern",
+      "publisher": "DC Comics",
+      "alter_ego": "Alan Scott",
+      "first_appearance": "All-American Comics #16",
+      "characters": "Alan Scott, Hal Jordan, Guy Gardner, John Stewart, Kyle Raynor, Jade, Sinestro, Simon Baz",
+      "alt_image": "/api/media/hero/dc-green.jpg"
+    },
+    {
+      "id": "dc-arrow",
+      "superhero": "Green Arrow",
+      "publisher": "DC Comics",
+      "alter_ego": "Oliver Queen",
+      "first_appearance": "More Fun Comics #73",
+      "characters": "Oliver Queen",
+      "alt_image": "/api/media/hero/dc-arrow.jpg"
+    },
+    {
+      "id": "dc-wonder",
+      "superhero": "Wonder Woman",
+      "publisher": "DC Comics",
+      "alter_ego": "Princess Diana",
+      "first_appearance": "All Star Comics #8",
+      "characters": "Princess Diana",
+      "alt_image": "/api/media/hero/dc-wonder.jpg"
+    },
+    {
+      "id": "dc-martian",
+      "superhero": "Martian Manhunter",
+      "publisher": "DC Comics",
+      "alter_ego": "J\"onn J\"onzz",
+      "first_appearance": "Detective Comics #225",
+      "characters": "Martian Manhunter",
+      "alt_image": "/api/media/hero/dc-martian.jpg"
+    },
+    {
+      "id": "dc-robin",
+      "superhero": "Robin/Nightwing",
+      "publisher": "DC Comics",
+      "alter_ego": "Dick Grayson",
+      "first_appearance": "Detective Comics #38",
+      "characters": "Dick Grayson",
+      "alt_image": "/api/media/hero/dc-robin.jpg"
+    },
+    {
+      "id": "dc-blue",
+      "superhero": "Blue Beetle",
+      "publisher": "DC Comics",
+      "alter_ego": "Dan Garret",
+      "first_appearance": "Mystery Men Comics #1",
+      "characters": "Dan Garret, Ted Kord, Jaime Reyes",
+      "alt_image": "/api/media/hero/dc-blue.jpg"
+    },
+    {
+      "id": "dc-black",
+      "superhero": "Black Canary",
+      "publisher": "DC Comics",
+      "alter_ego": "Dinah Drake",
+      "first_appearance": "Flash Comics #86",
+      "characters": "Dinah Drake, Dinah Lance",
+      "alt_image": "/api/media/hero/dc-black.jpg"
+    },
+    {
+      "id": "marvel-spider",
+      "superhero": "Spider Man",
+      "publisher": "Marvel Comics",
+      "alter_ego": "Peter Parker",
+      "first_appearance": "Amazing Fantasy #15",
+      "characters": "Peter Parker",
+      "alt_image": "/api/media/hero/marvel-spider.jpg"
+    },
+    {
+      "id": "marvel-captain",
+      "superhero": "Captain America",
+      "publisher": "Marvel Comics",
+      "alter_ego": "Steve Rogers",
+      "first_appearance": "Captain America Comics #1",
+      "characters": "Steve Rogers",
+      "alt_image": "/api/media/hero/marvel-captain.jpg"
+    },
+    {
+      "id": "marvel-iron",
+      "superhero": "Iron Man",
+      "publisher": "Marvel Comics",
+      "alter_ego": "Tony Stark",
+      "first_appearance": "Tales of Suspense #39",
+      "characters": "Tony Stark",
+      "alt_image": "/api/media/hero/marvel-iron.jpg"
+    },
+    {
+      "id": "marvel-thor",
+      "superhero": "Thor",
+      "publisher": "Marvel Comics",
+      "alter_ego": "Thor Odinson",
+      "first_appearance": "Journey into Myster #83",
+      "characters": "Thor Odinson",
+      "alt_image": "/api/media/hero/marvel-thor.jpg"
+    },
+    {
+      "id": "marvel-hulk",
+      "superhero": "Hulk",
+      "publisher": "Marvel Comics",
+      "alter_ego": "Bruce Banner",
+      "first_appearance": "The Incredible Hulk #1",
+      "characters": "Bruce Banner",
+      "alt_image": "/api/media/hero/marvel-hulk.jpg"
+    },
+    {
+      "id": "marvel-wolverine",
+      "superhero": "Wolverine",
+      "publisher": "Marvel Comics",
+      "alter_ego": "James Howlett",
+      "first_appearance": "The Incredible Hulk #180",
+      "characters": "James Howlett",
+      "alt_image": "/api/media/hero/marvel-wolverine.jpg"
+    },
+    {
+      "id": "marvel-daredevil",
+      "superhero": "Daredevil",
+      "publisher": "Marvel Comics",
+      "alter_ego": "Matthew Michael Murdock",
+      "first_appearance": "Daredevil #1",
+      "characters": "Matthew Michael Murdock",
+      "alt_image": "/api/media/hero/marvel-daredevil.jpg"
+    },
+    {
+      "id": "marvel-hawkeye",
+      "superhero": "Hawkeye",
+      "publisher": "Marvel Comics",
+      "alter_ego": "Clinton Francis Barton",
+      "first_appearance": "Tales of Suspense #57",
+      "characters": "Clinton Francis Barton",
+      "alt_image": "/api/media/hero/marvel-hawkeye.jpg"
+    },
+    {
+      "id": "marvel-cyclops",
+      "superhero": "Cyclops",
+      "publisher": "Marvel Comics",
+      "alter_ego": "Scott Summers",
+      "first_appearance": "X-Men #1",
+      "characters": "Scott Summers",
+      "alt_image": "/api/media/hero/marvel-cyclops.jpg"
+    },
+    {
+      "id": "marvel-silver",
+      "superhero": "Silver Surfer",
+      "publisher": "Marvel Comics",
+      "alter_ego": "Norrin Radd",
+      "first_appearance": "The Fantastic Four #48",
+      "characters": "Norrin Radd",
+      "alt_image": "/api/media/hero/marvel-silver.jpg"
+    },
+    {
+      "id": "marvel-drax",
+      "alter_ego": "Dave Bautista",
+      "characters": "moron, clueless, strong",
+      "first_appearance": "galaxy guardians #1",
+      "publisher": "Marvel Comics",
+      "superhero": "Drax",
+      "alt_image": "https://imgs.search.brave.com/2-U8VOJz3jXB78JCSrboVEFuUQxt0u1JboC4v-0SQj4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/c291dGhzaWRlY29t/aWNzcGdoLmNvbS9j/ZG4vc2hvcC9maWxl/cy9sYXJnZS0yNDIx/MzU5LmpwZz92PTE3/MTI5NTA1ODYmd2lk/dGg9MTQ0NQ"
+    },
+    {
+      "id": "marvel-doctor-strange",
+      "alter_ego": "Dr. Stephen Vincent Strange",
+      "first_appearance": "Strange Tales #110",
+      "characters": "Karl Mordo,The Ancient One,Christine Palmer,Kaecilius",
+      "publisher": "Marvel Comics",
+      "superhero": "Doctor Strange",
+      "alt_image": "https://imgs.search.brave.com/Jw28owbYPK8Pz-TAJ9ykuJXUaSBMER61Csmn7wVUulA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2FhLzIw/L2RmL2FhMjBkZjNj/MmE4NWFjM2ExNmY5/YjY5MmJlMWM3ZDg3/LmpwZw"
+    },
+    {
+      "id": "marvel-star-lord",
+      "alter_ego": "Chris Pratt ",
+      "characters": "Gamora,Rocket Raccoon,Groot,Drax the Destroyer,Yondu Udonta,Nebula,Mantis",
+      "first_appearance": "Season #2",
+      "publisher": "Marvel Comics",
+      "superhero": "Star Lord",
+      "alt_image": "https://imgs.search.brave.com/ZEue4-_Se1gJJA-6Y3St_Eo9mW7oEotVl7A_M9_EzxY/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMtbmEuc3NsLWlt/YWdlcy1hbWF6b24u/Y29tL2ltYWdlcy9J/LzcxQmdlM3NuZmJM/LmpwZw"
+    },
+    {
+      "id": "dc-super-girl",
+      "alter_ego": "Kara Zor-El ",
+      "characters": "Cat Grant,Martian Manhunter,Lena Luthor,Maggie Sawyer",
+      "first_appearance": "season #5",
+      "publisher": "DC Comics",
+      "superhero": "super girl",
+      "alt_image": "https://imgs.search.brave.com/VlnO_xTGy9duT0KBm1_FgVwQKpMK9fgk8QvcxgJ5hGU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/Z29jb2xsZWN0LmNv/bS9leUppZFdOclpY/UWlPaUpuYjJOdmJH/eGxZM1F1YVcxaFoy/VnpMbkIxWWlJc0lt/dGxlU0k2SWpkak16/TXpNakptTFdGbVpq/Z3ROR0l6TnkwNFlX/SXlMV0l6WW1aa056/WmpPREpsWXk1cWNH/Y2lMQ0psWkdsMGN5/STZXMTE5"
+    },
+    {
+      "id": "dc-ant-man",
+      "alter_ego": "Scott Edward",
+      "characters": "Atn-Man, Howard Stark, M.O.D.O.K, Stature, Captain America",
+      "first_appearance": "Tales to astonish #27",
+      "publisher": "DC Comics",
+      "superhero": "Ant-Man",
+      "alt_image": "https://imgs.search.brave.com/3BHilr9Iz1PEl-kqSaG1V9mVy__-lwK9kuNxE1-Vx98/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/ODEta1dBR0VLUkwu/anBn"
+    },
+    {
+      "id": "dc-batwoman",
+      "alter_ego": "Katherine",
+      "characters": "Alice, Poison Mary,Batwing,Monitor,Hush",
+      "first_appearance": " Detective Comics #233",
+      "publisher": "DC Comics",
+      "superhero": "Batwoman",
+      "alt_image": "https://imgs.search.brave.com/RVce1MDzqAH2ebtG6_0esaunJQfhEW9urZZUV_OT2ms/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2YwLzY5/L2FhL2YwNjlhYTg4/Zjc4N2Y3ZWViZGNj/MGZkZjNiMGUxODA1/LmpwZw"
+    }
+  ]
 }

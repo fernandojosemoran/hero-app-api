@@ -14,7 +14,7 @@ interface ICorsParams {
     credentials?: boolean,
     exposedHeaders?: string | string[],
     maxAge?: number,
-    methods?: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    methods?: string,
     optionsSuccessStatus?: number,
     origin?: CustomOrigin | StaticOrigin,
     preflightContinue?: boolean,
@@ -23,9 +23,14 @@ interface ICorsParams {
 const origins: StaticOrigin = Env.DEBUG ? Env.WHITE_LIST_ALLOWED_HOSTS_DEV : Env.WHITE_LIST_ALLOWED_HOSTS_PROD;
 
 const optionsCors: ICorsParams = { 
-    origin: origins,
+    origin: (origin, callback) => {
+        if (!origin || origins.includes(origin)) return callback(null, true);
+        return callback(new Error("Not allowed by CORS"));
+    },
     optionsSuccessStatus: 200,  
-    credentials: true
+    credentials: true,
+    methods: "GET,PUT,POST,DELETE",
+    allowedHeaders: [ "Authorization", "Content-Type" ]
 };
 
 

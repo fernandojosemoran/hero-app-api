@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { ILoginResponse } from "../../../domain/responses/login-response";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import AuthService from "./auth.service";
@@ -34,7 +35,7 @@ class AuthController extends Controller implements IAuthController {
             return response.status(HttpStatusCode.BAD_REQUEST).json({ response: error });
         }
 
-        const handlerResponse = (token: string) => {
+        const handlerResponse = ({ token, ...user }: ILoginResponse) => {
             return response
             .status(HttpStatusCode.OK)
             .cookie(
@@ -42,13 +43,17 @@ class AuthController extends Controller implements IAuthController {
                 token,
                 {
                     httpOnly: true,
-                    secure: Env.DEBUG,
+                    secure: false,
                     expires: new Date(Date.now() + 3600000),
-                    maxAge: 3600000
+                    maxAge: 3600000,
+                    sameSite: Env.DEBUG ? "lax" : "none"
                 }
             )
-            .setHeader("Authorization", "True")
-            .redirect("/heroes/list");
+            .setHeaders(new Headers({
+                Authorization: "True",
+                "X-Powered-By": "HeroesApp"
+            }))
+            .json({ response: user });
         };
 
         this._authService.login(dto!)
@@ -70,19 +75,39 @@ class AuthController extends Controller implements IAuthController {
         .catch(error => this.handlerResponseError(error, `${this._contextPath} | register()`, response));
     };
 
-    public logout = (request: Request, response: Response): any => {
-        response.clearCookie('Authorization'); 
-
-        this._authService.logout()
-        .then(() => response.status(HttpStatusCode.OK).redirect("/login"))
-        .catch(error => this.handlerResponseError(error, `${this._contextPath} | logout()`, response));
+    public logout = (_: Request, response: Response): any => {
+        response.clearCookie('auth-token'); 
+        
+        response.status(HttpStatusCode.OK).redirect("/auth/login");
     };
 
     public refreshToken = (request: Request, response: Response): any => {
-        console.log({ cookie: request.cookies, signed: request.signedCookies });
+        const authToken: string = request.cookies["auth-token"];
+        const isAuthorized: string | undefined = request.headers.authorization;
 
-        this._authService.refreshToken("")
-        .then(data => response.status(HttpStatusCode.CREATED).json({ response: data }))
+        if (!isAuthorized || isAuthorized !== "True") return response.status(HttpStatusCode.AUTHORIZED).json({ response: false });
+        if (!authToken) return response.status(HttpStatusCode.AUTHORIZED).json({ response: false });
+
+        this._authService.refreshToken(authToken)
+        .then(token => response
+            .status(HttpStatusCode.CREATED)
+            .cookie(
+                "auth-token", 
+                token,
+                {
+                    httpOnly: true,
+                    secure: false,
+                    expires: new Date(Date.now() + 3600000),
+                    maxAge: 3600000,
+                    sameSite: Env.DEBUG ? "lax" : "strict"
+                }
+            )
+            .setHeaders(new Headers({
+                Authorization: "True",
+                "X-Powered-By": "HeroesApp"
+            }))
+            .json({ response: true })
+        )
         .catch(error => this.handlerResponseError(error, `${this._contextPath} | refreshToken()`, response));
     };
 }

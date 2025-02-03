@@ -20,8 +20,7 @@ class Jwt extends Plugin implements IJwtPlugin {
     };
 
     private readonly _jwtSingConf: jwt.SignOptions = {
-        expiresIn: this.duration["1h"],
-        algorithm: "RS256"
+        expiresIn: this.duration["1h"]
     };
 
     private readonly _jwtDecodeConf: jwt.DecodeOptions = {
@@ -40,14 +39,14 @@ class Jwt extends Plugin implements IJwtPlugin {
         return new Promise((resolve) => {
             jwt.sign(
                 payload, 
-                Env.JWT_SECRET_KEY, this._jwtSingConf, 
+                Env.JWT_SECRET_KEY, 
+                this._jwtSingConf, 
                 (error, encode) => {
                     if (error) {
                         this._logService.errorLog(error, `${this._contextName} | generateToken()`, true);
         
                         return resolve(undefined);
                     }
-
                     return resolve(encode!);
                 }
             ); 
@@ -65,7 +64,20 @@ class Jwt extends Plugin implements IJwtPlugin {
 
                         return resolve(undefined);
                     }
-                    console.log({ decode });
+                    
+
+                    /*
+                        decode object structure
+
+                          decode: {
+                            id: 'ac004f27-c0df-402f-a49b-9ccc98e8f948',
+                            userName: 'fernando',
+                            lastName: 'jose',
+                            iat: 1738536452,
+                            exp: 3477076405
+                        }
+                    */
+
                     return resolve(decode as T);
                 }
             );
