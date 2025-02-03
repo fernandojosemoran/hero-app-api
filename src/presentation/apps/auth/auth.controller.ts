@@ -43,7 +43,7 @@ class AuthController extends Controller implements IAuthController {
                 token,
                 {
                     httpOnly: true,
-                    secure: false,
+                    secure: !Env.DEBUG,
                     expires: new Date(Date.now() + 3600000),
                     maxAge: 3600000,
                     sameSite: Env.DEBUG ? "lax" : "none"
@@ -96,10 +96,10 @@ class AuthController extends Controller implements IAuthController {
                 token,
                 {
                     httpOnly: true,
-                    secure: false,
+                    secure: !Env.DEBUG,
                     expires: new Date(Date.now() + 3600000),
                     maxAge: 3600000,
-                    sameSite: Env.DEBUG ? "lax" : "strict"
+                    sameSite: Env.DEBUG ? "lax" : "none"
                 }
             )
             .setHeaders(new Headers({
