@@ -75,10 +75,22 @@ class AuthController extends Controller implements IAuthController {
         .catch(error => this.handlerResponseError(error, `${this._contextPath} | register()`, response));
     };
 
-    public logout = (_: Request, response: Response): any => {
-        response.clearCookie('auth-token'); 
+    public logout = (request: Request, response: Response): any => {
+
+        const authToken: string | undefined = request.cookies["auth-token"];
+
+        if (!authToken) return response.status(HttpStatusCode.CONFLICT).json({ response: false });
+
+        response.clearCookie(
+            'auth-token', 
+            { 
+                httpOnly: true, 
+                secure: !Env.DEBUG, 
+                sameSite: Env.DEBUG ? "lax" : "none"
+            }
+        ); 
         
-        response.status(HttpStatusCode.OK).redirect("/auth/login");
+        return response.status(HttpStatusCode.OK).json({ response: true });
     };
 
     public refreshToken = (request: Request, response: Response): any => {
