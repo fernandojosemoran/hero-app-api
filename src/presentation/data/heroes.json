@@ -7,7 +7,7 @@
       "alter_ego": "Bruce Wayne",
       "first_appearance": "Detective Comics #27",
       "characters": "Bruce Wayne",
-      "alt_image": "/api/media/hero/dc-batman.jpg"
+      "alt_image": "/api/media/hero/dc-batman.webp"
     },
     {
       "id": "dc-superman",
@@ -16,7 +16,7 @@
       "alter_ego": "Kal-El",
       "first_appearance": "Action Comics #1",
       "characters": "Kal-El",
-      "alt_image": "/api/media/hero/dc-superman.jpg"
+      "alt_image": "/api/media/hero/dc-superman.webp"
     },
     {
       "id": "dc-flash",
@@ -25,7 +25,7 @@
       "alter_ego": "Jay Garrick",
       "first_appearance": "Flash Comics #1",
       "characters": "Jay Garrick, Barry Allen, Wally West, Bart Allen",
-      "alt_image": "/api/media/hero/dc-flash.jpg"
+      "alt_image": "/api/media/hero/dc-flash.webp"
     },
     {
       "id": "dc-green",
@@ -34,7 +34,7 @@
       "alter_ego": "Alan Scott",
       "first_appearance": "All-American Comics #16",
       "characters": "Alan Scott, Hal Jordan, Guy Gardner, John Stewart, Kyle Raynor, Jade, Sinestro, Simon Baz",
-      "alt_image": "/api/media/hero/dc-green.jpg"
+      "alt_image": "/api/media/hero/dc-green.webp"
     },
     {
       "id": "dc-arrow",
@@ -43,7 +43,7 @@
       "alter_ego": "Oliver Queen",
       "first_appearance": "More Fun Comics #73",
       "characters": "Oliver Queen",
-      "alt_image": "/api/media/hero/dc-arrow.jpg"
+      "alt_image": "/api/media/hero/dc-arrow.webp"
     },
     {
       "id": "dc-wonder",
@@ -52,7 +52,7 @@
       "alter_ego": "Princess Diana",
       "first_appearance": "All Star Comics #8",
       "characters": "Princess Diana",
-      "alt_image": "/api/media/hero/dc-wonder.jpg"
+      "alt_image": "/api/media/hero/dc-wonder.webp"
     },
     {
       "id": "dc-martian",
@@ -61,7 +61,7 @@
       "alter_ego": "J\"onn J\"onzz",
       "first_appearance": "Detective Comics #225",
       "characters": "Martian Manhunter",
-      "alt_image": "/api/media/hero/dc-martian.jpg"
+      "alt_image": "/api/media/hero/dc-martian.webp"
     },
     {
       "id": "dc-robin",
@@ -70,7 +70,7 @@
       "alter_ego": "Dick Grayson",
       "first_appearance": "Detective Comics #38",
       "characters": "Dick Grayson",
-      "alt_image": "/api/media/hero/dc-robin.jpg"
+      "alt_image": "/api/media/hero/dc-robin.webp"
     },
     {
       "id": "dc-blue",
@@ -79,7 +79,7 @@
       "alter_ego": "Dan Garret",
       "first_appearance": "Mystery Men Comics #1",
       "characters": "Dan Garret, Ted Kord, Jaime Reyes",
-      "alt_image": "/api/media/hero/dc-blue.jpg"
+      "alt_image": "/api/media/hero/dc-blue.webp"
     },
     {
       "id": "dc-black",
@@ -88,7 +88,7 @@
       "alter_ego": "Dinah Drake",
       "first_appearance": "Flash Comics #86",
       "characters": "Dinah Drake, Dinah Lance",
-      "alt_image": "/api/media/hero/dc-black.jpg"
+      "alt_image": "/api/media/hero/dc-black.webp"
     },
     {
       "id": "marvel-spider",
@@ -97,7 +97,7 @@
       "alter_ego": "Peter Parker",
       "first_appearance": "Amazing Fantasy #15",
       "characters": "Peter Parker",
-      "alt_image": "/api/media/hero/marvel-spider.jpg"
+      "alt_image": "/api/media/hero/marvel-spider.webp"
     },
     {
       "id": "marvel-captain",
@@ -106,7 +106,7 @@
       "alter_ego": "Steve Rogers",
       "first_appearance": "Captain America Comics #1",
       "characters": "Steve Rogers",
-      "alt_image": "/api/media/hero/marvel-captain.jpg"
+      "alt_image": "/api/media/hero/marvel-captain.webp"
     },
     {
       "id": "marvel-iron",
@@ -115,7 +115,7 @@
       "alter_ego": "Tony Stark",
       "first_appearance": "Tales of Suspense #39",
       "characters": "Tony Stark",
-      "alt_image": "/api/media/hero/marvel-iron.jpg"
+      "alt_image": "/api/media/hero/marvel-iron.webp"
     },
     {
       "id": "marvel-thor",
@@ -124,7 +124,7 @@
       "alter_ego": "Thor Odinson",
       "first_appearance": "Journey into Myster #83",
       "characters": "Thor Odinson",
-      "alt_image": "/api/media/hero/marvel-thor.jpg"
+      "alt_image": "/api/media/hero/marvel-thor.webp"
     },
     {
       "id": "marvel-hulk",
@@ -133,7 +133,7 @@
       "alter_ego": "Bruce Banner",
       "first_appearance": "The Incredible Hulk #1",
       "characters": "Bruce Banner",
-      "alt_image": "/api/media/hero/marvel-hulk.jpg"
+      "alt_image": "/api/media/hero/marvel-hulk.webp"
     },
     {
       "id": "marvel-wolverine",
@@ -142,7 +142,7 @@
       "alter_ego": "James Howlett",
       "first_appearance": "The Incredible Hulk #180",
       "characters": "James Howlett",
-      "alt_image": "/api/media/hero/marvel-wolverine.jpg"
+      "alt_image": "/api/media/hero/marvel-wolverine.webp"
     },
     {
       "id": "marvel-daredevil",
@@ -151,7 +151,7 @@
       "alter_ego": "Matthew Michael Murdock",
       "first_appearance": "Daredevil #1",
       "characters": "Matthew Michael Murdock",
-      "alt_image": "/api/media/hero/marvel-daredevil.jpg"
+      "alt_image": "/api/media/hero/marvel-daredevil.webp"
     },
     {
       "id": "marvel-hawkeye",
@@ -160,7 +160,7 @@
       "alter_ego": "Clinton Francis Barton",
       "first_appearance": "Tales of Suspense #57",
       "characters": "Clinton Francis Barton",
-      "alt_image": "/api/media/hero/marvel-hawkeye.jpg"
+      "alt_image": "/api/media/hero/marvel-hawkeye.webp"
     },
     {
       "id": "marvel-cyclops",
@@ -169,7 +169,7 @@
       "alter_ego": "Scott Summers",
       "first_appearance": "X-Men #1",
       "characters": "Scott Summers",
-      "alt_image": "/api/media/hero/marvel-cyclops.jpg"
+      "alt_image": "/api/media/hero/marvel-cyclops.webp"
     },
     {
       "id": "marvel-silver",
@@ -178,7 +178,7 @@
       "alter_ego": "Norrin Radd",
       "first_appearance": "The Fantastic Four #48",
       "characters": "Norrin Radd",
-      "alt_image": "/api/media/hero/marvel-silver.jpg"
+      "alt_image": "/api/media/hero/marvel-silver.webp"
     },
     {
       "id": "marvel-drax",

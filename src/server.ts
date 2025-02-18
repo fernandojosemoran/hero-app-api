@@ -45,7 +45,7 @@ class ServerApp {
 
     private middlewares(): void {
         this.server.use(rateLimitMiddleware());
- //       this.server.use(helmetMiddleware());
+        this.server.use(helmetMiddleware());
         this.server.use(morganMiddleware());
         this.server.use(corsMiddleware());
         this.server.use(cookieMiddleware());
