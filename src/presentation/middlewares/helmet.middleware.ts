@@ -3,7 +3,7 @@ import helmet from "helmet";
 export function helmetMiddleware() {
     return helmet({
       crossOriginEmbedderPolicy: true,
-      crossOriginResourcePolicy: false,
+      crossOriginResourcePolicy: { policy: "cross-origin" }, // allowed images of another domains
       contentSecurityPolicy: {
          directives: {
             "default-src": [ "'self'" ],
