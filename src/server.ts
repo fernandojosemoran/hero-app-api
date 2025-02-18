@@ -10,6 +10,8 @@ import ServerErrors from "./infrastructure/errors/server.errors";
 import http from "http";
 import LogService from './presentation/services/log.service';
 import cookieMiddleware from './presentation/middlewares/cookie.middleware';
+import { rateLimitMiddleware } from './presentation/middlewares/rate-limit.middleware';
+import { helmetMiddleware } from './presentation/middlewares/helmet.middleware';
 
 
 // hidden dependencies
@@ -42,6 +44,8 @@ class ServerApp {
     }
 
     private middlewares(): void {
+        this.server.use(rateLimitMiddleware());
+ //       this.server.use(helmetMiddleware());
         this.server.use(morganMiddleware());
         this.server.use(corsMiddleware());
         this.server.use(cookieMiddleware());
