@@ -14,6 +14,7 @@ class Env {
     public static readonly MAILER_EMAIL: string = env.get("MAILER_EMAIL").required().asString();
     public static readonly MAILER_SECRET_KEY: string = env.get("MAILER_SECRET_KEY").required().asString();
     public static readonly HOST_URL: string = !this.DEBUG ? env.get("HOST_URL").required().asUrlString() : `http://127.0.0.1:${this.PORT}`;
+    public static readonly OWNER_TO_SEND_EMAIL_TEST: string | undefined = env.get("OWNER_TO_SEND_EMAIL_TEST").asEmailString();
 }
 
 export default Env;
