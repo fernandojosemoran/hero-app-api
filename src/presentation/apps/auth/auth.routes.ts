@@ -11,7 +11,7 @@ import UUID from "../../../infrastructure/plugins/uui.plugin";
 import EmailService from "../../../presentation/services/email.service";
 import Email from "../../../infrastructure/plugins/email.plugin";
 import Bcrypt from "../../../infrastructure/plugins/bcrypt.plugin";
-import DbDatasourceImpl from "src/infrastructure/datasources/db.datasource.impl";
+import DbDatasourceImpl from "../../../../src/infrastructure/datasources/db.datasource.impl";
 
 export class AuthRoutes extends Expose { 
 

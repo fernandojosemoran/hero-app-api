@@ -82,7 +82,7 @@ class AuthDataSourceImpl implements AuthDataSource {
             await this._email.sendRegisterEmail(
                 "fernandomoran323@gmail.com", 
                 `${newUser!.userName} ${newUser!.lastName}`,
-                `Confirm you account using by following link ${Env.HOST_URL}/account/authorization/${verifyAccountToken}`,
+                `Confirm you account using by following link ${Env.HOST_URL}/api/account/authorization/${verifyAccountToken}`,
                 "Welcome to http://heroes-app.vercel"
             );
 

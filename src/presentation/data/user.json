@@ -1,28 +1,28 @@
 {
-    "users": [
-        {
-            "id": "1",
-            "userName": "John",
-            "lastName": "Doe",
-            "email": "john.due@gmail.com",
-            "password": "password123",
-            "authorization": false
-        },
-        {
-            "id": "ac004f27-c0df-402f-a49b-9ccc98e8f948",
-            "password": "$2b$10$kD4AmjwOvJrj7oY0/LF6oOW7v0ryDW4mc.KBU6hz41oa9gsKFhkhW",
-            "authorization": true,
-            "email": "fernando@gmail.com",
-            "lastName": "jose",
-            "userName": "fernando"
-        },
-        {
-            "id": "testId",
-            "userName": "test1",
-            "lastName": "jest",
-            "email": "test@gmail.com",
-            "password": "$2b$10$4Feum41hGED60RDEX2rpOeyPOhqa1cRUR.o9k4.yC9swUUdM.6gvS",
-            "authorization": true
-        }
-    ]
+  "users": [
+    {
+      "id": "1",
+      "userName": "John",
+      "lastName": "Doe",
+      "email": "john.due@gmail.com",
+      "password": "password123",
+      "authorization": false
+    },
+    {
+      "id": "ac004f27-c0df-402f-a49b-9ccc98e8f948",
+      "password": "$2b$10$kD4AmjwOvJrj7oY0/LF6oOW7v0ryDW4mc.KBU6hz41oa9gsKFhkhW",
+      "authorization": true,
+      "email": "fernando@gmail.com",
+      "lastName": "jose",
+      "userName": "fernando"
+    },
+    {
+      "id": "5f2715de-4b7d-41bf-9d00-6a9dcbdaa50f",
+      "password": "$2b$10$HSDoifE6lItSTQrREcfU.uIwi7CsuKGozRG6v1y5lZhI9sSja0la6",
+      "authorization": true,
+      "email": "karlin@gmail.com",
+      "lastName": "marley guevara",
+      "userName": "karlin"
+    }
+  ]
 }

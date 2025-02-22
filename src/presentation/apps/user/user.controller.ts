@@ -25,7 +25,6 @@ class UserController extends Controller implements IUserController {
     }
 
     public changePassword = (request: Request, response: Response): any => {
-
         const [ dto, error ] = ChangePasswordDto.create(request.body);
 
         if (error) {
@@ -34,7 +33,7 @@ class UserController extends Controller implements IUserController {
         }
 
         this._repository.changePassword(dto!)
-        .then(() => response.status(HttpStatusCode.CREATED).redirect("/login"))
+        .then(() => response.status(HttpStatusCode.CREATED).redirect("/auth/login"))
         .catch(error => this.handlerResponseError(error, `${this._contextPath} | changePassword()`, response));
     };
 
@@ -43,11 +42,11 @@ class UserController extends Controller implements IUserController {
 
         if (status) {
             this._logService.errorLog("occurred a error", `${this._contextPath} | authorizationAccount()`);
-            return response.status(status).redirect("/login");
+            return response.status(status).redirect("/auth/login");
         }
         
         this._repository.authorizationAccount(dto!)
-        .then(() => response.status(HttpStatusCode.OK).redirect("/heroes/list"))
+        .then(() => response.status(HttpStatusCode.OK).redirect("/auth/login"))
         .catch(error => this.handlerResponseError(error, `${this._contextPath} | authorizationAccount()`, response));
     };
 

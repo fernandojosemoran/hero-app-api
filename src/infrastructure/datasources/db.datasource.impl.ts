@@ -96,7 +96,7 @@ class DbDatasourceImpl implements DbDatasource {
 
     public async findOne(id: string): Promise<User | HeroEntity | undefined> {
         if (this.db === "user") return this.users.users.find(user => user.id === id);
-
+        
         return this.heroes.heroes.find(hero => hero.id === id);
     }
 
