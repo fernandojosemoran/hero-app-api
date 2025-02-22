@@ -11,6 +11,7 @@ import UUID from "../../../infrastructure/plugins/uui.plugin";
 import EmailService from "../../../presentation/services/email.service";
 import Email from "../../../infrastructure/plugins/email.plugin";
 import Bcrypt from "../../../infrastructure/plugins/bcrypt.plugin";
+import DbDatasourceImpl from "src/infrastructure/datasources/db.datasource.impl";
 
 export class AuthRoutes extends Expose { 
 
@@ -34,7 +35,8 @@ const bcrypt: Bcrypt = new Bcrypt(logService);
 const uuidPlugin: UUID = new UUID();
 const jwtPlugin: Jwt = new Jwt(logService);
 const emailService: EmailService = new EmailService(new Email());
-const datasource: AuthDataSourceImpl = new AuthDataSourceImpl(jwtPlugin, uuidPlugin, emailService, bcrypt );
+const dbDatasource: DbDatasourceImpl = new DbDatasourceImpl("user");
+const datasource: AuthDataSourceImpl = new AuthDataSourceImpl(jwtPlugin, uuidPlugin, emailService, bcrypt, dbDatasource );
 const repository: AuthRepositoryImpl = new AuthRepositoryImpl(datasource);
 const authService: AuthService = new AuthService(repository);
 

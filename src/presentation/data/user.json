@@ -15,6 +15,14 @@
             "email": "fernando@gmail.com",
             "lastName": "jose",
             "userName": "fernando"
+        },
+        {
+            "id": "testId",
+            "userName": "test1",
+            "lastName": "jest",
+            "email": "test@gmail.com",
+            "password": "$2b$10$4Feum41hGED60RDEX2rpOeyPOhqa1cRUR.o9k4.yC9swUUdM.6gvS",
+            "authorization": true
         }
     ]
 }

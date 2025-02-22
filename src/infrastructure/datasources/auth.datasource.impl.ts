@@ -5,15 +5,12 @@ import AuthDataSource from "../../domain/datasources/auth.datasource";
 import LoginDto from "../../domain/dto/auth/login.dto";
 import RegisterDto from "../../domain/dto/auth/register.dto";
 import Jwt from "../plugins/jwt.plugin";
-import userDB from "../../presentation/data/user.json";
 import HttpError from "../errors/http-error";
 import UUID from "../plugins/uui.plugin";
 import EmailService from "../../presentation/services/email.service";
-import fs from "fs";
-import path from "path";
-import configApp from "../../../config-app";
 import Bcrypt from "../plugins/bcrypt.plugin";
 import Env from "../constants/env";
+import DbDatasourceImpl from "./db.datasource.impl";
 
 interface ITokenPayload {
     id: string;
@@ -27,18 +24,17 @@ interface ITokenDecode extends ITokenPayload {
 }
 
 class AuthDataSourceImpl implements AuthDataSource {
-    private readonly _users: User[] = userDB.users;
-    private readonly _userDbPath: string = path.join(configApp.rootDirPath, "src/presentation/data/user.json");
 
     public constructor(
         private readonly _jwt: Jwt,
         private readonly _uuid: UUID,
         private readonly _email: EmailService,
-        private readonly _bcrypt: Bcrypt
+        private readonly _bcrypt: Bcrypt,
+        private readonly _dbUser: DbDatasourceImpl
     ) {}
 
     public async login(dto: LoginDto): Promise<ILoginResponse> {
-        const user: User | undefined = this._users.find(user => user.email === dto.email);
+        const user = await this._dbUser.findByProperty({ property: "email", value: dto.email }) as User | undefined; 
 
         if (!user) throw HttpError.notFound("User not exist");
         if (!user.authorization) throw HttpError.unauthorized("You account don't are authorized, checkout you email service and confirm you account.");
@@ -50,7 +46,7 @@ class AuthDataSourceImpl implements AuthDataSource {
         const payload: ITokenPayload = { id: user.id, userName: user.userName, lastName: user.lastName };
 
         const token: string | undefined = await this._jwt.generateToken(payload);
-
+        
         if (!token) throw HttpError.internalServerError("Something occurred wrang, trying login again.");
 
         return Promise.resolve({
@@ -63,7 +59,7 @@ class AuthDataSourceImpl implements AuthDataSource {
     }
 
     public async register(dto: RegisterDto): Promise<void> {
-        const userExist: User | undefined = this._users.find((user) => user.email === dto.email);
+        const userExist = await this._dbUser.findByProperty({ property: "email", value: dto.email }) as User | undefined ;
         
         if (userExist) throw HttpError.conflict("user has already a account.");
 
@@ -79,8 +75,6 @@ class AuthDataSourceImpl implements AuthDataSource {
             lastName: dto.lastName,
             userName: dto.userName
         };
-
-        this._users.push(newUser);
         
         try {
             const verifyAccountToken: string | undefined = await this._jwt.generateToken({ id: newUser.id,userName: newUser.userName, lastName: newUser.lastName });
@@ -92,7 +86,9 @@ class AuthDataSourceImpl implements AuthDataSource {
                 "Welcome to http://heroes-app.vercel"
             );
 
-            fs.writeFileSync(this._userDbPath, JSON.stringify({ users: this._users }, null, 4), { encoding: "utf-8", flag: "w" });
+            const wentSaved: boolean = await this._dbUser.add(newUser);
+
+            if (!wentSaved) throw HttpError.internalServerError("Sorry something occurred wrong");
 
         } catch (error) {
             console.error(error);
