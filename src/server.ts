@@ -1,5 +1,7 @@
 import { ConfigApp } from '../config-app';
 import { RouterApp } from './router-app';
+import { rateLimitMiddleware } from './presentation/middlewares/rate-limit.middleware';
+import { helmetMiddleware } from './presentation/middlewares/helmet.middleware';
 
 // hidden dependencies
 import { morganMiddleware } from './infrastructure/plugins/morgan.adapter';
@@ -10,8 +12,7 @@ import ServerErrors from "./infrastructure/errors/server.errors";
 import http from "http";
 import LogService from './presentation/services/log.service';
 import cookieMiddleware from './presentation/middlewares/cookie.middleware';
-import { rateLimitMiddleware } from './presentation/middlewares/rate-limit.middleware';
-import { helmetMiddleware } from './presentation/middlewares/helmet.middleware';
+
 
 
 // hidden dependencies

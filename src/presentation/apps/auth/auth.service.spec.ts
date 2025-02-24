@@ -5,15 +5,24 @@ import AuthService from "../auth/auth.service";
 import LoginDto from "../../../domain/dto/auth/login.dto";
 import RegisterDto from "../../../domain/dto/auth/register.dto";
 import jwtPlugin from "../../../infrastructure/plugins/jwt.plugin";
-import AuthRepositoryImpl from "../../../infrastructure/repositories/auth.repository.impl";
-import AuthDataSourceImpl from "../../../infrastructure/datasources/auth.datasource.impl";
-import UUID from '../../../infrastructure/plugins/uui.plugin';
 import EmailService from '../../services/email.service';
 import EmailPlugin from '../../../infrastructure/plugins/email.plugin';
 import Bcrypt from '../../../infrastructure/plugins/bcrypt.plugin';
 import Env from '../../../infrastructure/constants/env';
 import HttpError from '../../../infrastructure/errors/http-error';
 import HttpStatusCode from "../../../infrastructure/helpers/http-status-code";
+import UUID from '../../../infrastructure/plugins/uui.plugin';
+
+jest.doMock("../../../infrastructure/constants/env.ts", () => ({
+    __esModule: true,
+    default: {
+        ...jest.requireActual("../../../infrastructure/constants/env.ts").default,
+        MODE_TEST: false, 
+    },
+}));
+
+import AuthRepositoryImpl from "../../../infrastructure/repositories/auth.repository.impl";
+import AuthDataSourceImpl from "../../../infrastructure/datasources/auth.datasource.impl";
 import DbDatasourceImpl from '../../../infrastructure/datasources/db.datasource.impl';
 
 const logService: LogService = new LogService();
@@ -24,6 +33,7 @@ const bcrypt: Bcrypt = new Bcrypt(logService);
 const emailService: EmailService = new EmailService(email);
 const dbDatasource: DbDatasourceImpl = new DbDatasourceImpl("user");
 const authDatasource = new AuthDataSourceImpl(jwt, uuid, emailService, bcrypt, dbDatasource);
+
 
 describe('./src/presentation/apps/auth/auth.service.ts', () => {
 
@@ -88,7 +98,7 @@ describe('./src/presentation/apps/auth/auth.service.ts', () => {
         const sendRegisterEmailSpy = jest.spyOn(emailService, "sendRegisterEmail").mockImplementation(jest.fn());
         const bcryptHashSpy = jest.spyOn(bcrypt, "hash");
         const uuidV4Spy = jest.spyOn(uuid, "generateV4UUID");
-        const adDatasourceAddMethodSpy = jest.spyOn(dbDatasource, "add").mockImplementation(() => Promise.resolve(true));
+        const dbDatasourceAddMethodSpy = jest.spyOn(dbDatasource, "add").mockImplementation(() => Promise.resolve(true));
         const jwtGenerateTokenSpy = jest.spyOn(jwt, "generateToken");
         
         const dto: RegisterDto = {
@@ -100,7 +110,6 @@ describe('./src/presentation/apps/auth/auth.service.ts', () => {
             authorization: true,
         };
     
-
         await authRepository.register(dto);
         
         expect(bcryptHashSpy).toHaveBeenCalledWith(dto.password);
@@ -115,11 +124,11 @@ describe('./src/presentation/apps/auth/auth.service.ts', () => {
         expect(sendRegisterEmailSpy).toHaveBeenCalledWith(            
             "fernandomoran323@gmail.com",
             `${dto.userName} ${dto.lastName}`,
-            expect.stringMatching(new RegExp(`^Confirm you account using by following link ${Env.HOST_URL}/account/authorization/.+`)),
+             expect.stringMatching(new RegExp(`^Confirm you account using by following link ${Env.HOST_URL}/api/account/authorization/.+`)),
             "Welcome to http://heroes-app.vercel"
         );
 
-        expect(adDatasourceAddMethodSpy).toHaveBeenCalled();
+        expect(dbDatasourceAddMethodSpy).toHaveBeenCalled();
     });
 
     test("Should throw an error if the user already exists during registration", async () => {
@@ -211,18 +220,21 @@ describe('./src/presentation/apps/auth/auth.service.ts', () => {
             
             expect(message).toBe("User not exist");
             expect(status).toBe(HttpStatusCode.NOT_FOUND);
-            
         }
     });
 
     test("Should throw a error if user not is authorized during the login", async () => {
+
+        // const { MODE_TEST } = (await import("../../../infrastructure/constants/env")).default;
+
         const dto: LoginDto = {
             userName: "test1",
             email: "test@gmail.com",
             password: "test123",
             authorization: false
         };
-
+        
+        bcrypt.compare = jest.fn(() => Promise.resolve(true));
         dbDatasource.findByProperty = jest.fn(() => Promise.resolve({ id: "test-id", lastName: "test1", ...dto } as User));
 
         try {

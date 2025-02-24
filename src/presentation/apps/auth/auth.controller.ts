@@ -71,7 +71,7 @@ class AuthController extends Controller implements IAuthController {
         }
 
         this._authService.register(dto!)
-        .then(data => response.status(HttpStatusCode.CREATED).json({ response: data }))
+        .then(() => response.status(HttpStatusCode.CREATED).json({ response: true }))
         .catch(error => this.handlerResponseError(error, `${this._contextPath} | register()`, response));
     };
 

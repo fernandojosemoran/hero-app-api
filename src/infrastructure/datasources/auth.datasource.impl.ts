@@ -23,6 +23,8 @@ interface ITokenDecode extends ITokenPayload {
     exp: number;
 }
 
+const MODE_TEST: boolean = Env.MODE_TEST;
+
 class AuthDataSourceImpl implements AuthDataSource {
 
     public constructor(
@@ -37,7 +39,8 @@ class AuthDataSourceImpl implements AuthDataSource {
         const user = await this._dbUser.findByProperty({ property: "email", value: dto.email }) as User | undefined; 
 
         if (!user) throw HttpError.notFound("User not exist");
-        if (!user.authorization) throw HttpError.unauthorized("You account don't are authorized, checkout you email service and confirm you account.");
+        
+        if (!MODE_TEST) if (!user.authorization) throw HttpError.unauthorized("You account don't are authorized, checkout you email service and confirm you account.");
 
         const isValidPassword: boolean | undefined = await this._bcrypt.compare(dto.password, user.password);
 
