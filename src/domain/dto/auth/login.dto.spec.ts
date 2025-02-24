@@ -3,7 +3,7 @@ import LoginDto from "./login.dto";
 
 
 describe('./src/domain/dto/auth/login.dto.ts', () => {
-    const user: any = {
+    const login: any = {
         userName: "test1",
         email: "test@gmail.com",
         password: "test123",
@@ -19,26 +19,37 @@ describe('./src/domain/dto/auth/login.dto.ts', () => {
     });
 
     test('Should return an error if userName is undefined', () => {
-        const [ , error ] = LoginDto.create({ ...user, userName: "" });
+        const [ , error ] = LoginDto.create({ ...login, userName: "" });
 
         expect(error).toBe("User is required.");
     });
 
     test('Should return an error if email is undefined', () => {
-        const [ , error ] = LoginDto.create({ ...user, email: "" });
+        const [ , error ] = LoginDto.create({ ...login, email: "" });
 
         expect(error).toBe("Email is required.");
     });
 
     test('Should return an error if email is invalid', () => {
-        const [ , error ] = LoginDto.create({ ...user, email: "jest" });
+        const [ , error ] = LoginDto.create({ ...login, email: "jest" });
 
         expect(error).toBe("Email field is not valid.");
     });
 
     test('Should return an error if password is undefined', () => {
-        const [ , error ] = LoginDto.create({ ...user, password: "" });
+        const [ , error ] = LoginDto.create({ ...login, password: "" });
 
         expect(error).toBe("Password is required.");
+    });
+
+    test('Should return a valid login dto with correct properties when arguments are valid', () => {
+        const [ dto ,  ] = LoginDto.create(login);
+
+        expect(dto).not.toBeUndefined();
+        expect(dto).toHaveProperty("authorization");
+        expect(dto).toHaveProperty("token");
+        expect(dto).toHaveProperty("userName");
+        expect(dto).toHaveProperty("password");
+        expect(dto).toHaveProperty("email");
     });
 });

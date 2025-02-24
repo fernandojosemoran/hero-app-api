@@ -12,14 +12,14 @@ function authentication(request: Request, response: Response, next: NextFunction
 
     console.log({ isAuthorized });
 
-    if (!isAuthorized || isAuthorized !== "True") return response.status(HttpStatusCode.AUTHORIZED).redirect(loginPath);
-    if (!oldAuthToken) return response.status(HttpStatusCode.AUTHORIZED).redirect(loginPath);
+    if (!isAuthorized || isAuthorized !== "True") return response.status(HttpStatusCode.UNAUTHORIZED).redirect(loginPath);
+    if (!oldAuthToken) return response.status(HttpStatusCode.UNAUTHORIZED).redirect(loginPath);
 
     const jwt: Jwt = new Jwt(new LogService());
 
     const isValidOldAuthToken = jwt.verifyToken<{id: string, userName: string, lastName: string}>(oldAuthToken);
 
-    if (!isValidOldAuthToken) return response.status(HttpStatusCode.AUTHORIZED).redirect(loginPath);
+    if (!isValidOldAuthToken) return response.status(HttpStatusCode.UNAUTHORIZED).redirect(loginPath);
     
     next();
 }

@@ -243,7 +243,7 @@ describe('./src/presentation/apps/auth/auth.service.ts', () => {
             const { message, status } = error as HttpError;
             
             expect(message).toBe("You account don't are authorized, checkout you email service and confirm you account.");
-            expect(status).toBe(HttpStatusCode.AUTHORIZED);
+            expect(status).toBe(HttpStatusCode.UNAUTHORIZED);
         }
     });
 
@@ -265,8 +265,7 @@ describe('./src/presentation/apps/auth/auth.service.ts', () => {
             const { message, status } = error as HttpError;
             
             expect(message).toBe("Password is not valid");
-            expect(status).toBe(HttpStatusCode.AUTHORIZED);
-            // await deleteUser(dto.email);
+            expect(status).toBe(HttpStatusCode.UNAUTHORIZED);
         }
     });
 

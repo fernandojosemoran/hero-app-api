@@ -4,7 +4,8 @@ class StreamHeroImageDto {
     ) {}
 
     public static create(image: string): [ StreamHeroImageDto?, string? ] {
-        if (!image) return [ undefined, "image is required." ];
+
+        if (!image.trim()) return [ undefined, "image is required." ];
 
         return [ new StreamHeroImageDto(image), undefined ];
     }

@@ -8,7 +8,7 @@ import { morganMiddleware } from './infrastructure/plugins/morgan.adapter';
 import { corsMiddleware } from './presentation/middlewares/security/cors.middleware';
 
 import express from 'express';
-import ServerErrors from "./infrastructure/errors/server.errors";
+import ServerErrors from "./infrastructure/errors/server.error";
 import http from "http";
 import LogService from './presentation/services/log.service';
 import cookieMiddleware from './presentation/middlewares/cookie.middleware';

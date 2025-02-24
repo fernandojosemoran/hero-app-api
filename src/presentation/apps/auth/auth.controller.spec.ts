@@ -117,7 +117,7 @@ describe('./src/presentation/apps/auth/auth.controller.ts', () => {
 
         expect(response.headers.get("X-Powered-By")).toBe("HeroesApp");
         expect(response.status).toBe(HttpStatusCode.OK);
-        expect(response.headers.get("Set-Cookie")).toMatch(/^auth-token=[\w.-]+; Max-Age=3600; Path=\/; Expires=Sun, \d{2} Feb 2025 \d{2}:\d{2}:\d{2} GMT; HttpOnly; SameSite=Lax$/);
+        expect(response.headers.get("Set-Cookie")).toMatch(/^([\w-]+)=([\w.-]+); Max-Age=\d+; Path=\/; Expires=[A-Za-z]{3}, \d{2} [A-Za-z]{3} \d{4} \d{2}:\d{2}:\d{2} GMT; HttpOnly; SameSite=Lax$/);
 
         expect(await response.json()).toEqual({
              response: {

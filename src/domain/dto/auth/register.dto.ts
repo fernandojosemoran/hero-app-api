@@ -35,7 +35,7 @@ class RegisterDto {
         if (!this.validateEmail(email)) return [ undefined, "Email field is invalid." ];
         if (!password) return [ undefined,  "Password is required." ];
         if (!confirmPassword) return [ undefined,  "Confirm password is required." ];
-        if (!(password === confirmPassword)) return [ undefined,  "Confirm password is not same." ];
+        if (!(password === confirmPassword)) return [ undefined,  "Confirm password no match." ];
 
         return [ new RegisterDto(userName, lastName, email, password, confirmPassword, false), undefined ];
     }
