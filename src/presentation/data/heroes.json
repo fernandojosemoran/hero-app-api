@@ -242,6 +242,14 @@
             "publisher": "DC Comics",
             "superhero": "test",
             "alt_image": "test-image"
+        },
+        {
+            "alter_ego": "jest",
+            "first_appearance": "test-date",
+            "characters": "character1, character2",
+            "publisher": "DC Comics",
+            "superhero": "test",
+            "alt_image": "test-image"
         }
     ]
 }

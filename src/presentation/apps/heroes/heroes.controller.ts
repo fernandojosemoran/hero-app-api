@@ -13,6 +13,7 @@ import DeleteHeroDto from "../../../../src/domain/dto/heroes/delete-hero.dto";
 import UpdateHeroDto from "../../../../src/domain/dto/heroes/update-hero.dto";
 import HttpError from "../../../../src/infrastructure/errors/http-error";
 import SearchHeroDto from "../../../../src/domain/dto/heroes/search-hero.dto";
+import DbDatasourceImpl from "src/infrastructure/datasources/db.datasource.impl";
 
 interface IHeroController {
     createHero(request: Request, response: Response, next: NextFunction): any;
@@ -113,7 +114,9 @@ export class HeroController implements IHeroController{
     };
 }
 
-const heroRepository: HeroRepositoryImpl = new HeroRepositoryImpl(new HeroDatasourceImpl());
+const dbDatasource: DbDatasourceImpl = new DbDatasourceImpl("hero");
+const heroDatasource: HeroDatasourceImpl = new HeroDatasourceImpl(dbDatasource);
+const heroRepository: HeroRepositoryImpl = new HeroRepositoryImpl(heroDatasource);
 
 export default new HeroController(
     new HeroService(heroRepository),
