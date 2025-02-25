@@ -70,7 +70,7 @@ describe('./src/presentation/apps/auth/auth.controller.ts', () => {
         controller = new AuthController(authService, logService);
     });
 
-    test('Should contain login, register, logout, refreshToken properties', () => {
+    test('Should contain properties like login, register, logout, refreshToken', () => {
         expect(controller).toHaveProperty("login");
         expect(controller).toHaveProperty("register");
         expect(controller).toHaveProperty("logout");

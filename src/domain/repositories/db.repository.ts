@@ -7,6 +7,8 @@ abstract class DbRepository {
     abstract findOne(id: string): Promise<User | HeroEntity | undefined>;
     abstract findMany(): Promise<User[] | HeroEntity[]>;
     abstract delete(id: string): Promise<User | HeroEntity | undefined>;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    abstract findByProperty<K extends keyof User | keyof HeroEntity>(params: { property: K; value: any }): Promise<User | HeroEntity | undefined>;
 }
 
 export default DbRepository;

@@ -11,7 +11,7 @@ describe('./src/presentation/services/email.service.ts', () => {
         jest.resetAllMocks();
     });
 
-    test('Should contain send and authorized email methods', () => {
+    test('Should contain methods like send and authorized email', () => {
         expect(typeof emailService.sendRegisterEmail).toBe("function");
         expect(typeof emailService.sendAuthorizedAccountEmail).toBe("function");
     });

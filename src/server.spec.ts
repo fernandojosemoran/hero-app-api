@@ -10,7 +10,7 @@ describe('./src/server.ts', () => {
         jest.clearAllMocks();
     });
 
-    test('Should contain start and stop properties', () => {
+    test('Should contain properties like start and stop', () => {
         expect(server).toHaveProperty("start");
         expect(server).toHaveProperty("stop");
     });

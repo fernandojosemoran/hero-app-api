@@ -5,7 +5,7 @@ describe('./src/presentation/services/log.service.ts', () => {
         jest.resetAllMocks();
     });
 
-    test('Should contain infoLog, errorLog methods', () => {
+    test('Should contain methods like infoLog, errorLog', () => {
         expect(typeof LogService.prototype.errorLog).toBe("function");
         expect(typeof LogService.prototype.infoLog).toBe("function");
     });
