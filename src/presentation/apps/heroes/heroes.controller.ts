@@ -13,7 +13,7 @@ import DeleteHeroDto from "../../../../src/domain/dto/heroes/delete-hero.dto";
 import UpdateHeroDto from "../../../../src/domain/dto/heroes/update-hero.dto";
 import HttpError from "../../../../src/infrastructure/errors/http-error";
 import SearchHeroDto from "../../../../src/domain/dto/heroes/search-hero.dto";
-import DbDatasourceImpl from "src/infrastructure/datasources/db.datasource.impl";
+import DbDatasourceImpl from "../../../../src/infrastructure/datasources/db.datasource.impl";
 
 interface IHeroController {
     createHero(request: Request, response: Response, next: NextFunction): any;
