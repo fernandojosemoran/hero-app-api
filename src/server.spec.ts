@@ -26,7 +26,7 @@ describe('./src/server.ts', () => {
     });
 
     test('should stop the server correctly', (done) => {
-        expect(() => server.stop()).not.toThrow();
+        expect(async () => await server.stop()).not.toThrow();
         done();
     });
 });

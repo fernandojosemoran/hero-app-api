@@ -19,7 +19,7 @@ import cookieMiddleware from './presentation/middlewares/cookie.middleware';
 const logService: LogService = new LogService();
 
 class ServerApp {
-    private readonly server = express();
+    public readonly server = express();
 
     private _serverAppInstance: ServerApp | undefined = undefined;
     private _serverListeningFlag: http.Server | undefined;
@@ -74,9 +74,8 @@ class ServerApp {
         this._serverListeningFlag = this.server.listen(this._config.port, handlerServerAppError);
         this._startMethodFlagFlag = true;
     }
-    
 
-    public stop(): void {
+    public async stop(): Promise<void> {
         this._serverListeningFlag!.close();
     }   
 }

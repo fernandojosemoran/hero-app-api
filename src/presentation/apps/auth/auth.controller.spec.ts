@@ -1,3 +1,5 @@
+import { User } from "../../../domain/entities/user.entity";
+
 import AuthDataSourceImpl from "../../../infrastructure/datasources/auth.datasource.impl";
 import DbDatasourceImpl from "../../../infrastructure/datasources/db.datasource.impl";
 import Bcrypt from "../../../infrastructure/plugins/bcrypt.plugin";
@@ -12,7 +14,6 @@ import AuthService from "./auth.service";
 import Server from "../../../server";
 import ConfigApp from "../../../../config-app";
 import RouterApp from "../../../router-app";
-import { User } from "../../../domain/entities/user.entity";
 import Env from "../../../infrastructure/constants/env";
 import HttpStatusCode from "../../../infrastructure/helpers/http-status-code";
 
@@ -30,17 +31,17 @@ interface ILogin {
     password: string;
 }
 
-const logService: LogService = new LogService();
-const bcrypt: Bcrypt = new Bcrypt(logService);
-const uuidPlugin: UUID = new UUID();
-const jwtPlugin: Jwt = new Jwt(logService);
-const emailService: EmailService = new EmailService(new Email());
-const dbDatasource: DbDatasourceImpl = new DbDatasourceImpl("user");
-const datasource: AuthDataSourceImpl = new AuthDataSourceImpl(jwtPlugin, uuidPlugin, emailService, bcrypt, dbDatasource );
-const repository: AuthRepositoryImpl = new AuthRepositoryImpl(datasource);
-const authService: AuthService = new AuthService(repository);
-
 describe('./src/presentation/apps/auth/auth.controller.ts', () => {
+    const logService: LogService = new LogService();
+    const bcrypt: Bcrypt = new Bcrypt(logService);
+    const uuidPlugin: UUID = new UUID();
+    const jwtPlugin: Jwt = new Jwt(logService);
+    const emailService: EmailService = new EmailService(new Email());
+    const dbDatasource: DbDatasourceImpl = new DbDatasourceImpl("user");
+    const datasource: AuthDataSourceImpl = new AuthDataSourceImpl(jwtPlugin, uuidPlugin, emailService, bcrypt, dbDatasource );
+    const repository: AuthRepositoryImpl = new AuthRepositoryImpl(datasource);
+    const authService: AuthService = new AuthService(repository);
+
     const server: Server = new Server(ConfigApp, RouterApp);
 
     const user: User = {
@@ -54,15 +55,13 @@ describe('./src/presentation/apps/auth/auth.controller.ts', () => {
 
     let controller!: AuthController;
 
-    beforeAll(() => {
-        server.start();
-    });
+    beforeAll(() => server.start());
 
     afterAll(async () => {
-        server.stop();
-
         const usr = await dbDatasource.findByProperty({ property: "email", value: user.email }) as User | undefined;
         await dbDatasource.delete(usr?.id ?? user.id);
+
+        await server.stop();
     });
 
     beforeEach(() => {
