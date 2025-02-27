@@ -1,10 +1,9 @@
 import configApp from "../config-app";
-
 import routerApp from "./router-app";
 import Server from "./server";
 
 describe('./src/server.ts', () => {
-    const server: Server = new Server(configApp, routerApp);;
+    const server: Server = new Server(configApp, routerApp);
 
     afterEach(() => {
         jest.clearAllMocks();

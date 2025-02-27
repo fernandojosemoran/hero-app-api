@@ -12,27 +12,27 @@ class HeroService {
         private readonly heroRepository: HeroRepositoryImpl
     ) {}
 
-    public createHero(dto: CreateHeroDto): Promise<HeroEntity> {
+    public async createHero(dto: CreateHeroDto): Promise<HeroEntity> {
         return this.heroRepository.createHero(dto);
     }
 
-    public updateHero(dto: UpdateHeroDto): Promise<HeroEntity> {
+    public async updateHero(dto: UpdateHeroDto): Promise<HeroEntity> {
         return this.heroRepository.updateHero(dto);
     }
 
-    public deleteHero(dto: DeleteHeroDto): Promise<string> {
+    public async deleteHero(dto: DeleteHeroDto): Promise<string> {
         return this.heroRepository.deleteHero(dto);
     }
 
-    public getAllHeroes(): Promise<HeroEntity[]> {
+    public async getAllHeroes(): Promise<HeroEntity[]> {
         return this.heroRepository.getAllHeroes();
     }
 
-    public getHeroById(dto: GetHeroByIdDto): Promise<HeroEntity> {
+    public async getHeroById(dto: GetHeroByIdDto): Promise<HeroEntity> {
         return this.heroRepository.getHeroById(dto.id);
     }
 
-    public searchHero(dto: SearchHeroDto): Promise<HeroEntity[]>{
+    public async searchHero(dto: SearchHeroDto): Promise<HeroEntity[]>{
         return this.heroRepository.searchHero(dto);
     }
 }

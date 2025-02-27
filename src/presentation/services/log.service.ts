@@ -1,4 +1,5 @@
 import fs from "fs";
+import Env from "../../../src/infrastructure/constants/env";
 
 export type LogType = "info" | "error";
 
@@ -39,6 +40,8 @@ class LogService implements ILayerLogService {
     }
 
     public infoLog(log: string, origin?: string, show: boolean = false): void {
+        if (Env.MODE_TEST) return;
+        
         this.verifyMainFolder();
 
         const infoLogsPath: string = `${this.mainFolderName}/${this.infoLogsFileName}`;
@@ -50,6 +53,8 @@ class LogService implements ILayerLogService {
     }
 
     public errorLog(log: string | Error, origin?: string, show: boolean = false): void {
+        if (Env.MODE_TEST) return;
+
         this.verifyMainFolder();
 
         const errorLogsPath: string = `${this.mainFolderName}/${this.errorLogsFileName}`;

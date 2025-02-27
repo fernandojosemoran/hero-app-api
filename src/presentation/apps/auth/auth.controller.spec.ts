@@ -14,8 +14,8 @@ import AuthService from "./auth.service";
 import Server from "../../../server";
 import ConfigApp from "../../../../config-app";
 import RouterApp from "../../../router-app";
-import Env from "../../../infrastructure/constants/env";
 import HttpStatusCode from "../../../infrastructure/helpers/http-status-code";
+import request from "supertest";
 
 interface IRegister {
     userName: string;
@@ -83,42 +83,37 @@ describe('./src/presentation/apps/auth/auth.controller.ts', () => {
         expect(typeof controller.register).toBe("function");
     });
 
-    test("Should register a user", async () => {
-        const fetchConfig: RequestInit = {
-            body: JSON.stringify({ ...user, confirmPassword: user.password } as IRegister),
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "User-Agent": "heroes-backend"
-            }
-        };
+    // REGISTER
 
-        const response = await fetch(`${Env.HOST_URL}/api/auth/register`,  fetchConfig);
+    test("Should register a user with endPoint POST -> /api/auth/register", async () => {
+        const register: IRegister = { ...user, confirmPassword: user.password };
+    
+        const response = await request(server.server)
+        .post("/api/auth/register")
+        .set("User-Agent", "HeroesApp")
+        .send(register)
+        .expect("Content-Type", /json/)
+        .expect(HttpStatusCode.CREATED);
 
-        expect(response.status).toBe(HttpStatusCode.CREATED);
-        expect(await response.json()).toEqual({ response: true });
+        expect(response.body).toEqual({ response: true });
     });
 
-    test("Should responder with a token and user the login method", async () => {
+    // LOGIN
 
+    test("Should responder with a token and user the login method", async () => {
         const { userName, email, password }: ILogin = user;
 
-        const fetchConfig: RequestInit = {
-            body: JSON.stringify({ userName, email, password }),
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "User-Agent": "heroes-backend"
-            }
-        };
+        const response = await request(server.server)
+        .post("/api/auth/login")
+        .set("User-Agent", "HeroesApp")
+        .send({ userName, email, password })
+        .expect("Content-Type", /json/)
+        .expect(HttpStatusCode.OK);
 
-        const response = await fetch(`${Env.HOST_URL}/api/auth/login`,  fetchConfig);;
+        expect(response.headers["x-powered-by"]).toBe("HeroesApp");
+        expect(response.headers["set-cookie"][0]).toMatch(/^([\w-]+)=([\w.-]+); Max-Age=\d+; Path=\/; Expires=[A-Za-z]{3}, \d{2} [A-Za-z]{3} \d{4} \d{2}:\d{2}:\d{2} GMT; HttpOnly; SameSite=Lax$/);
 
-        expect(response.headers.get("X-Powered-By")).toBe("HeroesApp");
-        expect(response.status).toBe(HttpStatusCode.OK);
-        expect(response.headers.get("Set-Cookie")).toMatch(/^([\w-]+)=([\w.-]+); Max-Age=\d+; Path=\/; Expires=[A-Za-z]{3}, \d{2} [A-Za-z]{3} \d{4} \d{2}:\d{2}:\d{2} GMT; HttpOnly; SameSite=Lax$/);
-
-        expect(await response.json()).toEqual({
+        expect(response.body).toEqual({
              response: {
                  id: expect.any(String), 
                  userName, 
@@ -127,4 +122,6 @@ describe('./src/presentation/apps/auth/auth.controller.ts', () => {
             } 
         });
     });
+
+    // REFRESH TOKEN
 });

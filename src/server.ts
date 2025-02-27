@@ -12,6 +12,7 @@ import ServerErrors from "./infrastructure/errors/server.error";
 import http from "http";
 import LogService from './presentation/services/log.service';
 import cookieMiddleware from './presentation/middlewares/cookie.middleware';
+import Env from './infrastructure/constants/env';
 
 
 
@@ -71,7 +72,8 @@ class ServerApp {
         this.routes();
         this.disables();
         
-        this._serverListeningFlag = this.server.listen(this._config.port, handlerServerAppError);
+        if (Env.MODE_TEST) this._serverListeningFlag = this.server.listen(0, handlerServerAppError);
+        if (!Env.MODE_TEST) this._serverListeningFlag = this.server.listen(this._config.port, handlerServerAppError);
         this._startMethodFlagFlag = true;
     }
 

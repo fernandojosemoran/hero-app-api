@@ -1,8 +1,8 @@
 {
     "users": [
         {
-            "id": "87c4a69a-88d3-471c-8138-8d4326f537c5",
-            "password": "$2b$10$KKROHvPCrxbwP1oVhdxpLOo9h05nSfPXnLtpM0rxpRkgkTEWh3A/W",
+            "id": "8b5fdf61-a5e3-4da7-a4ac-7cf5ebeddd98",
+            "password": "$2b$10$CESIQbqKuUwUBQmwUl6v/u0oCdUDFALaT.y/qbgyCX4jTvfYDdkRu",
             "authorization": false,
             "email": "test@gmail.com",
             "lastName": "jest",
