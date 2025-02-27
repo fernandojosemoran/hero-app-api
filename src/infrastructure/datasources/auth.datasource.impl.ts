@@ -82,6 +82,8 @@ class AuthDataSourceImpl implements AuthDataSource {
         try {
             const verifyAccountToken: string | undefined = await this._jwt.generateToken({ id: newUser.id,userName: newUser.userName, lastName: newUser.lastName });
 
+            if (!verifyAccountToken) throw HttpError.internalServerError("Sorry something occurred wrong");
+
             await this._email.sendRegisterEmail(
                 "fernandomoran323@gmail.com", 
                 `${newUser!.userName} ${newUser!.lastName}`,
@@ -101,7 +103,7 @@ class AuthDataSourceImpl implements AuthDataSource {
 
     public async refreshToken(token: string): Promise<string> {
         const oldToken: ITokenDecode | undefined = await this._jwt.verifyToken<ITokenDecode>(token);
-        
+    
         if (!oldToken) throw HttpError.notAcceptable("Token is not valid.");
 
         const newToken: string | undefined = await this._jwt.generateToken({

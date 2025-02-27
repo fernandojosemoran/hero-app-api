@@ -21,6 +21,11 @@ const heroRepository: HeroRepositoryImpl = new HeroRepositoryImpl(heroDatasource
 describe('./src/presentation/apps/heroes/heroes.controller.ts', () => {
     const controller: HeroController = new HeroController(new HeroService(heroRepository), new LogService());
     const server: Server = new Server(ConfigApp, RouterApp);
+    
+    beforeAll(() => server.start());
+    afterAll(async () => await server.stop());
+    
+    beforeEach(() => jest.resetAllMocks());
 
     const heroes: HeroEntity[] = [
         {
@@ -95,9 +100,9 @@ describe('./src/presentation/apps/heroes/heroes.controller.ts', () => {
             publisher: Publisher.MarvelComics,
             alt_image: "https://test.com/media/chai-image.jpg"
         },
-                {
-                    id: "dc-puppeteer-superhero",
-                    superhero: "Puppeteer Superhero",
+        {
+            id: "dc-puppeteer-superhero",
+            superhero: "Puppeteer Superhero",
             alter_ego: "Puppeteer User",
             characters: "Puppeteer Character D4, Puppeteer Character E5, Puppeteer Character F6",
             first_appearance: "Puppeteer Comic #1",
@@ -106,10 +111,6 @@ describe('./src/presentation/apps/heroes/heroes.controller.ts', () => {
         }
     ];
 
-    beforeAll(() => server.start());
-    afterAll(async () => await server.stop());
-    
-    beforeEach(() => jest.resetAllMocks());
     
     test('Should contain properties like createHero,getAllHeroes,deleteHero,updateHero,searchHero', () => {
         expect(controller).toHaveProperty("createHero");
@@ -143,26 +144,14 @@ describe('./src/presentation/apps/heroes/heroes.controller.ts', () => {
     });
 
     test("Should response an error if hero already exist with endPoint /api/hero/create -> POST", async () => {
-        await request(server.server)
+        const response = await request(server.server)
         .post("/api/hero/create")
         .set("User-Agent", "HeroesApp")
         .send(heroes[0]) 
         .expect("Content-Type", /json/)
-        .expect(HttpStatusCode.CONFLICT)
-        .catch(error => expect(error).toEqual({ response: "hero already exists" })); 
-    });
-
-    test("Should response an error if hero don't went saved with endPoint /api/hero/create -> POST", async () => {
-        dbDatasource.findOne = jest.fn(() => Promise.resolve(undefined));
-        dbDatasource.add = jest.fn(() => Promise.resolve(false));
-
-        await request(server.server)
-        .post("/api/hero/create")
-        .set("User-Agent", "HeroesApp")
-        .send(heroes[0]) 
-        .expect("Content-Type", /json/)
-        .expect(HttpStatusCode.CONFLICT)
-        .catch(error => expect(error).toEqual({ response: "Sorry some occurred wrong" })); 
+        .expect(HttpStatusCode.CONFLICT);
+        
+        expect(response.body).toEqual({ response: "hero already exist" });
     });
 
     // Update
@@ -183,13 +172,14 @@ describe('./src/presentation/apps/heroes/heroes.controller.ts', () => {
     test("Should response an error if hero don't exist with endPoint /api/hero/update/:id -> PUT", async () => {
         const modifiedHero: HeroEntity = heroes[1];
 
-        await request(server.server)
+        const response = await request(server.server)
         .put(`/api/hero/update/${modifiedHero.id}`)
         .set("User-Agent", "HeroesApp")
         .send(modifiedHero)
         .expect("Content-Type", /json/)
-        .expect(HttpStatusCode.NOT_FOUND)
-        .catch(error => expect(error).toEqual({ response: "hero not found" }));
+        .expect(HttpStatusCode.NOT_FOUND);
+
+        expect(response.body).toEqual({ response: "hero not found" });
     });
 
     test("Should response an error if hero don't exist with endPoint /api/hero/update/:id -> PUT", async () => {
@@ -197,13 +187,14 @@ describe('./src/presentation/apps/heroes/heroes.controller.ts', () => {
         
         const modifiedHero: HeroEntity = { ...heroes[0],  alter_ego: "vitest" };
 
-        await request(server.server)
+        const response = await request(server.server)
         .put(`/api/hero/update/${modifiedHero.id}`)
         .set("User-Agent", "HeroesApp")
         .send(modifiedHero)
         .expect("Content-Type", /json/)
-        .expect(HttpStatusCode.INTERNAL_SERVER_ERROR)
-        .catch(error => expect(error).toEqual({ response: "sorry some occurred wrong" }));
+        .expect(HttpStatusCode.INTERNAL_SERVER_ERROR);
+
+        expect(response.body).toEqual({ response: "sorry some occurred wrong" });
     });
 
     // GET HERO BY ID
@@ -224,13 +215,14 @@ describe('./src/presentation/apps/heroes/heroes.controller.ts', () => {
     test("Should response an error if hero don't exist with endPoint /api/hero/:id -> GET", async () => {
         const modifiedHero: HeroEntity = { ...heroes[0], id: "test-id" };
 
-        await request(server.server)
+        const response = await request(server.server)
         .get(`/api/hero/${modifiedHero.id}`)
         .set("User-Agent", "HeroesApp")
         .send(modifiedHero)
         .expect("Content-Type", /json/)
-        .expect(HttpStatusCode.NOT_FOUND)
-        .catch(error => expect(error).toEqual({ response: "hero not exist." }));
+        .expect(HttpStatusCode.NOT_FOUND);
+
+        expect(response.body).toEqual({ response: "hero not exist." });
     });
 
     // GET ALL HEROES
@@ -295,12 +287,13 @@ describe('./src/presentation/apps/heroes/heroes.controller.ts', () => {
     test("Should response an error if hero don't exist with endPoint /api/hero/delete/:superhero -> DELETE", async () => {
         const hero: HeroEntity = heroes[0];
 
-        await request(server.server)
+        const response = await request(server.server)
         .delete(`/api/hero/delete/${hero.id}`)
         .set("User-Agent", "HeroesApp")
         .expect("Content-Type", /json/)
-        .expect(HttpStatusCode.NOT_FOUND)
-        .catch(error => expect(error).toEqual({ response: "hero not found" }));  
+        .expect(HttpStatusCode.NOT_FOUND);
+        
+        expect(response.body).toEqual({ response: "hero not found" });
     });
 
     test("Should response an error if hero don't exist with endPoint /api/hero/delete/:superhero -> DELETE", async () => {
@@ -309,11 +302,26 @@ describe('./src/presentation/apps/heroes/heroes.controller.ts', () => {
         dbDatasource.findOne = jest.fn(() => Promise.resolve(hero));
         dbDatasource.delete = jest.fn(() => Promise.resolve(undefined));
 
-        await request(server.server)
+        const response = await request(server.server)
         .delete(`/api/hero/delete/${hero.id}`)
         .set("User-Agent", "HeroesApp")
         .expect("Content-Type", /json/)
-        .expect(HttpStatusCode.NOT_FOUND)
-        .catch(error => expect(error).toEqual({ response: "hero not found" }));  
+        .expect(HttpStatusCode.NOT_FOUND);
+
+        expect(response.body).toEqual({ response: "hero not found" });
+    });
+
+    test("Should response an error if hero don't went saved with endPoint /api/hero/create -> POST", async () => {
+        DbDatasourceImpl.prototype.findOne = jest.fn(() => Promise.resolve(undefined));
+        DbDatasourceImpl.prototype.add = jest.fn(() => Promise.resolve(false));
+
+        const response = await request(server.server)
+        .post("/api/hero/create")
+        .set("User-Agent", "HeroesApp")
+        .send(heroes[0]) 
+        .expect("Content-Type", /json/)
+        .expect(HttpStatusCode.INTERNAL_SERVER_ERROR);
+
+        expect(response.body).toEqual({ response: "Sorry some occurred wrong" });
     });
 });

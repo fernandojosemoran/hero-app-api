@@ -95,6 +95,7 @@ class AuthController extends Controller implements IAuthController {
 
     public refreshToken = (request: Request, response: Response): any => {
         const authToken: string = request.cookies["auth-token"];
+
         const isAuthorized: string | undefined = request.headers.authorization;
 
         if (!isAuthorized || isAuthorized !== "True") return response.status(HttpStatusCode.UNAUTHORIZED).json({ response: false });
