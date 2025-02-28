@@ -10,8 +10,6 @@ function authentication(request: Request, response: Response, next: NextFunction
     const oldAuthToken: string | undefined = request.cookies["auth-token"];
     const isAuthorized: string | undefined = request.headers.authorization;
 
-    console.log({ isAuthorized });
-
     if (!isAuthorized || isAuthorized !== "True") return response.status(HttpStatusCode.UNAUTHORIZED).redirect(loginPath);
     if (!oldAuthToken) return response.status(HttpStatusCode.UNAUTHORIZED).redirect(loginPath);
 
@@ -23,6 +21,5 @@ function authentication(request: Request, response: Response, next: NextFunction
     
     next();
 }
-
 
 export default authentication;

@@ -11,7 +11,6 @@ jest.mock("./server", () => {
 });
 
 describe("./app.ts", () => {
-
     test("Should initialize Server with configApp and routerApp and call start()", async () => {
 
         await import("./app");

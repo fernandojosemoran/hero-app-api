@@ -1,7 +1,7 @@
 import { ConfigApp } from '../config-app';
 import { RouterApp } from './router-app';
 import { rateLimitMiddleware } from './presentation/middlewares/rate-limit.middleware';
-import { helmetMiddleware } from './presentation/middlewares/helmet.middleware';
+import { helmetMiddleware } from './presentation/middlewares/security/helmet.middleware';
 
 // hidden dependencies
 import { morganMiddleware } from './infrastructure/plugins/morgan.adapter';
