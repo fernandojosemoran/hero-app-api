@@ -19,7 +19,7 @@ export class MediaController extends Controller {
     public streamHeroImages = (request: Request, response: Response): any => {
         const [ dto, error ] = StreamHeroImageDto.create(request.params.image);
 
-        if (error) return response.status(HttpStatusCode.NOT_FOUND);
+        if (error) return response.status(HttpStatusCode.NOT_FOUND).json({ response: error });
 
         this.mediaServices.streamHeroImage(dto!.image)
         .then(stream => stream.pipe(response).status(HttpStatusCode.FOUND))

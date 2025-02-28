@@ -13,7 +13,7 @@ class MediaService implements IMediaService{
             const stream: fs.ReadStream = fs.createReadStream(path.join(configApp.staticFilesPath, "media", image))
             .on("open", () => resolve(stream))
             // .on("data", (stream) => console.log({ stream }))
-            .on("error", () => reject(HttpError.notFound("Not Found Image")));
+            .on("error", () => reject(HttpError.notFound("Not found image")));
         });
     };
 }
