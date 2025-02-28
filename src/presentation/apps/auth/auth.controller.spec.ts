@@ -1,21 +1,16 @@
 import { User } from "../../../domain/entities/user.entity";
 
-import AuthDataSourceImpl from "../../../infrastructure/datasources/auth.datasource.impl";
 import DbDatasourceImpl from "../../../infrastructure/datasources/db.datasource.impl";
 import Bcrypt from "../../../infrastructure/plugins/bcrypt.plugin";
 import Email from "../../../infrastructure/plugins/email.plugin";
 import Jwt from "../../../infrastructure/plugins/jwt.plugin";
-import UUID from "../../../infrastructure/plugins/uui.plugin";
-import AuthRepositoryImpl from "../../../infrastructure/repositories/auth.repository.impl";
 import EmailService from "../../services/email.service";
-import LogService from "../../services/log.service";
-import AuthController from "./auth.controller";
-import AuthService from "./auth.service";
 import Server from "../../../server";
 import ConfigApp from "../../../../config-app";
 import RouterApp from "../../../router-app";
 import HttpStatusCode from "../../../infrastructure/helpers/http-status-code";
 import request from "supertest";
+import controller from "./auth.controller";
 
 interface IRegister {
     userName: string;
@@ -32,16 +27,8 @@ interface ILogin {
 }
 
 describe('./src/presentation/apps/auth/auth.controller.ts', () => {
-    let logService: LogService;
-    let bcrypt: Bcrypt;
-    let uuidPlugin: UUID;
-    let jwtPlugin: Jwt;
     let emailService: EmailService;
     let dbDatasource: DbDatasourceImpl;
-    let authDatasource: AuthDataSourceImpl;
-    let authRepository: AuthRepositoryImpl;
-    let authService: AuthService;
-    let controller!: AuthController;
 
     const server: Server = new Server(ConfigApp, RouterApp);
 
@@ -73,17 +60,8 @@ describe('./src/presentation/apps/auth/auth.controller.ts', () => {
     beforeEach(() => {
         jest.resetAllMocks();
 
-        logService = new LogService();
-        bcrypt = new Bcrypt(logService);
-        uuidPlugin = new UUID();
-        jwtPlugin = new Jwt(logService);
         emailService = new EmailService(new Email());
         dbDatasource = new DbDatasourceImpl("user");
-        authDatasource = new AuthDataSourceImpl(jwtPlugin, uuidPlugin, emailService, bcrypt, dbDatasource );
-        authRepository = new AuthRepositoryImpl(authDatasource);
-        authService = new AuthService(authRepository);
-        
-        controller = new AuthController(authService, logService);
     });
 
     test('Should have properties: login, register, logout, and refreshToken', () => {

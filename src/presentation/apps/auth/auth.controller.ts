@@ -9,6 +9,14 @@ import LogService from "../../../presentation/services/log.service";
 import Controller from "../../../infrastructure/objects/controller";
 import LoginDto from "../../../domain/dto/auth/login.dto";
 import Env from "../../../infrastructure/constants/env";
+import Bcrypt from "./../../../infrastructure/plugins/bcrypt.plugin";
+import UUID from "./../../../infrastructure/plugins/uui.plugin";
+import Jwt from "./../../../infrastructure/plugins/jwt.plugin";
+import EmailService from "./../../../presentation/services/email.service";
+import DbDatasourceImpl from "./../../../infrastructure/datasources/db.datasource.impl";
+import AuthDataSourceImpl from "./../../../infrastructure/datasources/auth.datasource.impl";
+import AuthRepositoryImpl from "./../../../infrastructure/repositories/auth.repository.impl";
+import Email from "./../../../infrastructure/plugins/email.plugin";
 
 interface IAuthController {
     login(request: Request, response: Response): any;
@@ -17,7 +25,7 @@ interface IAuthController {
     refreshToken(request: Request, response: Response): any;
 }
 
-class AuthController extends Controller implements IAuthController {
+export class AuthController extends Controller implements IAuthController {
     private readonly _contextPath: string = "./src/presentation/apps/auth/auth.controller.ts";
 
     public constructor(
@@ -127,4 +135,14 @@ class AuthController extends Controller implements IAuthController {
     };
 }
 
-export default AuthController;
+const logService: LogService = new LogService();
+const bcrypt: Bcrypt = new Bcrypt(logService);
+const uuidPlugin: UUID = new UUID();
+const jwtPlugin: Jwt = new Jwt(logService);
+const emailService: EmailService = new EmailService(new Email());
+const dbDatasource: DbDatasourceImpl = new DbDatasourceImpl("user");
+const datasource: AuthDataSourceImpl = new AuthDataSourceImpl(jwtPlugin, uuidPlugin, emailService, bcrypt, dbDatasource );
+const repository: AuthRepositoryImpl = new AuthRepositoryImpl(datasource);
+const authService: AuthService = new AuthService(repository);
+
+export default new AuthController(authService, logService);

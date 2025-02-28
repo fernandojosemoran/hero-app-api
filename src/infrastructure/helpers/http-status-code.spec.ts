@@ -47,7 +47,7 @@ describe('Indicate the directory of the file to test', () => {
         expect(HttpStatusCode.NOT_FOUND).toBe(404);
         expect(HttpStatusCode.INTERNAL_SERVER_ERROR).toBe(500);
         expect(HttpStatusCode.BAD_REQUEST).toBe(400);
-        expect(HttpStatusCode.FORBIDDEN).toBe(303);
+        expect(HttpStatusCode.FORBIDDEN).toBe(403);
         expect(HttpStatusCode.UNAUTHORIZED).toBe(401);
         expect(HttpStatusCode.METHOD_NOT_ALLOWED).toBe(405);
         expect(HttpStatusCode.NOT_ACCEPTABLE).toBe(406);
