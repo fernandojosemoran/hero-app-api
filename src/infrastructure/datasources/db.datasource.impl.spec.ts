@@ -7,7 +7,7 @@ describe('./src/infrastructure/datasources/db.datasource.impl.ts', () => {
     const dbHeroes: DbDatasourceImpl = new DbDatasourceImpl("hero");
 
     // Users
-    test('Should save an user successfully ', async () => {
+    test('Should save a user successfully ', async () => {
         const user: User = {
             id: "userID1",
             userName: "test1",
@@ -22,7 +22,7 @@ describe('./src/infrastructure/datasources/db.datasource.impl.ts', () => {
         expect(result).toBeTruthy();
     });
 
-    test('Should update an users\' information successfully', async () => {
+    test("Should update a users' information successfully", async () => {
         const user: User = {
             id: "userID1",
             userName: "test200",
@@ -37,7 +37,7 @@ describe('./src/infrastructure/datasources/db.datasource.impl.ts', () => {
         expect(result).toEqual(user);
     });
 
-    test('Should find an user successfully ', async () => {
+    test('Should find a user successfully ', async () => {
         const user: User = {
             id: "userID1",
             userName: "test200",
@@ -82,7 +82,7 @@ describe('./src/infrastructure/datasources/db.datasource.impl.ts', () => {
         expect(result).toEqual( user );
     });
 
-    test('Should delete an user', async () => {
+    test('Should delete a user', async () => {
         const user: User = {
             id: "userID1",
             userName: "test200",

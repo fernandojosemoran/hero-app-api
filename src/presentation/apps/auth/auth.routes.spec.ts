@@ -2,7 +2,7 @@
 
 describe('./src/presentation/apps/auth/auth.routes.ts', () => {
 
-    test('Should contain properties like routes', async () => {
+    test('Should have properties like routes', async () => {
         expect((await import("./auth.routes")).default).toHaveProperty("routes");
     });
 

@@ -26,10 +26,10 @@ class LoginDto {
             password, 
             token
         } = user;
-
+        
+        if (!userName) return [ undefined, "User is required." ];
         if (!email) return [ undefined, "Email is required." ];
         if (!this.validateEmail(email)) return [ undefined, "Email field is not valid." ];
-        if (!userName) return [ undefined, "User is required." ];
         if (!password) return [ undefined, "Password is required." ];
 
         return [ new LoginDto(email, userName, password ,false, token), undefined ];

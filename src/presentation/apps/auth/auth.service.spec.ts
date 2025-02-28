@@ -30,7 +30,7 @@ describe('./src/presentation/apps/auth/auth.service.ts', () => {
         jest.resetAllMocks();
     });
 
-    test('Should contain properties like register, login, and refreshToken', () => { 
+    test('Should have properties like register, login, and refreshToken', () => { 
         expect(authService).toHaveProperty("login"); 
         expect(authService).toHaveProperty("register");  
         expect(authService).toHaveProperty("refreshToken");     
@@ -42,7 +42,7 @@ describe('./src/presentation/apps/auth/auth.service.ts', () => {
         expect(typeof authService.refreshToken).toBe("function");     
     });
 
-    test('Should call login with LoginDto', async () => { 
+    test('Should call login method with LoginDto', async () => { 
         const loginMock = authService.login = jest.fn();
 
         const dto = {
@@ -57,7 +57,7 @@ describe('./src/presentation/apps/auth/auth.service.ts', () => {
         expect(loginMock).toHaveBeenCalledWith(dto);
     });
 
-    test('Should call register with RegisterDto', async () => { 
+    test('Should call register method with RegisterDto', async () => { 
         const registerMock = authService.register = jest.fn();
 
         const dto = {

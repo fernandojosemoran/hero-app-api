@@ -5,12 +5,17 @@ describe('./src/presentation/services/log.service.ts', () => {
         jest.resetAllMocks();
     });
 
-    test('Should contain methods like infoLog, errorLog', () => {
+    test('Should have properties like infoLog, errorLog', () => {
+        expect(LogService.prototype).toHaveProperty("errorLog");
+        expect(LogService.prototype).toHaveProperty("infoLog");
+    });
+
+    test('Should have like infoLog, errorLog as methods', () => {
         expect(typeof LogService.prototype.errorLog).toBe("function");
         expect(typeof LogService.prototype.infoLog).toBe("function");
     });
 
-    test("Should be called infoLog method with log,origin,show parameters", () => {
+    test("Should call infoLog method with log, origin, show arguments", () => {
         const logService: LogService = new LogService();
 
         const params = {
@@ -26,7 +31,7 @@ describe('./src/presentation/services/log.service.ts', () => {
         expect(infoLogSmock).toHaveBeenCalledWith(params.log, params.origin, params.show);
     });
 
-    test("Should be called errorLog method with log,origin,show parameters", () => {
+    test("Should call errorLog method with log, origin, show arguments", () => {
         const logService: LogService = new LogService();
 
         const params = {

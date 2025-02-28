@@ -31,17 +31,6 @@ interface ILogin {
     password: string;
 }
 
-// interface ITokenPayload {
-//     id: string;
-//     userName: string;
-//     lastName: string;
-// }
-
-// interface ITokenDecode extends ITokenPayload {
-//     iat: number;
-//     exp: number;
-// }
-
 describe('./src/presentation/apps/auth/auth.controller.ts', () => {
     let logService: LogService;
     let bcrypt: Bcrypt;
@@ -97,23 +86,23 @@ describe('./src/presentation/apps/auth/auth.controller.ts', () => {
         controller = new AuthController(authService, logService);
     });
 
-    test('Should contain properties like login, register, logout, refreshToken', () => {
+    test('Should have properties: login, register, logout, and refreshToken', () => {
         expect(controller).toHaveProperty("login");
         expect(controller).toHaveProperty("register");
         expect(controller).toHaveProperty("logout");
         expect(controller).toHaveProperty("refreshToken");
     });
 
-    test('Should be methods the login, register, logout, refreshToken properties', () => {
+    test('Should define login, register, logout, and refreshToken as methods', () => {
         expect(typeof controller.login).toBe("function");
         expect(typeof controller.logout).toBe("function");
         expect(typeof controller.refreshToken).toBe("function");
         expect(typeof controller.register).toBe("function");
     });
 
-    // REGISTER
+    //  REGISTER
 
-    test("Should register an user with endPoint POST -> /api/auth/register", async () => {
+    test("Should register a user in endpoint POST /api/auth/register", async () => {
         const register: IRegister = { ...user, confirmPassword: user.password };
     
         const response = await request(server.server)
@@ -126,7 +115,7 @@ describe('./src/presentation/apps/auth/auth.controller.ts', () => {
         expect(response.body).toEqual({ response: true });
     });
 
-    test("Should response an error if user already exist with endPoint POST -> /api/auth/register", async () => {
+    test("Should respond with an error in POST /api/auth/register", async () => {
         const register: IRegister = { ...user, confirmPassword: user.password };
     
         const response = await request(server.server)
@@ -139,7 +128,7 @@ describe('./src/presentation/apps/auth/auth.controller.ts', () => {
         expect(response.body).toEqual({ response: "user has already a account." });
     });
 
-    test("Should response an error if password don't went hashed with endPoint POST -> /api/auth/register", async () => {
+    test("Should respond with an error if password is not hashed in POST  /api/auth/register", async () => {
         const register: IRegister = { ...user, confirmPassword: user.password, email: "jasmine@gmail.com" };
     
         jest.spyOn(Bcrypt.prototype, "hash").mockImplementation(() => Promise.resolve(undefined));
@@ -154,7 +143,7 @@ describe('./src/presentation/apps/auth/auth.controller.ts', () => {
         expect(response.body).toEqual({ response: "Sorry something occurred wrong" });
     });
 
-    test("Should response an error if jwt don't went generated with endPoint POST -> /api/auth/register", async () => {
+    test("Should respond with an error if jwt is not generated in POST  /api/auth/register", async () => {
         const register: IRegister = { ...user, confirmPassword: user.password, email: "jasmine@gmail.com" };
     
         jest.spyOn(Jwt.prototype, "generateToken").mockImplementation(() => Promise.resolve(undefined));
@@ -169,7 +158,7 @@ describe('./src/presentation/apps/auth/auth.controller.ts', () => {
         expect(response.body).toEqual({ response: "Sorry something occurred wrong" });
     });
 
-    test("Should response an error if user don't went saved with endPoint POST -> /api/auth/register", async () => {
+    test("Should respond with an error if user is not saved in POST  /api/auth/register", async () => {
         const register: IRegister = { ...user, confirmPassword: user.password, email: "jasmine@gmail.com" };
     
         DbDatasourceImpl.prototype.add = jest.fn(() => Promise.resolve(false));
@@ -184,9 +173,101 @@ describe('./src/presentation/apps/auth/auth.controller.ts', () => {
         expect(response.body).toEqual({ response: "Sorry something occurred wrong" });
     });
 
+    // BAD REQUEST OF REGISTER endpoint PROVIDED BY RegisterDto
+
+    test("Should respond with an error if userName is not provided in POST /api/auth/register", async () => {
+        const register: IRegister = { ...user, confirmPassword: user.password, userName: "" };
+    
+        const response = await request(server.server)
+        .post("/api/auth/register")
+        .set("User-Agent", "HeroesApp")
+        .send(register)
+        .expect("Content-Type", /json/)
+        .expect(HttpStatusCode.BAD_REQUEST);
+
+        expect(response.body).toEqual({ response: "User name is required." });
+    });
+
+    test("Should respond with an error if lastName is not provided in POST /api/auth/register", async () => {
+        const register: IRegister = { ...user, confirmPassword: user.password, lastName: "" };
+    
+        const response = await request(server.server)
+        .post("/api/auth/register")
+        .set("User-Agent", "HeroesApp")
+        .send(register)
+        .expect("Content-Type", /json/)
+        .expect(HttpStatusCode.BAD_REQUEST);
+
+        expect(response.body).toEqual({ response: "Last name is required." });
+    });
+
+    test("Should respond with an error if email is not provided in POST /api/auth/register", async () => {
+        const register: IRegister = { ...user, confirmPassword: user.password, email: "" };
+    
+        const response = await request(server.server)
+        .post("/api/auth/register")
+        .set("User-Agent", "HeroesApp")
+        .send(register)
+        .expect("Content-Type", /json/)
+        .expect(HttpStatusCode.BAD_REQUEST);
+
+        expect(response.body).toEqual({ response: "Email is required." });
+    });
+
+    test("Should respond with an error if email is invalid in POST /api/auth/register", async () => {
+        const register: IRegister = { ...user, confirmPassword: user.password, email: "jest" };
+    
+        const response = await request(server.server)
+        .post("/api/auth/register")
+        .set("User-Agent", "HeroesApp")
+        .send(register)
+        .expect("Content-Type", /json/)
+        .expect(HttpStatusCode.BAD_REQUEST);
+
+        expect(response.body).toEqual({ response: "Email field is invalid." });
+    });
+
+    test("Should respond with an error if password is not provided in POST /api/auth/register", async () => {
+        const register: IRegister = { ...user, confirmPassword: user.password, password: "" };
+    
+        const response = await request(server.server)
+        .post("/api/auth/register")
+        .set("User-Agent", "HeroesApp")
+        .send(register)
+        .expect("Content-Type", /json/)
+        .expect(HttpStatusCode.BAD_REQUEST);
+
+        expect(response.body).toEqual({ response: "Password is required." });
+    });
+
+    test("Should respond with an error if confirmPassword is not provided in POST /api/auth/register", async () => {
+        const register: IRegister = { ...user, confirmPassword: "" };
+    
+        const response = await request(server.server)
+        .post("/api/auth/register")
+        .set("User-Agent", "HeroesApp")
+        .send(register)
+        .expect("Content-Type", /json/)
+        .expect(HttpStatusCode.BAD_REQUEST);
+
+        expect(response.body).toEqual({ response: "Confirm password is required." });
+    });
+
+    test("Should respond with an error if password and confirmPassword do not match in POST /api/auth/register", async () => {
+        const register: IRegister = { ...user, confirmPassword: "123", password: "321" };
+    
+        const response = await request(server.server)
+        .post("/api/auth/register")
+        .set("User-Agent", "HeroesApp")
+        .send(register)
+        .expect("Content-Type", /json/)
+        .expect(HttpStatusCode.BAD_REQUEST);
+
+        expect(response.body).toEqual({ response: "Confirm password no match." });
+    });
     // LOGIN
 
-    test("Should responder with a token and user with endPoint POST -> /api/auth/login", async () => {
+    test("Should respond with a token and user in POST  /api/auth/login", async () => {
         const { userName, email, password }: ILogin = user;
 
         Jwt.prototype.generateToken = jest.fn(() => Promise.resolve("Token"));
@@ -215,7 +296,7 @@ describe('./src/presentation/apps/auth/auth.controller.ts', () => {
         });
     });
 
-    test("Should responder an error if user not found with endPoint POST -> /api/auth/login ", async () => {
+    test("Should respond with an error if user not found in POST  /api/auth/login ", async () => {
         const { userName, password }: ILogin = user;
 
         const response = await request(server.server)
@@ -228,7 +309,7 @@ describe('./src/presentation/apps/auth/auth.controller.ts', () => {
         expect(response.body).toEqual({ response: "User not exist" });
     });
 
-    test("Should responder an error if user password is not valid with endPoint POST -> /api/auth/login ", async () => {
+    test("Should respond with an error if user password is not valid in POST  /api/auth/login ", async () => {
         const { userName, email }: ILogin = user;
 
         const response = await request(server.server)
@@ -241,7 +322,7 @@ describe('./src/presentation/apps/auth/auth.controller.ts', () => {
         expect(response.body).toEqual({ response: "Password is not valid" });
     });
 
-    test("Should responder an error if jwt don't generated a token with endPoint POST -> /api/auth/login ", async () => {
+    test("Should respond with an error if JWT failed to generate a token in POST  /api/auth/login ", async () => {
         const { userName, email, password }: ILogin = user;
 
         Jwt.prototype.generateToken = jest.fn(() => Promise.resolve(undefined));
@@ -256,9 +337,63 @@ describe('./src/presentation/apps/auth/auth.controller.ts', () => {
         expect(response.body).toEqual({ response: "Something occurred wrang, trying login again." });
     });
 
-    // REFRESH TOKEN
+    // BAD REQUEST OF LOGIN endpoint PROVIDED BY LoginDto
 
-    test("Should responder with a jwt toke with endPoint POST -> /api/auth/login ", async () => {
+    test("Should respond with an error if userName is not provided in POST  /api/auth/login ", async () => {
+        const { email, password }: ILogin = user;
+
+        const response = await request(server.server)
+        .post("/api/auth/login")
+        .set("User-Agent", "HeroesApp")
+        .send({ userName: "", email, password })
+        .expect("Content-Type", /json/)
+        .expect(HttpStatusCode.BAD_REQUEST);
+
+        expect(response.body).toEqual({ response: "User is required." });
+    });
+
+    test("Should respond with an error if email is not provided in POST  /api/auth/login ", async () => {
+        const { userName, password }: ILogin = user;
+
+        const response = await request(server.server)
+        .post("/api/auth/login")
+        .set("User-Agent", "HeroesApp")
+        .send({ userName, email: "", password })
+        .expect("Content-Type", /json/)
+        .expect(HttpStatusCode.BAD_REQUEST);
+
+        expect(response.body).toEqual({ response: "Email is required." });
+    });
+
+    test("Should respond with an error if email is invalid in POST  /api/auth/login ", async () => {
+        const { userName, password }: ILogin = user;
+
+        const response = await request(server.server)
+        .post("/api/auth/login")
+        .set("User-Agent", "HeroesApp")
+        .send({ userName, email: "jest", password })
+        .expect("Content-Type", /json/)
+        .expect(HttpStatusCode.BAD_REQUEST);
+
+        expect(response.body).toEqual({ response: "Email field is not valid." });
+    });
+
+    test("Should respond with an error if password is not provided in POST  /api/auth/login ", async () => {
+        const { userName, email }: ILogin = user;
+
+        const response = await request(server.server)
+        .post("/api/auth/login")
+        .set("User-Agent", "HeroesApp")
+        .send({ userName, email, password: "" })
+        .expect("Content-Type", /json/)
+        .expect(HttpStatusCode.BAD_REQUEST);
+
+        expect(response.body).toEqual({ response: "Password is required." });
+    });
+
+    //  REFRESH TOKEN
+
+    test("Should respond with a JWT token in POST  /api/auth/login ", async () => {
         const newToken: string = "new-token";
 
         const newTokenProperties = {
@@ -282,7 +417,26 @@ describe('./src/presentation/apps/auth/auth.controller.ts', () => {
         expect(response.body).toEqual({ response: true });
     });
 
-    test("Should responder an error if token is not valid with endPoint POST -> /api/auth/login ", async () => {
+    test("Should respond with an error if AUTHORIZATION HEADER is missing or has a value like false in POST  /api/auth/login", async () => {
+        const response = await request(server.server)
+        .post("/api/auth/refresh-token")
+        .set("Cookie", cookieLogin)
+        .set("User-Agent", "HeroesApp")
+        .expect(HttpStatusCode.UNAUTHORIZED);
+
+        expect(response.body).toEqual({ response: false });
+    });
+
+    test("Should respond with an error if auth-token cookie is missing in POST  /api/auth/login", async () => {
+        const response = await request(server.server)
+        .post("/api/auth/refresh-token")
+        .set("User-Agent", "HeroesApp")
+        .expect(HttpStatusCode.UNAUTHORIZED);
+
+        expect(response.body).toEqual({ response: false });
+    });
+
+    test("Should respond with an error if token is not valid in POST  /api/auth/login", async () => {
 
         const response = await request(server.server)
         .post("/api/auth/refresh-token")
@@ -294,7 +448,7 @@ describe('./src/presentation/apps/auth/auth.controller.ts', () => {
         expect(response.body).toEqual({ response: "Token is not valid." });
     });
 
-    test("Should responder an error if token is not valid with endPoint POST -> /api/auth/login ", async () => {
+    test("Should respond with an error if token is not valid in POST  /api/auth/login", async () => {
         const newTokenProperties = {
             id: "test-id",
             userName: user.userName,
@@ -312,5 +466,38 @@ describe('./src/presentation/apps/auth/auth.controller.ts', () => {
         .expect(HttpStatusCode.INTERNAL_SERVER_ERROR);
 
         expect(response.body).toEqual({ response: "Something occurred wrang, trying login again." });
+    });
+
+    //  Logout
+
+    test("Should log out a user in POST  /api/auth/logout", async () => {
+        const response = await request(server.server)
+        .post("/api/auth/logout")
+        .set("Cookie", cookieLogin)
+        .set("Authorization", "True")
+        .set("User-Agent", "HeroesApp")
+        .expect(HttpStatusCode.OK);
+
+        expect(response.body).toEqual({ response: true });
+    });
+
+    test("Should respond with an error if AUTHORIZATION HEADER is missing in POST  /api/auth/logout", async () => {
+        const response = await request(server.server)
+        .post("/api/auth/logout")
+        .set("Cookie", cookieLogin)
+        .set("User-Agent", "HeroesApp")
+        .expect(HttpStatusCode.UNAUTHORIZED);
+
+        expect(response.body).toEqual({ response: false });
+    });
+
+    test("Should respond with an error if auth-token cookie is missing in POST  /api/auth/logout", async () => {
+        const response = await request(server.server)
+        .post("/api/auth/logout")
+        .set("Authorization", "True")
+        .set("User-Agent", "HeroesApp")
+        .expect(HttpStatusCode.UNAUTHORIZED);
+
+        expect(response.body).toEqual({ response: false });
     });
 });

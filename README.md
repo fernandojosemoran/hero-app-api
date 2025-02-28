@@ -15,7 +15,7 @@ Heroes app to allow to do requests using by following methods: `PUT, DELETE, POS
 
 The mainly goal is show my knowledge and domain using express library for make backend app.
 
-## EndPoints
+## endpoints
 
 ```bash #GET -> /api/heroes-list
 

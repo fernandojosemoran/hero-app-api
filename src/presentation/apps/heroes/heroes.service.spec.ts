@@ -17,7 +17,7 @@ describe('./src/presentation/apps/heroes/heroes.service.ts', () => {
 
     beforeEach(() => jest.resetAllMocks());
 
-    test('Should contain properties like createHero,updateHero,deleteHero,getAllHeroes,getHeroById,searchHero', () => {
+    test('Should have properties like createHero, updateHero, deleteHero, getAllHeroes, getHeroById, searchHero', () => {
         expect(heroesService).toHaveProperty("createHero");
         expect(heroesService).toHaveProperty("updateHero");
         expect(heroesService).toHaveProperty("deleteHero");
@@ -26,7 +26,7 @@ describe('./src/presentation/apps/heroes/heroes.service.ts', () => {
         expect(heroesService).toHaveProperty("searchHero");
     });
 
-    test('Should be methods the properties', () => { 
+    test('Should all properties be methods', () => { 
         expect(typeof heroesService.createHero).toBe("function");
         expect(typeof heroesService.updateHero).toBe("function");
         expect(typeof heroesService.deleteHero).toBe("function");
@@ -35,16 +35,7 @@ describe('./src/presentation/apps/heroes/heroes.service.ts', () => {
         expect(typeof heroesService.searchHero).toBe("function");
     });
 
-    test('Should be methods the properties', () => { 
-        expect(typeof heroesService.createHero).toBe("function");
-        expect(typeof heroesService.updateHero).toBe("function");
-        expect(typeof heroesService.deleteHero).toBe("function");
-        expect(typeof heroesService.getAllHeroes).toBe("function");
-        expect(typeof heroesService.getHeroById).toBe("function");
-        expect(typeof heroesService.searchHero).toBe("function");
-    });
-
-    test("Should be called createHero method with CreateHeroDto from heroesRepository", () => {
+    test("Should call the createHero method with CreateHeroDto from heroesRepository", () => {
         const dto: CreateHeroDto = {
             id: "dc-super-test",
             superhero: "super-test",
@@ -62,7 +53,7 @@ describe('./src/presentation/apps/heroes/heroes.service.ts', () => {
         expect(createHeroMock).toHaveBeenCalledWith(dto);
     });
 
-    test("Should be called updateHero method with an UpdateHeroDto from heroesRepository", () => {
+    test("Should call the updateHero method with an UpdateHeroDto from heroesRepository", () => {
         const dto: UpdateHeroDto = {
             id: "dc-super-test",
             superhero: "super-test",
@@ -80,7 +71,7 @@ describe('./src/presentation/apps/heroes/heroes.service.ts', () => {
         expect(updateHeroMock).toHaveBeenCalledWith(dto);
     });
 
-    test("Should be called deleteHero method with a DeleteDto from heroesRepository", () => {
+    test("Should call the deleteHero method with a DeleteDto from heroesRepository", () => {
         const dto: DeleteHeroDto = { id: "dc-super-test" };
         
         const deleteHeroMock = repository.deleteHero = jest.fn();
@@ -90,7 +81,7 @@ describe('./src/presentation/apps/heroes/heroes.service.ts', () => {
         expect(deleteHeroMock).toHaveBeenCalledWith(dto);
     });
 
-    test("Should be called getAllHeroes method from heroesRepository", () => {        
+    test("Should call the getAllHeroes method from heroesRepository", () => {        
         const getAllHeroesHeroMock = repository.getAllHeroes = jest.fn();
 
         heroesService.getAllHeroes();
@@ -98,7 +89,7 @@ describe('./src/presentation/apps/heroes/heroes.service.ts', () => {
         expect(getAllHeroesHeroMock).toHaveBeenCalled();
     });
 
-    test("Should be called getHeroById method with a GetHeroByIdDto from heroesRepository", () => {    
+    test("Should call the getHeroById method with a GetHeroByIdDto from heroesRepository", () => {    
         const dto: GetHeroByIdDto = { id: "dc-super-test" };
         
         const getHeroByIdHeroMock = repository.getHeroById = jest.fn();
@@ -108,7 +99,7 @@ describe('./src/presentation/apps/heroes/heroes.service.ts', () => {
         expect(getHeroByIdHeroMock).toHaveBeenCalledWith(dto.id);
     });
 
-    test("Should be called searchHero method with a SearchHeroDto from heroesRepository", () => {    
+    test("Should call the searchHero method with a SearchHeroDto from heroesRepository", () => {    
         const dto: SearchHeroDto = { superhero: "super-test" };
         
         const searchHeroMock = repository.searchHero = jest.fn();

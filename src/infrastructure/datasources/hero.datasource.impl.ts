@@ -26,7 +26,7 @@ class HeroDatasourceImpl implements HeroDataSource {
     public async createHero(hero: CreateHeroDto): Promise<HeroEntity> {
         const findHero = await this._dbDatasource.findOne(hero.id) as HeroEntity | undefined;
         
-        if (findHero) throw HttpError.conflict("hero already exist");
+        if (findHero) throw HttpError.conflict("hero already exists");
 
         const newHero: HeroEntity = { 
             id: hero.id,
@@ -77,7 +77,7 @@ class HeroDatasourceImpl implements HeroDataSource {
     public async getHeroById(id: string): Promise<HeroEntity> {
         const hero = await this._dbDatasource.findOne(id) as HeroEntity | undefined;
 
-        if (!hero) throw HttpError.notFound("hero not exist.");
+        if (!hero) throw HttpError.notFound("hero not exists.");
 
         return Promise.resolve(hero);
     }

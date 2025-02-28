@@ -11,12 +11,17 @@ describe('./src/presentation/services/email.service.ts', () => {
         jest.resetAllMocks();
     });
 
-    test('Should contain methods like send and authorized email', () => {
+    test('Should have properties like sendRegisterEmail and sendAuthorizedAccountEmail', () => {
+        expect(emailService).toHaveProperty("sendRegisterEmail");
+        expect(emailService).toHaveProperty("sendAuthorizedAccountEmail");
+    });
+
+    test('Should have sendRegisterEmail and sendAuthorizedAccountEmail as methods', () => {
         expect(typeof emailService.sendRegisterEmail).toBe("function");
         expect(typeof emailService.sendAuthorizedAccountEmail).toBe("function");
     });
 
-    test("Should be called register email with email,user,content,description parameters", async () => {
+    test("Should call sendRegisterEmail with email, user, content, description arguments", async () => {
         const sendEmailSmock = emailService.sendRegisterEmail = jest.fn();
 
         await emailService.sendRegisterEmail(OWNER_TO_SEND_EMAIL_TEST, "user test", "content of testing with jest", "description of testing with jest");
@@ -29,7 +34,7 @@ describe('./src/presentation/services/email.service.ts', () => {
         );
     });
 
-    test("Should be called authorization account email with email,user,content,description parameters", async () => {
+    test("Should call sendAuthorizedAccountEmail with email, user, content, description arguments", async () => {
         const sendEmailSmock = emailService.sendAuthorizedAccountEmail = jest.fn();
 
         await emailService.sendAuthorizedAccountEmail(OWNER_TO_SEND_EMAIL_TEST, "user test", "content of testing with jest", "description of testing with jest");
@@ -54,7 +59,7 @@ describe('./src/presentation/services/email.service.ts', () => {
         expect(true).toBeTruthy();
     });
 
-    test("Should send a account authorization email", async () => {
+    test("Should send an account authorization email", async () => {
         // const emailService: EmailService = new EmailService(new Email());
 
         // await emailService.sendAuthorizedAccountEmail(

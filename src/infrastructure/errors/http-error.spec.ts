@@ -2,7 +2,8 @@ import HttpError from "./http-error";
 import HttpStatusCode from "../helpers/http-status-code";
 
 describe('./src/infrastructure/errors/http-error.ts', () => {
-    test('Should contain severus properties of http status code errors', () => {
+    
+    test('Should have severus properties as http status code errors', () => {
         expect(HttpError).toHaveProperty("internalServerError");
         expect(HttpError).toHaveProperty("badRequest");
         expect(HttpError).toHaveProperty("conflict");
@@ -16,7 +17,7 @@ describe('./src/infrastructure/errors/http-error.ts', () => {
         expect(HttpError).toHaveProperty("requestTimeout");
     });
 
-    test('Should be methods all properties of HttpError', () => {
+    test('Should all properties be functions', () => {
         expect(typeof HttpError.internalServerError).toBe("function");
         expect(typeof HttpError.badRequest).toBe("function");
         expect(typeof HttpError.conflict).toBe("function");
@@ -42,7 +43,7 @@ describe('./src/infrastructure/errors/http-error.ts', () => {
         expect(HttpError.requestTimeout("testing with jest")).toBeInstanceOf(HttpError);
     });
 
-    test('Should return an instance of HttpError all methods', () => {
+    test("Should ensure that each method corresponds to it's error status code", () => {
         const error: string = "testing with jest";
 
         const badRequestError: HttpError = HttpError.badRequest(error);
@@ -56,8 +57,6 @@ describe('./src/infrastructure/errors/http-error.ts', () => {
         const proxyAuthenticationRequiredError: HttpError = HttpError.proxyAuthenticationRequired(error);
         const requestTimeoutError: HttpError = HttpError.requestTimeout(error);
         const unauthorizedError: HttpError = HttpError.unauthorized(error);
-
-        // console.warn({ message: forbiddenError.message, status: forbiddenError.status, name: forbiddenError.name , stack: typeof forbiddenError?.stack });
 
         expect(badRequestError).toEqual(expect.objectContaining({
             message: error,
@@ -73,13 +72,12 @@ describe('./src/infrastructure/errors/http-error.ts', () => {
             stack: expect.any(String)
         }));
 
-        // TODO
-        // expect(forbiddenError).toEqual(expect.objectContaining({
-        //     message: error,
-        //     status: HttpStatusCode.FORBIDDEN,
-        //     name: "Error",
-        //     stack: expect.any(String)
-        // }));
+        expect(forbiddenError).toEqual(expect.objectContaining({
+            message: error,
+            status: HttpStatusCode.FORBIDDEN,
+            name: "Error",
+            stack: expect.any(String)
+        }));
 
         expect(internalServerErrorError).toEqual(expect.objectContaining({
             message: error,

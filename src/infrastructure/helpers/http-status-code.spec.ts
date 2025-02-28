@@ -2,7 +2,7 @@ import HttpStatusCode from "./http-status-code";
 
 describe('Indicate the directory of the file to test', () => {
 
-    test("Should contain http status code properties", () => {
+    test("Should be http status code all properties", () => {
         expect(HttpStatusCode).toHaveProperty("OK");
         expect(HttpStatusCode).toHaveProperty("FOUND");
         expect(HttpStatusCode).toHaveProperty("CREATED");

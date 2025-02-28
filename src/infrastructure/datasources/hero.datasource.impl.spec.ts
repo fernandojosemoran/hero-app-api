@@ -29,7 +29,7 @@ describe('./src/infrastructure/datasources/hero.datasource.impl.ts', () => {
         datasource = new HeroDatasourceImpl(dbDatasource);
     });
 
-    test('Should contain properties like searchHero,createHero,updateHero,deleteHero,getAllHeroes,getHeroById', () => {
+    test('Should have properties like searchHero,createHero,updateHero,deleteHero,getAllHeroes,getHeroById', () => {
         expect(datasource).toHaveProperty("searchHero");
         expect(datasource).toHaveProperty("createHero");
         expect(datasource).toHaveProperty("updateHero");
@@ -38,7 +38,7 @@ describe('./src/infrastructure/datasources/hero.datasource.impl.ts', () => {
         expect(datasource).toHaveProperty("getHeroById");
     });
 
-    test('Should contain searchHero,createHero,updateHero,deleteHero,getAllHeroes,getHeroById as methods', () => {
+    test('Should have searchHero,createHero,updateHero,deleteHero,getAllHeroes,getHeroById as methods', () => {
         expect(typeof datasource.createHero).toBe("function");
         expect(typeof datasource.deleteHero).toBe("function");
         expect(typeof datasource.getAllHeroes).toBe("function");
@@ -58,7 +58,7 @@ describe('./src/infrastructure/datasources/hero.datasource.impl.ts', () => {
         expect(response).toEqual(hero);
     });
 
-    test("Should throw an error if hero already exist when createHero method is executed", () => {
+    test("Should throw an error if hero already exists when createHero method is executed", () => {
         const findOneMock = dbDatasource.findOne = jest.fn(() => Promise.resolve(hero));
 
         const response = datasource.createHero(hero as CreateHeroDto);
@@ -66,7 +66,7 @@ describe('./src/infrastructure/datasources/hero.datasource.impl.ts', () => {
         expect(findOneMock).toHaveBeenCalledWith(hero.id);
 
         response.catch((error: HttpError) => {
-            expect(error.message).toBe("hero already exist");
+            expect(error.message).toBe("hero already exists");
             expect(error.status).toBe(HttpStatusCode.CONFLICT);
         });
     });
@@ -191,7 +191,7 @@ describe('./src/infrastructure/datasources/hero.datasource.impl.ts', () => {
         dbDatasource.findOne = jest.fn();
         datasource.getHeroById(hero.id!)
         .catch((error: HttpError) => {
-            expect(error.message).toBe("hero not exist.");
+            expect(error.message).toBe("hero not exists.");
             expect(error.status).toBe(HttpStatusCode.NOT_FOUND);
         });
     });

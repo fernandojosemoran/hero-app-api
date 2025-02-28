@@ -40,7 +40,7 @@ describe('./src/infrastructure/datasources/auth.datasource.impl.ts', () => {
         jest.resetAllMocks();
     });
 
-    test('Should contain methods like login,register,refreshToken', () => {
+    test('Should have methods like login,register,refreshToken', () => {
         expect(typeof AuthService.prototype.login).toBe("function");
         expect(typeof AuthService.prototype.register).toBe("function");
         expect(typeof AuthService.prototype.refreshToken).toBe("function");
@@ -239,7 +239,7 @@ describe('./src/infrastructure/datasources/auth.datasource.impl.ts', () => {
         expect(typeof newToken).toBe("string");
     });
 
-    test('Should be called login method with authorization,email,password,userName,token parameters', () => {
+    test('Should call login method with authorization,email,password,userName,token parameters', () => {
         const authLoginSpy = authDatasource.login = jest.fn();
 
         const loginDto = {
@@ -255,7 +255,7 @@ describe('./src/infrastructure/datasources/auth.datasource.impl.ts', () => {
         expect(authLoginSpy).toHaveBeenCalledWith(loginDto);
     });
 
-    test('Should be called register method with authorization,email,password,userName,token parameters', () => {
+    test('Should call register method with authorization,email,password,userName,token parameters', () => {
         const authRegisterSpy = authDatasource.register = jest.fn();
 
         const registerDto: RegisterDto = {
@@ -272,7 +272,7 @@ describe('./src/infrastructure/datasources/auth.datasource.impl.ts', () => {
         expect(authRegisterSpy).toHaveBeenCalledWith(registerDto);
     });
 
-    test('Should be called refresh token method with a token', () => {
+    test('Should call refresh token method with a token', () => {
         const authRefreshTokenSpy = authDatasource.refreshToken = jest.fn();
 
         const token: string = "test-token";

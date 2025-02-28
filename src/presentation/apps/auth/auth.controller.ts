@@ -78,8 +78,10 @@ class AuthController extends Controller implements IAuthController {
     public logout = (request: Request, response: Response): any => {
 
         const authToken: string | undefined = request.cookies["auth-token"];
+        const authorization: string | undefined = request.headers.authorization;
 
-        if (!authToken) return response.status(HttpStatusCode.CONFLICT).json({ response: false });
+        if (!authorization) return response.status(HttpStatusCode.UNAUTHORIZED).json({ response: false });
+        if (!authToken) return response.status(HttpStatusCode.UNAUTHORIZED).json({ response: false });
 
         response.clearCookie(
             'auth-token', 
