@@ -17,6 +17,7 @@ class HttpStatusCode {
     public static readonly PROXY_AUTHENTICATION_REQUIRED: number = 407;
     public static readonly REQUEST_TIMEOUT: number = 408;
     public static readonly PAYMENT_REQUIRED: number = 402;
+    public static readonly TOO_MANY_REQUESTS: number = 429;
 }
 
 export default HttpStatusCode;
