@@ -16,11 +16,11 @@ class EmailService {
         });
     }
 
-    public sendAuthorizedAccountEmail(emailAddress: string, user: string, content: string, description: string): Promise<SMTPTransport.SentMessageInfo> { 
+    public sendAuthorizedAccountEmail(emailAddress: string, user: string): Promise<SMTPTransport.SentMessageInfo> { 
         return this._email.sendEmail({ 
             user,  
             emailAddress, 
-            htmlTemplate: authorizedAccountEmailTemplate(user, emailAddress, description,content) 
+            htmlTemplate: authorizedAccountEmailTemplate(user, emailAddress) 
         });
     }
 }
