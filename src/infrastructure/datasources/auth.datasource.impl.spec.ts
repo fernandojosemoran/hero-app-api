@@ -23,6 +23,7 @@ jest.doMock("../../infrastructure/constants/env.ts", () => ({
 
 import AuthDataSourceImpl from "../../infrastructure/datasources/auth.datasource.impl";
 import DbDatasourceImpl from '../../infrastructure/datasources/db.datasource.impl';
+import { AuthOutputs } from '../../domain/outputs/auth.out';
 
 const logService: LogService = new LogService();
 const jwt: jwtPlugin = new jwtPlugin(logService);
@@ -46,6 +47,8 @@ describe('./src/infrastructure/datasources/auth.datasource.impl.ts', () => {
         expect(typeof AuthService.prototype.refreshToken).toBe("function");
     });
     
+    const { endpoint } = AuthOutputs;
+
     // REGISTER
     test("Should register a user", async () => {
         const sendRegisterEmailSpy = jest.spyOn(emailService, "sendRegisterEmail").mockImplementation(jest.fn());
@@ -105,7 +108,7 @@ describe('./src/infrastructure/datasources/auth.datasource.impl.ts', () => {
             await authDatasource.register(dto);
         } catch (error) {
             const { message, status } = error as HttpError;
-            expect(message).toBe("user has already a account.");
+            expect(message).toBe(endpoint.USER_ALREADY_EXIST);
             expect(status).toBe(HttpStatusCode.CONFLICT);
         }
     });
@@ -126,10 +129,12 @@ describe('./src/infrastructure/datasources/auth.datasource.impl.ts', () => {
             await authDatasource.register(dto);
         } catch (error) {
             const { message, status } = error as HttpError;
-            expect(message).toBe("Sorry something occurred wrong");
+            expect(message).toBe(endpoint.SOMETHING_OCCURRED_WRONG);
             expect(status).toBe(HttpStatusCode.INTERNAL_SERVER_ERROR);
         }
     });
+
+    // TODO add test for verify if jwt.generateToken method return a undefined value
 
     // LOGIN
     test("Should login a user", async () => {
@@ -173,7 +178,7 @@ describe('./src/infrastructure/datasources/auth.datasource.impl.ts', () => {
         } catch (error) {
             const { message, status } = error as HttpError;
             
-            expect(message).toBe("User not exist");
+            expect(message).toBe(endpoint.USER_NOT_FOUND);
             expect(status).toBe(HttpStatusCode.NOT_FOUND);
         }
     });
@@ -197,7 +202,7 @@ describe('./src/infrastructure/datasources/auth.datasource.impl.ts', () => {
         } catch (error) {
             const { message, status } = error as HttpError;
             
-            expect(message).toBe("You account don't are authorized, checkout you email service and confirm you account.");
+            expect(message).toBe(endpoint.YOU_ACCOUNT_ARE_NOT_AUTHORIZED);
             expect(status).toBe(HttpStatusCode.UNAUTHORIZED);
         }
     });
@@ -219,10 +224,12 @@ describe('./src/infrastructure/datasources/auth.datasource.impl.ts', () => {
         } catch (error) {
             const { message, status } = error as HttpError;
             
-            expect(message).toBe("Password is not valid");
+            expect(message).toBe(endpoint.PASSWORD_IS_NOT_VALID);
             expect(status).toBe(HttpStatusCode.UNAUTHORIZED);
         }
     });
+
+    // TODO add test for token is undefined
 
     // REFRESH TOKEN
     test("Should refresh a jwt token", async () => {
@@ -281,4 +288,6 @@ describe('./src/infrastructure/datasources/auth.datasource.impl.ts', () => {
 
         expect(authRefreshTokenSpy).toHaveBeenCalledWith(token);
     });
+
+    // TODO add test for verify if neeToken is undefined
 });

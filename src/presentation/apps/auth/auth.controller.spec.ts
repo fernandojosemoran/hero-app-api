@@ -1,4 +1,5 @@
 import { User } from "../../../domain/entities/user.entity";
+import { AuthOutputs } from "../../../domain/outputs/auth.out";
 
 import DbDatasourceImpl from "../../../infrastructure/datasources/db.datasource.impl";
 import Bcrypt from "../../../infrastructure/plugins/bcrypt.plugin";
@@ -40,6 +41,8 @@ describe('./src/presentation/apps/auth/auth.controller.ts', () => {
         password: "test123",
         authorization: true
     };
+
+    const { endpoint } = AuthOutputs;
 
     let cookieLogin: string;
 
@@ -284,7 +287,7 @@ describe('./src/presentation/apps/auth/auth.controller.ts', () => {
         .expect("Content-Type", /json/)
         .expect(HttpStatusCode.NOT_FOUND);
 
-        expect(response.body).toEqual({ response: "User not exist" });
+        expect(response.body).toEqual({ response: endpoint.USER_NOT_FOUND });
     });
 
     test("Should respond with an error if user password is not valid in POST  /api/auth/login ", async () => {
@@ -297,7 +300,7 @@ describe('./src/presentation/apps/auth/auth.controller.ts', () => {
         .expect("Content-Type", /json/)
         .expect(HttpStatusCode.UNAUTHORIZED);
 
-        expect(response.body).toEqual({ response: "Password is not valid" });
+        expect(response.body).toEqual({ response: endpoint.PASSWORD_IS_NOT_VALID });
     });
 
     test("Should respond with an error if JWT failed to generate a token in POST  /api/auth/login ", async () => {
@@ -312,7 +315,7 @@ describe('./src/presentation/apps/auth/auth.controller.ts', () => {
         .expect("Content-Type", /json/)
         .expect(HttpStatusCode.INTERNAL_SERVER_ERROR);
 
-        expect(response.body).toEqual({ response: "Something occurred wrang, trying login again." });
+        expect(response.body).toEqual({ response: endpoint.SOMETHING_OCCURRED_WRONG });
     });
 
     // BAD REQUEST OF LOGIN endpoint PROVIDED BY LoginDto
@@ -423,7 +426,7 @@ describe('./src/presentation/apps/auth/auth.controller.ts', () => {
         .set("User-Agent", "HeroesApp")
         .expect(HttpStatusCode.NOT_ACCEPTABLE);
 
-        expect(response.body).toEqual({ response: "Token is not valid." });
+        expect(response.body).toEqual({ response: endpoint.TOKEN_IS_NOT_VALID });
     });
 
     test("Should respond with an error if token is not valid in POST  /api/auth/login", async () => {
@@ -443,7 +446,7 @@ describe('./src/presentation/apps/auth/auth.controller.ts', () => {
         .set("User-Agent", "HeroesApp")
         .expect(HttpStatusCode.INTERNAL_SERVER_ERROR);
 
-        expect(response.body).toEqual({ response: "Something occurred wrang, trying login again." });
+        expect(response.body).toEqual({ response: endpoint.SOMETHING_OCCURRED_WRONG });
     });
 
     //  Logout
