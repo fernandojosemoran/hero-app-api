@@ -17,20 +17,20 @@
             "userName": "fernando"
         },
         {
-            "id": "5f2715de-4b7d-41bf-9d00-6a9dcbdaa50f",
-            "password": "$2b$10$HSDoifE6lItSTQrREcfU.uIwi7CsuKGozRG6v1y5lZhI9sSja0la6",
-            "authorization": true,
+            "id": "2c1a29b4-00f9-4558-98be-05266de6ae00",
+            "password": "$2b$10$iEf6ogKY9Y5nq49BqJcvsO0NFWucRFdbbaMxBdfgd/eLj3pDGgUPW",
+            "authorization": false,
             "email": "karlin@gmail.com",
-            "lastName": "marley guevara",
+            "lastName": "marley",
             "userName": "karlin"
         },
         {
-            "id": "379abb42-4f1b-4acb-ac8b-41a317ba68c7",
-            "password": "$2b$10$ZcswEo6q3Y1JSIVmQQMs5uEkgTZZeOOhWDR82bcXgsooQ8oliJhba",
-            "authorization": false,
-            "email": "test@gmail.com",
-            "lastName": "test2000",
-            "userName": "test"
+            "id": "1428415b-0d7b-4d19-acb4-e9e48faff174",
+            "password": "$2b$10$PBsnNzySZ2cv3gzRMHOasemISydNR3c6JtHZRu6R6iQWGYE.PG4hG",
+            "authorization": true,
+            "email": "karlin@gmail.com",
+            "lastName": "marley",
+            "userName": "karlin"
         }
     ]
 }

@@ -9,7 +9,6 @@ Heroes app to allow to do requests using by following methods: `PUT, DELETE, POS
 - ![angular framework](https://img.shields.io/badge/Angular%20Framework-DD0031?style=for-the-badge&logo=angular&logoColor=white)
 - ![jest.js](https://img.shields.io/badge/Jest%20(testing)-323330?style=for-the-badge&logo=Jest&logoColor=white)
 - ![typescript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
-- ![cloudflare](https://img.shields.io/badge/claudflare-orange?style=for-the-badge&logo=cloudflare&logoColor=white)
 
 ## Which is goal of this project
 
@@ -114,16 +113,28 @@ curl -X PUT http://localhost:3000/api/hero/update/dc-ant-man -d '{ "superhero": 
 
 ```bash #DELETE -> /api/hero/delete/:id
 
-curl -X DELETE http://localhost:3000/api/hero/delete/dc-ant-man
+curl -X DELETE http://localhost:3000/api/hero/delete/dc-ant-man | jq
 
 {
     "response":"Hero dc-ant-man were deleted."
 }
-
 ```
 
 ```bash #GET -> /api/hero/search/:superhero
 
 curl -X GET http://localhost:3000/api/hero/search/batman
 
+{
+  "response": [
+    {
+      "id": "dc-batman",
+      "superhero": "Batman",
+      "publisher": "DC Comics",
+      "alter_ego": "Bruce Wayne",
+      "first_appearance": "Detective Comics #27",
+      "characters": "Bruce Wayne",
+      "alt_image": "/api/media/hero/dc-batman.webp"
+    }
+  ]
+}
 ```

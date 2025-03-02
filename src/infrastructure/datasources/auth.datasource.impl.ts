@@ -90,7 +90,7 @@ class AuthDataSourceImpl implements AuthDataSource {
             if (!verifyAccountToken) throw HttpError.internalServerError(endpoint.SOMETHING_OCCURRED_WRONG);
 
             await this._email.sendRegisterEmail(
-                "fernandomoran323@gmail.com", 
+                newUser.email, 
                 `${newUser!.userName} ${newUser!.lastName}`,
                 `Confirm you account using by following link ${Env.HOST_URL}/api/account/authorization/${verifyAccountToken}`,
                 "Welcome to http://heroes-app.vercel"

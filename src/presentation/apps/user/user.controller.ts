@@ -2,7 +2,7 @@
 import { Request, Response } from "express";
 
 import Controller from "../../../infrastructure/objects/controller";
-import UserRepositoryImpl from "src/infrastructure/repositories/user.repository.impl";
+import UserRepositoryImpl from "../../../infrastructure/repositories/user.repository.impl";
 import LogService from "../../../presentation/services/log.service";
 import ChangePasswordDto from "../../../domain/dto/user/change-password.dto";
 import HttpStatusCode from "../../../infrastructure/helpers/http-status-code";
