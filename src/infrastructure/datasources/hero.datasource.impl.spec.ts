@@ -1,3 +1,4 @@
+import { heroesOutputs } from './../../domain/outputs/heroes.out';
 import { HeroEntity, Publisher } from './../../domain/entities/hero.entity';
 
 import CreateHeroDto from "../../domain/dto/heroes/create-hero.dto";
@@ -23,6 +24,8 @@ describe('./src/infrastructure/datasources/hero.datasource.impl.ts', () => {
         characters: "character1, character2",
         alt_image: "test-image"
     };
+
+    const { endpoint } = heroesOutputs;
 
     beforeEach(() => {
         jest.clearAllMocks();
@@ -66,7 +69,7 @@ describe('./src/infrastructure/datasources/hero.datasource.impl.ts', () => {
         expect(findOneMock).toHaveBeenCalledWith(hero.id);
 
         response.catch((error: HttpError) => {
-            expect(error.message).toBe("hero already exists");
+            expect(error.message).toBe(endpoint.HERO_ALREADY_EXISTS);
             expect(error.status).toBe(HttpStatusCode.CONFLICT);
         });
     });
@@ -77,7 +80,7 @@ describe('./src/infrastructure/datasources/hero.datasource.impl.ts', () => {
 
         datasource.createHero(hero as CreateHeroDto)
         .catch((error: HttpError) => {
-            expect(error.message).toBe("Sorry some occurred wrong");
+            expect(error.message).toBe(endpoint.SOMETHING_OCCURRED_WRONG);
             expect(error.status).toBe(HttpStatusCode.INTERNAL_SERVER_ERROR);
         });
     });
@@ -117,7 +120,7 @@ describe('./src/infrastructure/datasources/hero.datasource.impl.ts', () => {
         expect(findOneMock).toHaveBeenCalledWith(hero.id);
 
         response.catch((error: HttpError) => {
-            expect(error.message).toBe("hero not found");
+            expect(error.message).toBe(endpoint.HERO_NOT_FOUND);
             expect(error.status).toBe(HttpStatusCode.NOT_FOUND);
         });
     });
@@ -130,7 +133,7 @@ describe('./src/infrastructure/datasources/hero.datasource.impl.ts', () => {
 
         datasource.updateHero(heroModified as UpdateHeroDto)
         .catch((error: HttpError) => {
-            expect(error.message).toBe("sorry some occurred wrong");
+            expect(error.message).toBe(endpoint.SOMETHING_OCCURRED_WRONG);
             expect(error.status).toBe(HttpStatusCode.INTERNAL_SERVER_ERROR);
         });
     });
@@ -152,7 +155,7 @@ describe('./src/infrastructure/datasources/hero.datasource.impl.ts', () => {
 
         datasource.deleteHero(hero as DeleteHeroDto)
         .catch((error: HttpError) => {
-            expect(error.message).toBe("hero not found");
+            expect(error.message).toBe(endpoint.HERO_NOT_FOUND);
             expect(error.status).toBe(HttpStatusCode.NOT_FOUND);
         });
     });
@@ -163,7 +166,7 @@ describe('./src/infrastructure/datasources/hero.datasource.impl.ts', () => {
 
         datasource.deleteHero(hero as DeleteHeroDto)
         .catch((error: HttpError) => {
-            expect(error.message).toBe("hero not found");
+            expect(error.message).toBe(endpoint.HERO_NOT_FOUND);
             expect(error.status).toBe(HttpStatusCode.NOT_FOUND);
         });
     });
@@ -191,7 +194,7 @@ describe('./src/infrastructure/datasources/hero.datasource.impl.ts', () => {
         dbDatasource.findOne = jest.fn();
         datasource.getHeroById(hero.id!)
         .catch((error: HttpError) => {
-            expect(error.message).toBe("hero not exists.");
+            expect(error.message).toBe(endpoint.HERO_NOT_FOUND);
             expect(error.status).toBe(HttpStatusCode.NOT_FOUND);
         });
     });

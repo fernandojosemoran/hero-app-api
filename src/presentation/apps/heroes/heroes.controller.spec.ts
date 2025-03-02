@@ -1,5 +1,6 @@
 import { HeroController } from './heroes.controller';
 import { HeroEntity, Publisher } from '../../../domain/entities/hero.entity';
+import { heroesOutputs } from '../../../domain/outputs/heroes.out';
 
 import DbDatasourceImpl from '../../../infrastructure/datasources/db.datasource.impl';
 import HeroDatasourceImpl from '../../../infrastructure/datasources/hero.datasource.impl';
@@ -33,6 +34,8 @@ describe('./src/presentation/apps/heroes/heroes.controller.ts', () => {
         heroRepository = new HeroRepositoryImpl(heroDatasource);
         controller = new HeroController(new HeroService(heroRepository), new LogService());
     });
+
+    const { endpoint } = heroesOutputs;
 
     const heroes: HeroEntity[] = [
         {
@@ -158,7 +161,7 @@ describe('./src/presentation/apps/heroes/heroes.controller.ts', () => {
         .expect("Content-Type", /json/)
         .expect(HttpStatusCode.CONFLICT);
         
-        expect(response.body).toEqual({ response: "hero already exists" });
+        expect(response.body).toEqual({ response: endpoint.HERO_ALREADY_EXISTS });
     });
 
     // Update
@@ -186,7 +189,7 @@ describe('./src/presentation/apps/heroes/heroes.controller.ts', () => {
         .expect("Content-Type", /json/)
         .expect(HttpStatusCode.NOT_FOUND);
 
-        expect(response.body).toEqual({ response: "hero not found" });
+        expect(response.body).toEqual({ response: endpoint.HERO_NOT_FOUND });
     });
 
     test("Should respond with an error if hero does not exist in PUT /api/hero/update/:id", async () => {
@@ -201,7 +204,7 @@ describe('./src/presentation/apps/heroes/heroes.controller.ts', () => {
         .expect("Content-Type", /json/)
         .expect(HttpStatusCode.INTERNAL_SERVER_ERROR);
 
-        expect(response.body).toEqual({ response: "sorry some occurred wrong" });
+        expect(response.body).toEqual({ response: endpoint.SOMETHING_OCCURRED_WRONG });
     });
 
     // GET HERO BY ID
@@ -229,7 +232,7 @@ describe('./src/presentation/apps/heroes/heroes.controller.ts', () => {
         .expect("Content-Type", /json/)
         .expect(HttpStatusCode.NOT_FOUND);
 
-        expect(response.body).toEqual({ response: "hero not exists." });
+        expect(response.body).toEqual({ response: endpoint.HERO_NOT_FOUND });
     });
 
     // GET ALL HEROES
@@ -300,7 +303,7 @@ describe('./src/presentation/apps/heroes/heroes.controller.ts', () => {
         .expect("Content-Type", /json/)
         .expect(HttpStatusCode.NOT_FOUND);
         
-        expect(response.body).toEqual({ response: "hero not found" });
+        expect(response.body).toEqual({ response: endpoint.HERO_NOT_FOUND });
     });
 
     test("Should respond with an error if hero does not exist in DELETE /api/hero/delete/:superhero", async () => {
@@ -315,7 +318,7 @@ describe('./src/presentation/apps/heroes/heroes.controller.ts', () => {
         .expect("Content-Type", /json/)
         .expect(HttpStatusCode.NOT_FOUND);
 
-        expect(response.body).toEqual({ response: "hero not found" });
+        expect(response.body).toEqual({ response: endpoint.HERO_NOT_FOUND });
     });
 
     test("Should respond with an error if hero was not saved in POST /api/hero/create", async () => {
@@ -329,6 +332,6 @@ describe('./src/presentation/apps/heroes/heroes.controller.ts', () => {
         .expect("Content-Type", /json/)
         .expect(HttpStatusCode.INTERNAL_SERVER_ERROR);
 
-        expect(response.body).toEqual({ response: "Sorry some occurred wrong" });
+        expect(response.body).toEqual({ response: endpoint.SOMETHING_OCCURRED_WRONG });
     });
 });

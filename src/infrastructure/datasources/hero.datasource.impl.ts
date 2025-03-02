@@ -1,4 +1,5 @@
 import { HeroEntity, Publisher } from "../../domain/entities/hero.entity";
+import { heroesOutputs } from "../../domain/outputs/heroes.out";
 
 import HeroDataSource from "../../domain/datasources/hero.datasource";
 import CreateHeroDto from '../../domain/dto/heroes/create-hero.dto';
@@ -7,6 +8,9 @@ import DeleteHeroDto from '../../domain/dto/heroes/delete-hero.dto';
 import HttpError from '../errors/http-error';
 import SearchHeroDto from '../../../src/domain/dto/heroes/search-hero.dto';
 import DbDatasourceImpl from "./db.datasource.impl";
+
+// hidden dependencies
+const { endpoint } = heroesOutputs;
 
 class HeroDatasourceImpl implements HeroDataSource {
 
@@ -26,7 +30,7 @@ class HeroDatasourceImpl implements HeroDataSource {
     public async createHero(hero: CreateHeroDto): Promise<HeroEntity> {
         const findHero = await this._dbDatasource.findOne(hero.id) as HeroEntity | undefined;
         
-        if (findHero) throw HttpError.conflict("hero already exists");
+        if (findHero) throw HttpError.conflict(endpoint.HERO_ALREADY_EXISTS);
 
         const newHero: HeroEntity = { 
             id: hero.id,
@@ -40,7 +44,7 @@ class HeroDatasourceImpl implements HeroDataSource {
 
         const wentSaved: boolean = await this._dbDatasource.add(newHero);
 
-        if (!wentSaved) throw HttpError.internalServerError("Sorry some occurred wrong");
+        if (!wentSaved) throw HttpError.internalServerError(endpoint.SOMETHING_OCCURRED_WRONG);
 
         return Promise.resolve(newHero);
     }
@@ -48,11 +52,11 @@ class HeroDatasourceImpl implements HeroDataSource {
     public async updateHero(hero: UpdateHeroDto): Promise<HeroEntity> {
         const existHero = await this._dbDatasource.findOne(hero.id) as HeroEntity | undefined;
     
-        if (!existHero) throw HttpError.notFound("hero not found");
+        if (!existHero) throw HttpError.notFound(endpoint.HERO_NOT_FOUND);
         
         const updateHero = await this._dbDatasource.update(hero as HeroEntity) as HeroEntity | undefined ;
     
-        if (!updateHero) throw HttpError.internalServerError("sorry some occurred wrong");
+        if (!updateHero) throw HttpError.internalServerError(endpoint.SOMETHING_OCCURRED_WRONG);
 
         return Promise.resolve(hero as HeroEntity);
     }
@@ -60,11 +64,11 @@ class HeroDatasourceImpl implements HeroDataSource {
     public async deleteHero({ id }: DeleteHeroDto): Promise<string> {
         const existHero = await this._dbDatasource.findOne(id) as HeroEntity | undefined;
     
-        if (!existHero) throw HttpError.notFound("hero not found");
+        if (!existHero) throw HttpError.notFound(endpoint.HERO_NOT_FOUND);
 
         const wentDeleted = await this._dbDatasource.delete(id) as HeroEntity | undefined;
 
-        if (!wentDeleted) throw HttpError.notFound("hero not found");
+        if (!wentDeleted) throw HttpError.notFound(endpoint.HERO_NOT_FOUND);
 
         return Promise.resolve(`Hero ${id} were deleted.`);
     }
@@ -77,7 +81,7 @@ class HeroDatasourceImpl implements HeroDataSource {
     public async getHeroById(id: string): Promise<HeroEntity> {
         const hero = await this._dbDatasource.findOne(id) as HeroEntity | undefined;
 
-        if (!hero) throw HttpError.notFound("hero not exists.");
+        if (!hero) throw HttpError.notFound(endpoint.HERO_NOT_FOUND);
 
         return Promise.resolve(hero);
     }
