@@ -11,7 +11,7 @@ import Bcrypt from '../../infrastructure/plugins/bcrypt.plugin';
 import Env from '../../infrastructure/constants/env';
 import HttpError from '../../infrastructure/errors/http-error';
 import HttpStatusCode from "../../infrastructure/helpers/http-status-code";
-import UUID from '../../infrastructure/plugins/uui.plugin';
+import UUID from '../../infrastructure/plugins/uuid.plugin';
 
 jest.doMock("../../infrastructure/constants/env.ts", () => ({
     __esModule: true,

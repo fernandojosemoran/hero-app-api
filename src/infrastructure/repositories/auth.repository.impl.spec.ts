@@ -7,7 +7,7 @@ import DbDatasourceImpl from "../datasources/db.datasource.impl";
 import Bcrypt from "../plugins/bcrypt.plugin";
 import EmailPlugin from "../plugins/email.plugin";
 import jwtPlugin from "../plugins/jwt.plugin";
-import UUID from "../plugins/uui.plugin";
+import UUID from "../plugins/uuid.plugin";
 import AuthRepositoryImpl from "./auth.repository.impl";
 
 

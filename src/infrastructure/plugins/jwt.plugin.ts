@@ -1,6 +1,5 @@
 import LogService from "src/presentation/services/log.service";
 import Env from "../constants/env";
-import Plugin from "./plugin";
 import jwt from "jsonwebtoken";
 
 
@@ -11,7 +10,7 @@ interface IJwtPlugin {
     decode(token: string): string | jwt.JwtPayload | null;
 }
 
-class Jwt extends Plugin implements IJwtPlugin {
+class Jwt implements IJwtPlugin {
 
     private readonly _contextName: string = "./src/infrastructure/plugins/jwt.plugin.ts";
 
@@ -27,9 +26,7 @@ class Jwt extends Plugin implements IJwtPlugin {
         json: true
     };
 
-    public constructor(private readonly _logService: LogService) {
-        super();
-    }
+    public constructor(private readonly _logService: LogService) {}
 
     public decode(token: string): string | jwt.JwtPayload | null {
         return jwt.decode(token, this._jwtDecodeConf);

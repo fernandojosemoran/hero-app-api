@@ -6,7 +6,7 @@ import jwtPlugin from "../../../infrastructure/plugins/jwt.plugin";
 import EmailService from '../../services/email.service';
 import EmailPlugin from '../../../infrastructure/plugins/email.plugin';
 import Bcrypt from '../../../infrastructure/plugins/bcrypt.plugin';
-import UUID from '../../../infrastructure/plugins/uui.plugin';
+import UUID from '../../../infrastructure/plugins/uuid.plugin';
 
 import AuthRepositoryImpl from "../../../infrastructure/repositories/auth.repository.impl";
 import AuthDataSourceImpl from "../../../infrastructure/datasources/auth.datasource.impl";
