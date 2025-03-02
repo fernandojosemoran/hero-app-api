@@ -4,7 +4,7 @@ import { rateLimitMiddleware } from './presentation/middlewares/rate-limit.middl
 import { helmetMiddleware } from './presentation/middlewares/security/helmet.middleware';
 
 // hidden dependencies
-import { morganMiddleware } from './infrastructure/plugins/morgan.adapter';
+import { morganMiddleware } from './presentation/middlewares/morgan.middleware';
 import { corsMiddleware } from './presentation/middlewares/security/cors.middleware';
 
 import express from 'express';

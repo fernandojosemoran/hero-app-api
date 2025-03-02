@@ -10,7 +10,7 @@ import Controller from "../../../infrastructure/objects/controller";
 import LoginDto from "../../../domain/dto/auth/login.dto";
 import Env from "../../../infrastructure/constants/env";
 import Bcrypt from "./../../../infrastructure/plugins/bcrypt.plugin";
-import UUID from "./../../../infrastructure/plugins/uui.plugin";
+import UUID from "../../../infrastructure/plugins/uuid.plugin";
 import Jwt from "./../../../infrastructure/plugins/jwt.plugin";
 import EmailService from "./../../../presentation/services/email.service";
 import DbDatasourceImpl from "./../../../infrastructure/datasources/db.datasource.impl";

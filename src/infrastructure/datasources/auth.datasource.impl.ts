@@ -6,7 +6,7 @@ import LoginDto from "../../domain/dto/auth/login.dto";
 import RegisterDto from "../../domain/dto/auth/register.dto";
 import Jwt from "../plugins/jwt.plugin";
 import HttpError from "../errors/http-error";
-import UUID from "../plugins/uui.plugin";
+import UUID from "../plugins/uuid.plugin";
 import EmailService from "../../presentation/services/email.service";
 import Bcrypt from "../plugins/bcrypt.plugin";
 import Env from "../constants/env";

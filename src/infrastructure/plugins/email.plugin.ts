@@ -17,8 +17,8 @@ class Email {
         }
     });
 
-    public sendEmail({ user, emailAddress, htmlTemplate }: ISendEmailParams): Promise<SMTPTransport.SentMessageInfo> {
-        return this.transport.sendMail({
+    public async sendEmail({ user, emailAddress, htmlTemplate }: ISendEmailParams): Promise<SMTPTransport.SentMessageInfo> {
+        return await this.transport.sendMail({
             to: emailAddress,
             from: "http://heroesApp.vercel",
             html: htmlTemplate,

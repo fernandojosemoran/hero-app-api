@@ -1,5 +1,5 @@
 import morgan from "morgan";
-import LogService from "../../presentation/services/log.service";
+import LogService from "../services/log.service";
 
 const logService: LogService = new LogService();
 
