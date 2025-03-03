@@ -1,4 +1,5 @@
 import { User } from '../../domain/entities/user.entity';
+import { AuthOutputs } from '../../domain/outputs/auth.out';
 
 import LogService from '../../../src/presentation/services/log.service';
 import AuthService from "../../presentation/apps/auth/auth.service";
@@ -23,22 +24,33 @@ jest.doMock("../../infrastructure/constants/env.ts", () => ({
 
 import AuthDataSourceImpl from "../../infrastructure/datasources/auth.datasource.impl";
 import DbDatasourceImpl from '../../infrastructure/datasources/db.datasource.impl';
-import { AuthOutputs } from '../../domain/outputs/auth.out';
 
-const logService: LogService = new LogService();
-const jwt: jwtPlugin = new jwtPlugin(logService);
-const uuid: UUID  = new UUID();
-const email: EmailPlugin = new EmailPlugin();
-const bcrypt: Bcrypt = new Bcrypt(logService);
-const emailService: EmailService = new EmailService(email);
-const dbDatasource: DbDatasourceImpl = new DbDatasourceImpl("user");
+let logService: LogService;
+let jwt: jwtPlugin;
+let uuid: UUID;
+let email: EmailPlugin;
+let bcrypt: Bcrypt;
+let emailService: EmailService;
+let dbDatasource: DbDatasourceImpl;
 
 
 describe('./src/infrastructure/datasources/auth.datasource.impl.ts', () => {
-    const authDatasource: AuthDataSourceImpl = new AuthDataSourceImpl(jwt, uuid, emailService, bcrypt, dbDatasource);
+    let authDatasource: AuthDataSourceImpl;
 
     beforeEach(() => {
         jest.resetAllMocks();
+        jest.clearAllMocks();
+        jest.restoreAllMocks();
+        jest.resetModules();
+        dbDatasource = new DbDatasourceImpl("user");
+        emailService = new EmailService(email);
+        bcrypt = new Bcrypt(logService);
+        email = new EmailPlugin();
+        uuid = new UUID();
+        jwt = new jwtPlugin(logService);
+        logService = new LogService();
+
+        authDatasource = new AuthDataSourceImpl(jwt, uuid, emailService, bcrypt, dbDatasource);
     });
 
     test('Should have methods like login,register,refreshToken', () => {
@@ -80,7 +92,7 @@ describe('./src/infrastructure/datasources/auth.datasource.impl.ts', () => {
         });
 
         expect(sendRegisterEmailSpy).toHaveBeenCalledWith(            
-            "fernandomoran323@gmail.com",
+            dto.email,
             `${dto.userName} ${dto.lastName}`,
              expect.stringMatching(new RegExp(`^Confirm you account using by following link ${Env.HOST_URL}/api/account/authorization/.+`)),
             "Welcome to http://heroes-app.vercel"
@@ -194,8 +206,8 @@ describe('./src/infrastructure/datasources/auth.datasource.impl.ts', () => {
             authorization: false
         };
         
-        bcrypt.compare = jest.fn(() => Promise.resolve(true));
         dbDatasource.findByProperty = jest.fn(() => Promise.resolve({ id: "test-id", lastName: "test1", ...dto } as User));
+        bcrypt.compare = jest.fn(() => Promise.resolve(true));
 
         try {
             await authDatasource.login(dto);

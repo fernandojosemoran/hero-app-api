@@ -1,12 +1,3 @@
 {
-    "users": [
-        {
-            "id": "6fcc5608-f234-45d8-936b-3c890d3b4c5f",
-            "password": "$2b$10$LONeSUzavcN8Bh/SIHa1teolDrfL6WtE.FBZXDzZ5XpwrtoysLTlC",
-            "authorization": false,
-            "email": "test@gmail.com",
-            "lastName": "jest",
-            "userName": "test"
-        }
-    ]
+    "users": []
 }
