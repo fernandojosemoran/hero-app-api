@@ -233,23 +233,6 @@
             "publisher": "DC Comics",
             "superhero": "Batwoman",
             "alt_image": "https://imgs.search.brave.com/RVce1MDzqAH2ebtG6_0esaunJQfhEW9urZZUV_OT2ms/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2YwLzY5/L2FhL2YwNjlhYTg4/Zjc4N2Y3ZWViZGNj/MGZkZjNiMGUxODA1/LmpwZw"
-        },
-        {
-            "id": "dc-test",
-            "alter_ego": "jest",
-            "first_appearance": "test@gmail.com",
-            "characters": "1,2,3,4,5",
-            "publisher": "DC Comics",
-            "superhero": "test",
-            "alt_image": "test-image"
-        },
-        {
-            "alter_ego": "jest",
-            "first_appearance": "test-date",
-            "characters": "character1, character2",
-            "publisher": "DC Comics",
-            "superhero": "test",
-            "alt_image": "test-image"
         }
     ]
 }

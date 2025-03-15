@@ -15,22 +15,6 @@
             "email": "fernando@gmail.com",
             "lastName": "jose",
             "userName": "fernando"
-        },
-        {
-            "id": "2c1a29b4-00f9-4558-98be-05266de6ae00",
-            "password": "$2b$10$iEf6ogKY9Y5nq49BqJcvsO0NFWucRFdbbaMxBdfgd/eLj3pDGgUPW",
-            "authorization": false,
-            "email": "karlin@gmail.com",
-            "lastName": "marley",
-            "userName": "karlin"
-        },
-        {
-            "id": "1428415b-0d7b-4d19-acb4-e9e48faff174",
-            "password": "$2b$10$PBsnNzySZ2cv3gzRMHOasemISydNR3c6JtHZRu6R6iQWGYE.PG4hG",
-            "authorization": true,
-            "email": "karlin@gmail.com",
-            "lastName": "marley",
-            "userName": "karlin"
         }
     ]
 }
