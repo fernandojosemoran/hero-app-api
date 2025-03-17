@@ -5,47 +5,63 @@ import path from "path";
 import DbDatasource from "../../../src/domain/datasources/db.datasource";
 import fs from "fs";
 import ConfigApp from "../../../config-app";
-import userDb from "../../presentation/data/user.json";
-import heroesDb from "../../presentation/data/heroes.json";
+// import userDb from "../../presentation/data/user.json";
+// import heroesDb from "../../presentation/data/heroes.json";
 import Env from "../constants/env";
 
+const users: UserEntity = { users: [] };
 class DbDatasourceImpl implements DbDatasource {
     private path!: string;
-    private users: UserEntity = { users: [] };
     private heroes: HeroEntityResponse = { heroes: [] };
     private readonly dirname: string = ConfigApp.rootDirPath;
 
-    public constructor(private readonly db: "hero" | "user") {
-        const MODE_TEST: boolean = Env.MODE_TEST;
+    public constructor(private readonly db: "hero" | "user") {}
 
-        const heroDestination: string = MODE_TEST ? "./src/presentation/data/heroes.test.json" : "./src/presentation/data/heroes.json";
-        const userDestination: string = MODE_TEST ? "./src/presentation/data/user.test.json" : "./src/presentation/data/user.json";
-    
-        switch (db) {
-            case "hero":
-                if (!MODE_TEST) this.heroes.heroes = heroesDb.heroes as HeroEntity[];
-                this.path = path.join(this.dirname, heroDestination);
-                break;
-            case "user":
-                if (!MODE_TEST) this.users.users = userDb.users;
-                this.path = path.join(this.dirname, userDestination);
-                break;
-            default:
-                if (!MODE_TEST) this.heroes.heroes = heroesDb.heroes as HeroEntity[];
-                this.path = path.join(this.dirname, heroDestination);
-                break;
-        }
+    private async loadData() {
+        const MODE_TEST: boolean = Env.MODE_TEST;
+        const heroDestination: string = MODE_TEST
+            ? "./src/presentation/data/heroes.test.json"
+            : "./src/presentation/data/heroes.json";
+        const userDestination: string = MODE_TEST
+            ? "./src/presentation/data/user.test.json"
+            : "./src/presentation/data/user.json";
+ 
+            switch (this.db) {
+                case "hero":
+                    this.path = path.join(this.dirname, heroDestination);
+                    if (!MODE_TEST) {
+                        const heroData = fs.readFileSync(this.path, "utf-8");
+                        this.heroes = JSON.parse(heroData);
+                    }
+                    break;
+                case "user":
+                    this.path = path.join(this.dirname, userDestination);
+                    if (!MODE_TEST) {
+                        const userData = fs.readFileSync(this.path, "utf-8");
+                        const usersData = JSON.parse(userData);
+                        users.users = usersData.users;
+                    }
+                    break;
+                default:
+                    this.path = path.join(this.dirname, heroDestination);
+                    if (!MODE_TEST) {
+                        const heroData = fs.readFileSync(this.path, "utf-8");
+                        this.heroes = JSON.parse(heroData);
+                    }
+                    break;
+            }
     }
 
     public async add(entity: User | HeroEntity): Promise<boolean> {
-
+        await this.loadData();
         if (this.db === "user") {
-            const user: User | undefined = this.users.users.find(usr => usr.id === entity.id);
+            const user: User | undefined = users.users.find(usr => usr.id === entity.id);
 
             if (user) return false;
             
-            this.users.users.push(entity as User);
-            fs.writeFileSync(this.path, JSON.stringify(this.users, null, 4), { encoding: "utf-8", flag: "w" });
+            users.users.push(entity as User);
+
+            fs.writeFileSync(this.path, JSON.stringify(users, null, 4), { encoding: "utf-8", flag: "w" });
             return true;
         }
 
@@ -63,19 +79,22 @@ class DbDatasourceImpl implements DbDatasource {
     }
 
     public async update(entity: User | HeroEntity): Promise<User | HeroEntity | undefined> {
+        await this.loadData();
         if (this.db === "user") {
-            const user = this.users.users.find(user => user.id === entity.id);
+            const user = users.users.find(user => user.id === entity.id);
 
             if (!user) return undefined;
 
-            const users: User[] = this.users.users.filter(user => user.id !== entity.id);
+            const updateHeroes: User[] = users.users.map((usr) => {
+                if (usr.id === entity.id) return { ...usr, authorization: true };
+
+                return usr;
+            });
+
+            users.users = updateHeroes;
             
-            users.push(entity as User);
-
-            this.users.users = users;
-
-            fs.writeFileSync(this.path, JSON.stringify(this.users, null, 4), { encoding: "utf-8", flag: "w" });
-
+            fs.writeFileSync(this.path, JSON.stringify(users, null, 4), { encoding: "utf-8", flag: "w" });
+            
             return entity as User;
         }
 
@@ -95,7 +114,8 @@ class DbDatasourceImpl implements DbDatasource {
     }
 
     public async findOne(id: string): Promise<User | HeroEntity | undefined> {
-        if (this.db === "user") return this.users.users.find(user => user.id === id);
+        await this.loadData();
+        if (this.db === "user") return users.users.find(user => user.id === id);
         
         return this.heroes.heroes.find(hero => hero.id === id);
     }
@@ -103,30 +123,36 @@ class DbDatasourceImpl implements DbDatasource {
      
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     public async findByProperty<K extends keyof User | keyof HeroEntity>(params: { property: K; value: any }): Promise<User | HeroEntity | undefined> {
+        await this.loadData();
+        
         if (this.db === "user") {
-            return this.users.users.find(user => user[params.property as keyof User] === params.value);
+            const user: User | undefined = users.users.find(user => user[params.property as keyof User] === params.value);
+
+            return user;
         }
-    
+     
         return this.heroes.heroes.find(hero => hero[params.property as keyof HeroEntity] === params.value);
     }
 
     public async findMany(): Promise<User[] | HeroEntity[]> {
-        if (this.db === "user") return this.users.users;
+        await this.loadData();
+        if (this.db === "user") return users.users;
 
         return this.heroes.heroes;
     }
 
     public async delete(id: string): Promise<User | HeroEntity | undefined> {
+        await this.loadData();
         if (this.db === "user") {
-            const user = this.users.users.find(user => user.id === id);
+            const user = users.users.find(user => user.id === id);
 
             if (!user) return undefined;
 
-            const users: User[] = this.users.users.filter(user => user.id !== id);
+            const usrs: User[] = users.users.filter(user => user.id !== id);
             
-            this.users.users = users;
+            users.users = usrs;
 
-            fs.writeFileSync(this.path, JSON.stringify(this.users, null, 4), { encoding: "utf-8", flag: "w" });
+            fs.writeFileSync(this.path, JSON.stringify(users, null, 4), { encoding: "utf-8", flag: "w" });
 
             return user;
         }

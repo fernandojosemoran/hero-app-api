@@ -1,20 +1,20 @@
 {
-    "users": [
-        {
-            "id": "1",
-            "userName": "John",
-            "lastName": "Doe",
-            "email": "john.due@gmail.com",
-            "password": "password123",
-            "authorization": false
-        },
-        {
-            "id": "ac004f27-c0df-402f-a49b-9ccc98e8f948",
-            "password": "$2b$10$kD4AmjwOvJrj7oY0/LF6oOW7v0ryDW4mc.KBU6hz41oa9gsKFhkhW",
-            "authorization": true,
-            "email": "fernando@gmail.com",
-            "lastName": "jose",
-            "userName": "fernando"
-        }
-    ]
+  "users": [
+    {
+      "id": "1",
+      "userName": "John",
+      "lastName": "Doe",
+      "email": "john.due@gmail.com",
+      "password": "password123",
+      "authorization": false
+    },
+    {
+      "id": "ac004f27-c0df-402f-a49b-9ccc98e8f948",
+      "password": "$2b$10$kD4AmjwOvJrj7oY0/LF6oOW7v0ryDW4mc.KBU6hz41oa9gsKFhkhW",
+      "authorization": true,
+      "email": "fernando@gmail.com",
+      "lastName": "jose",
+      "userName": "fernando"
+    }
+  ]
 }

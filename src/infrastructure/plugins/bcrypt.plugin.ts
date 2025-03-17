@@ -24,6 +24,7 @@ class Bcrypt {
         return new Promise((resolve) => {
             bycript.hash(plaintTextPassword, this._getSalt, (error, encode) => {
                 if (error) {
+                    // '$2b$10$UpD5dRhYEEcm7fJg5gZ.ae0pyvAOsRWKJlk5pu.xTtLr1EEgQqem6'
                     this._logService.errorLog(error, `${this._contextPath} | hash()`, true);
                     resolve(undefined);
                 }
