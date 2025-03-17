@@ -87,9 +87,10 @@ export class AuthController extends Controller implements IAuthController {
 
         const authToken: string | undefined = request.cookies["auth-token"];
         const authorization: string | undefined = request.headers.authorization;
-
+    
         if (!authorization) return response.status(HttpStatusCode.UNAUTHORIZED).json({ response: false });
         if (!authToken) return response.status(HttpStatusCode.UNAUTHORIZED).json({ response: false });
+
 
         response.clearCookie(
             'auth-token', 
