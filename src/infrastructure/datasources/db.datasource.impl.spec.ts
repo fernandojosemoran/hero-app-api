@@ -40,10 +40,10 @@ describe('./src/infrastructure/datasources/db.datasource.impl.ts', () => {
     test('Should find a user successfully ', async () => {
         const user: User = {
             id: "userID1",
-            userName: "test200",
-            lastName: "jest2000",
-            password: "password2000",
-            email: "test2000@gmail.com",
+            userName: "test1",
+            lastName: "jest",
+            password: "password123",
+            email: "test@gmail.com",
             authorization: true
         };
 
@@ -52,28 +52,29 @@ describe('./src/infrastructure/datasources/db.datasource.impl.ts', () => {
         expect(result).toEqual(user);
     });
 
-    test('Should find a user', async () => {
+    test('Should get all users', async () => {
         const user: User = {
             id: "userID1",
-            userName: "test200",
-            lastName: "jest2000",
-            password: "password2000",
-            email: "test2000@gmail.com",
+            userName: "test1",
+            lastName: "jest",
+            password: "password123",
+            email: "test@gmail.com",
             authorization: true
         };
-
+        
         const result = await dbUsers.findMany();
 
-        expect(result).toEqual([ user ]);
+        expect(result).toEqual([ user ]); 
     });
 
     test('Should successfully find a user by any property successfully', async () => {
+
         const user: User = {
             id: "userID1",
-            userName: "test200",
-            lastName: "jest2000",
-            password: "password2000",
-            email: "test2000@gmail.com",
+            userName: "test1",
+            lastName: "jest",
+            password: "password123",
+            email: "test@gmail.com",
             authorization: true
         };
 
@@ -85,10 +86,10 @@ describe('./src/infrastructure/datasources/db.datasource.impl.ts', () => {
     test('Should delete a user', async () => {
         const user: User = {
             id: "userID1",
-            userName: "test200",
-            lastName: "jest2000",
-            password: "password2000",
-            email: "test2000@gmail.com",
+            userName: "test1",
+            lastName: "jest",
+            password: "password123",
+            email: "test@gmail.com",
             authorization: true
         };
 

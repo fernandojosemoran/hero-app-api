@@ -19,6 +19,7 @@ class DbDatasourceImpl implements DbDatasource {
 
     private async loadData() {
         const MODE_TEST: boolean = Env.MODE_TEST;
+        
         const heroDestination: string = MODE_TEST
             ? "./src/presentation/data/heroes.test.json"
             : "./src/presentation/data/heroes.json";
@@ -136,6 +137,7 @@ class DbDatasourceImpl implements DbDatasource {
 
     public async findMany(): Promise<User[] | HeroEntity[]> {
         await this.loadData();
+        
         if (this.db === "user") return users.users;
 
         return this.heroes.heroes;
