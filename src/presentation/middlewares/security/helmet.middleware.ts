@@ -1,5 +1,5 @@
 import helmet from "helmet";
-import Env from "src/infrastructure/constants/env";
+import Env from "../../../../src/infrastructure/constants/env";
 
 export function helmetMiddleware() {
     return helmet({
