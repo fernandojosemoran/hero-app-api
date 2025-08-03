@@ -28,14 +28,15 @@ export class RouterApp {
     }
 
     public get appRoutes(): Router {
-        this.router.use(express.static(path.join(this.staticFilePath)));
-
+        
         this.router.use("/api/hero", heroesRoutes.routes);
         this.router.use("/api/media", mediaRoutes.routes);
         this.router.use("/api/auth", authRoutes.routes);
         this.router.use("/api/account", userRoutes.routes);
+        
+        this.router.use(express.static(path.join(this.staticFilePath)));
         this.router.get("*", (_, response) => response.sendFile(path.join(this.staticFilePath, "index.html"), (error) => this.handlerErrorSendFile(error, response)));
-
+        
         return this.router;
     }
 }
